@@ -11,15 +11,14 @@ class PlantListSerializer(serializers.ModelSerializer):
         fields = ('plantId', 'plantName', 'disabledIconUrl', 'activeIconUrl', 'collectionCnt', )
         # exclude = ('detailPictureUrl', 'plantDescription', )
 
+class CollectSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Collect
+        fields = '__all__'
+
 class PlantSerializer(serializers.ModelSerializer):
-
-    class CollectionSerializer(serializers.ModelSerializer):
-
-        class Meta:
-            model = Collect
-            fields = '__all__'
-
-    collection = CollectionSerializer(many=True, read_only=True)
+    collection = CollectSerializer(many=True, read_only=True)
 
     class Meta:
         model = Plant
