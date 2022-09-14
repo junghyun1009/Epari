@@ -40,5 +40,5 @@ def predict(img):
     # Tensor 형태의 인덱스 정보를 문자열로 변환
     predicted_idx = str(y_hat.item())
     # 인덱스값에 맞는 꽃이름을 찾아 출력
-    imagenet_class_index = json.load(open('./cat_to_name.json'))
+    imagenet_class_index = json.load(open('./cat_to_name.json', 'rt', encoding='UTF8'))
     return imagenet_class_index[predicted_idx]
