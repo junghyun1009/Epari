@@ -38,7 +38,12 @@ def predict(img):
     # Tensor 내에서 최댓값을 _에, 그 인덱스 정보를 y_hat에 저장
     _, y_hat = output.max(1)
     # Tensor 형태의 인덱스 정보를 문자열로 변환
-    predicted_idx = str(y_hat.item())
+    predicted_idx = str(y_hat.item()+1)
     # 인덱스값에 맞는 꽃이름을 찾아 출력
     imagenet_class_index = json.load(open('./cat_to_name.json', 'rt', encoding='UTF8'))
-    return imagenet_class_index[predicted_idx]
+    # return imagenet_class_index[predicted_idx]
+    data = {
+        'plantId': int(predicted_idx),
+        'plantName': imagenet_class_index[predicted_idx],
+    }
+    return data
