@@ -1,10 +1,10 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, BLOB
 import database
 
 class Plant(database.Base):
     __tablename__ = "plants"
 
     plantId = Column(Integer, primary_key=True)
-    plantEngName = Column(String(30))
-    plantKorName = Column(String(30))
+    plantName = Column(String(30))
+    # plantKorName = Column(String(30))
     detailPictureUrl = Column(String(200))
