@@ -23,11 +23,18 @@ def plant_list_or_create(request):
         userImageUrl = FileUpload(s3_client).upload(file)
         print('image', userImageUrl)
 
-        serializer = CollectSerializer(data=request.data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-    
+        def create_plant_image(userImageUrl):
+            # data = request.data.copy()
+            # data['collectPictureUrl'] = userImageUrl
+            request.data.__setitem__('collectPictureUrl', userImageUrl)
+            print(request.data)
+            serializer = CollectSerializer(data=request.data)
+            if serializer.is_valid(raise_exception=True):
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        create_plant_image(userImageUrl)
+
     if request.method == 'GET':
         return plant_list()
     elif request.method == 'POST':
