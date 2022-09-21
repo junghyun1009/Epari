@@ -6,7 +6,7 @@ class Title(models.Model):
     titleId = models.AutoField(primary_key=True)
     titleName = models.CharField(max_length=50)
     titleDescription = models.CharField(max_length=200)
-    tiltePictureUrl = models.CharField(max_length=200)
+    titlePictureUrl = models.CharField(max_length=200)
 
 class Obtained(models.Model):
     titleId = models.ForeignKey(Title, on_delete=models.CASCADE)
