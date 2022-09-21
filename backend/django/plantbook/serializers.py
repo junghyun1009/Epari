@@ -1,4 +1,3 @@
-from socket import ntohl
 from rest_framework import serializers
 from .models import Collect, Plant
 
