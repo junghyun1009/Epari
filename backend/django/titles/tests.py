@@ -13,9 +13,9 @@ factory = APIRequestFactory()
 class TitlesTest(APITestCase):
     def setUp(self):
         self.url = reverse('titles:titles', kwargs={ 'userId': 1 })
-        self.title1 = Title.objects.create(titleId=1, titleName="칭호 없음", titleDescription="획득한 칭호 없음", tiltePictureUrl="")
-        self.title2 = Title.objects.create(titleId=2, titleName="심봤다", titleDescription="당신은 산삼킬러", tiltePictureUrl="")
-        self.title3 = Title.objects.create(titleId=3, titleName="도라지 마스터", titleDescription="당신은 도라지킬러", tiltePictureUrl="")
+        self.title1 = Title.objects.create(titleId=1, titleName="칭호 없음", titleDescription="획득한 칭호 없음", titlePictureUrl="")
+        self.title2 = Title.objects.create(titleId=2, titleName="심봤다", titleDescription="당신은 산삼킬러", titlePictureUrl="")
+        self.title3 = Title.objects.create(titleId=3, titleName="도라지 마스터", titleDescription="당신은 도라지킬러", titlePictureUrl="")
         self.user = User.objects.create(id=1, username="test", password="1234")
         self.obtained1 = Obtained.objects.create(titleId=self.title1, userId=self.user)
         self.obtained2 = Obtained.objects.create(titleId=self.title2, userId=self.user)
