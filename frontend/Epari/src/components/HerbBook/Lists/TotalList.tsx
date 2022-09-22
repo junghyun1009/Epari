@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-const Home: React.FC = () => {
+const TotalList: React.FC = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.fontTest}>Epari Home Screen</Text>
+      <Text>전체목록</Text>
     </View>
   );
 };
@@ -15,9 +15,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  fontTest: {
-    fontFamily: 'NeoDGM-Regular',
-  },
 });
-
-export default Home;
+export default TotalList;
