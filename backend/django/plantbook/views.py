@@ -33,8 +33,6 @@ def plant_list_or_create(request):
                 serializer.save()
                 print(serializer.data)
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
-            else:
-                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         return create_plant_image(userImageUrl)
 
@@ -46,5 +44,11 @@ def plant_list_or_create(request):
 @api_view(['GET'])
 def plant_detail(request, plantId):
     plant = get_object_or_404(Plant, pk=plantId)
-    serializer = PlantSerializer(plant)
-    return Response(serializer.data, status=status.HTTP_200_OK)
+    if Collect.objects.filter(plantId=plant, userId=request.user).exists():
+        serializer = PlantSerializer(plant)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    else:
+        data = {
+            'message': '아직 수집하지 않은 식물입니다.'
+        }
+        return Response(data, status=status.HTTP_204_NO_CONTENT)
