@@ -33,8 +33,6 @@ def plant_list_or_create(request):
                 serializer.save()
                 print(serializer.data)
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
-            else:
-                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         return create_plant_image(userImageUrl)
 
