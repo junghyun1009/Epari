@@ -34,24 +34,24 @@ def tourist_spot(request, plantId):
     # 지역코드
     with open('locations/area_code.json', 'r', encoding='utf-8') as f:
       areas = json.load(f)
-    area_code = areas['서울']
+    area_code = areas['서울시']
     
     # 시군구코드
     with open('locations/sigungu_code.json', 'r', encoding='utf-8') as f:
       sigungus = json.load(f)
-    sigungu_code = sigungus[area_code]['강남구']
+    sigungu_code = sigungus[area_code]['동작구']
 
     URL = BASE_URL + f'?MobileOS={mobile_os}' + f'&MobileApp={mobile_app}' + f'&_type={_type}' + f'&ServiceKey={my_settings.TOUR_API_KEY}' + f'&contentTypeId={content_type_id}' + f'&cat1={cat1}' + f'&areaCode={area_code}' + f'&sigunguCode={sigungu_code}'
     response = requests.get(URL)
     
+    # 결과가 있을 경우(dict형태로 주어짐)
     if isinstance(response.json()['response']['body']['items'], dict):
       return Response(response.json()['response']['body']['items']['item'], status=status.HTTP_200_OK)
-    # 결과가 없을 경우 로직
+    # 결과가 없을 경우(빈 str형태) 시군구 코드르 빼고 재요청
     else:
-      data = {
-        'message': '해당하는 지역에 관광지가 없습니다.'
-      }
-      return Response(data, status=status.HTTP_204_NO_CONTENT)
+      URL = BASE_URL + f'?MobileOS={mobile_os}' + f'&MobileApp={mobile_app}' + f'&_type={_type}' + f'&ServiceKey={my_settings.TOUR_API_KEY}' + f'&contentTypeId={content_type_id}' + f'&cat1={cat1}' + f'&areaCode={area_code}'
+      response = requests.get(URL)
+      return Response(response.json()['response']['body']['items']['item'], status=status.HTTP_206_PARTIAL_CONTENT)
   else:
     data = {
             'message': '이미 수집된 식물입니다.'

@@ -18,3 +18,5 @@ class Collect(models.Model):
     collectDate = models.DateField(auto_now_add=True)
     collectContent = models.TextField()
     collectPlace = models.CharField(max_length=50)
+    areaCode = models.CharField(max_length=10)
+    sigunguCode = models.CharField(max_length=10)
