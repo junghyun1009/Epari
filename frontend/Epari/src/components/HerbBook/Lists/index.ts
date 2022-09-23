@@ -1,5 +1,5 @@
-import HerbList from './HerbList';
-import FlowerList from './FlowerList';
+import GetList from './GetList';
+import NoGetList from './NoGetList';
 import TotalList from './TotalList';
 
-export {HerbList, FlowerList, TotalList};
+export {GetList, NoGetList, TotalList};
