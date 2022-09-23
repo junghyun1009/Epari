@@ -29,7 +29,7 @@ const HerbBookStack: React.FC = () => {
 
 const styles = StyleSheet.create({
   HerbBookStackContatiner: {
-    height: 600,
+    height: 700,
     justifyContent: 'center',
   },
   TabBar: {
@@ -37,7 +37,6 @@ const styles = StyleSheet.create({
     borderRadius: 90,
     backgroundColor: '#FFFFFF',
     alignSelf: 'center',
-
     borderWidth: 2.5,
     borderColor: '#110105',
   },
@@ -53,7 +52,6 @@ const styles = StyleSheet.create({
   TabBarIndicator: {
     backgroundColor: '#007C2B',
     height: '100%',
-
     borderRadius: 90,
   },
 });
