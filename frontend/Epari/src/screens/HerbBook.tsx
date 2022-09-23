@@ -7,7 +7,7 @@ import HerbBookStack from '../navigation/HerbBookStack';
 
 const HerbBook: React.FC = () => {
   return (
-    <ScrollView>
+    <ScrollView style={styles.background}>
       <HerbBookHeader />
       <AcheivePoint />
       <HerbBookStack />
@@ -19,6 +19,9 @@ const HerbBook: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
+  background: {
+    backgroundColor: '#FFF7F2',
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
