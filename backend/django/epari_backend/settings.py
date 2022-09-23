@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'accounts',
     'plantbook',
     'titles',
+    'locations',
 
     'django_extensions',
     'rest_framework',
