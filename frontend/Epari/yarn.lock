@@ -6054,7 +6054,7 @@
     "fast-levenshtein" "~2.0.6"
     "levn" "~0.3.0"
     "prelude-ls" "~1.1.2"
-    "type-check" "~0.3.2"
+    "typ,e-check" "~0.3.2"
     "word-wrap" "~1.2.3"
 
 "optionator@^0.9.1":
@@ -6430,6 +6430,11 @@
   "integrity" "sha512-k7d+CVh0fs/VntA2WaKD58cFB2rtiSLBHYlciH18ncaT4N/B3A4qOGv9pSCEHfQikELm6vAf98KMbE3c8KnH1A=="
   "resolved" "https://registry.npmjs.org/react-native-gradle-plugin/-/react-native-gradle-plugin-0.70.2.tgz"
   "version" "0.70.2"
+
+"react-native-image-picker@^4.10.0":
+  "integrity" "sha512-QNK4ZnFLD+BdiM1QL1jh9GUALhRXm3MV97crhnTCSMv50H6E4tq3ozgfyxF5uKz0cECbNkWswg4sjgqZKEJtww=="
+  "resolved" "https://registry.npmjs.org/react-native-image-picker/-/react-native-image-picker-4.10.0.tgz"
+  "version" "4.10.0"
 
 "react-native-pager-view@*", "react-native-pager-view@^6.0.0", "react-native-pager-view@>= 4.0.0":
   "integrity" "sha512-0qUMUmA/Lhv76F+fbCcYB+iuODH6Lp6E1EYlXw+GM3Ns3FaKFtBaVYXKQSfNhqnTUg9YEOY3HuX+ZMKBSHwNbA=="

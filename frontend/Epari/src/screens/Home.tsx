@@ -1,10 +1,11 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, Pressable, StyleSheet} from 'react-native';
+import AiCapture from './AiCapture';
 
 const Home: React.FC = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.fontTest}>Epari Home Screen</Text>
+      <AiCapture />
     </View>
   );
 };
