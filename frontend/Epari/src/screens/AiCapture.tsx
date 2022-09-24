@@ -1,11 +1,14 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image, Pressable} from 'react-native';
 import {launchImageLibrary} from 'react-native-image-picker';
-
+import {useRecoilState} from 'recoil';
+import {pictureImageUrl} from '../store/picturedImageUrl';
 import {useNavigation} from '@react-navigation/native';
 
 const AiCapture: React.FC = ({}) => {
   const navigation = useNavigation();
+  const [picturedImageUrl, setPicturedImageUrl] =
+    useRecoilState(pictureImageUrl);
 
   const uploadImage = async () => {
     const image = {
@@ -23,6 +26,8 @@ const AiCapture: React.FC = ({}) => {
         image.type = res.assets[0].type;
         image.uri = res.assets[0].uri;
         image.name = res.assets[0].fileName;
+        setPicturedImageUrl(image.uri);
+        console.log('url', picturedImageUrl);
       }
     });
   };
@@ -35,7 +40,7 @@ const AiCapture: React.FC = ({}) => {
             style={styles.fontTest}
             onPress={() => {
               uploadImage();
-              navigation.navigate('AiReulst');
+              navigation.navigate('AiResult');
             }}>
             CAMERA
           </Text>

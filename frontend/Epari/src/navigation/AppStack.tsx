@@ -9,7 +9,7 @@ const AppStack: React.FC = () => {
     <Navigator initialRouteName="HerbBook" screenOptions={{headerShown: false}}>
       <Screen name="Home" component={Home} />
       <Screen name="AiCapture" component={AiCapture} />
-      <Screen name="AiReulst" component={AiResult} />
+      <Screen name="AiResult" component={AiResult} />
       <Screen name="HerbBook" component={HerbBook} />
     </Navigator>
   );
