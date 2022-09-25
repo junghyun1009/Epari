@@ -1,13 +1,13 @@
 import React from 'react';
 import {View, Text, StyleSheet, Pressable} from 'react-native';
 import {launchImageLibrary} from 'react-native-image-picker';
-import {useSetRecoilState, useRecoilValue} from 'recoil';
+import {useSetRecoilState} from 'recoil';
 import {capturedImage, picturedImage} from '../../store/classification';
 import {useNavigation} from '@react-navigation/native';
 
-const AiCamera: React.FC = ({}) => {
+const AiCamera: React.FC = ({style, name}) => {
   const navigation = useNavigation();
-  const setPicturedImageUrl = useSetRecoilState(picturedImage);
+  const setPicturedImage = useSetRecoilState(picturedImage);
   const setCapturedImage = useSetRecoilState(capturedImage);
 
   const uploadImage = async () => {
@@ -26,7 +26,7 @@ const AiCamera: React.FC = ({}) => {
         image.type = res.assets[0].type;
         image.uri = res.assets[0].uri;
         image.name = res.assets[0].fileName;
-        setPicturedImageUrl(image.uri);
+        setPicturedImage(image);
       }
     });
     const formdata = new FormData();
@@ -49,32 +49,25 @@ const AiCamera: React.FC = ({}) => {
   };
 
   return (
-    <View style={styles.container}>
-      <Pressable>
-        <View>
-          <Text
-            style={styles.fontTest}
-            onPress={() => {
-              uploadImage();
-              navigation.navigate('AiResult');
-            }}>
-            CAMERA
-          </Text>
-        </View>
-      </Pressable>
-    </View>
+    <Pressable style={style}>
+      <View>
+        <Text
+          style={styles.fontTest}
+          onPress={() => {
+            uploadImage();
+            navigation.navigate('AiResult');
+          }}>
+          {name}
+        </Text>
+      </View>
+    </Pressable>
   );
 };
 
+export default AiCamera;
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   fontTest: {
     fontFamily: 'NeoDGM-Regular',
   },
 });
-
-export default AiCamera;
