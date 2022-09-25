@@ -1,14 +1,14 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image, Pressable} from 'react-native';
+import {View, Text, StyleSheet, Pressable} from 'react-native';
 import {launchImageLibrary} from 'react-native-image-picker';
-import {useRecoilState} from 'recoil';
-import {pictureImageUrl} from '../../store/picturedImageUrl';
+import {useSetRecoilState, useRecoilValue} from 'recoil';
+import {capturedImage, picturedImage} from '../../store/classification';
 import {useNavigation} from '@react-navigation/native';
 
 const AiCamera: React.FC = ({}) => {
   const navigation = useNavigation();
-  const [picturedImageUrl, setPicturedImageUrl] =
-    useRecoilState(pictureImageUrl);
+  const setPicturedImageUrl = useSetRecoilState(picturedImage);
+  const setCapturedImage = useSetRecoilState(capturedImage);
 
   const uploadImage = async () => {
     const image = {
@@ -27,9 +27,25 @@ const AiCamera: React.FC = ({}) => {
         image.uri = res.assets[0].uri;
         image.name = res.assets[0].fileName;
         setPicturedImageUrl(image.uri);
-        console.log('url', picturedImageUrl);
       }
     });
+    const formdata = new FormData();
+    formdata.append('capturedImg', image);
+
+    const requestOptions = {
+      method: 'POST',
+      body: formdata,
+      headers: {
+        // 'Content-Type': 'multipart/form-data; ',
+      },
+    };
+    await fetch('http://127.0.0.1:8001/epari/v1/plantAi', requestOptions)
+      .then(response => response.json())
+      .then(result => {
+        console.log('result', result);
+        setCapturedImage(result);
+      })
+      .catch(error => console.log('error', error));
   };
 
   return (
