@@ -1,11 +1,12 @@
 import React from 'react';
-import {Home, AiCapture, AiResult, HerbBook} from '../screens';
+import {Home, AiCapture, AiResult, HerbBook, HerbDetail} from '../screens';
 import AiRegister from '../screens/AiRegister';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {AppStackParamList} from '../types';
 
 const {Navigator, Screen} = createBottomTabNavigator();
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<AppStackParamList>();
 
 const Tab: React.FC = () => {
   return (
@@ -25,6 +26,7 @@ const AppStack: React.FC = () => {
       <Stack.Screen name="AiCapture" component={AiCapture} />
       <Stack.Screen name="AiResult" component={AiResult} />
       <Stack.Screen name="AiRegister" component={AiRegister} />
+      <Stack.Screen name="Detail" component={HerbDetail} />
     </Stack.Navigator>
   );
 };

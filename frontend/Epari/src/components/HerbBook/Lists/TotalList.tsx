@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet, ScrollView, Image} from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 let herbiconURL = 'Epari/src/asset/herbIcons/HerbIcon_';
 
@@ -9,10 +10,12 @@ const TotalList: React.FC = () => {
       <View style={styles.container}>
         <View>
           <View style={styles.ListItem}>
-            <Image
-              style={styles.ImageItem}
-              source={require(herbiconURL + '1.png')}
-            />
+            <TouchableOpacity>
+              <Image
+                style={styles.ImageItem}
+                source={require(herbiconURL + '1.png')}
+              />
+            </TouchableOpacity>
           </View>
         </View>
         <View style={styles.ListItem}>
