@@ -47,6 +47,7 @@ async def get_name(capturedImg: UploadFile, db: Session = Depends(get_db)):
     # img = 'static/images/' + str(rlt["plantId"]) + ".jpg"
     img = crud.get_image(db=db, plantId=plantInt)
     result = {
+        'plantId': plantInt,
         'plantName': rlt['plantName'],
         'detailPictureUrl': img
     }
