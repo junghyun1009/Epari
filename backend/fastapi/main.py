@@ -39,15 +39,20 @@ async def get_name(capturedImg: UploadFile, db: Session = Depends(get_db)):
     # 이미지 받아와서 어떤 식물인지 파악하기
     image_content = await capturedImg.read()
     image = Image.open(io.BytesIO(image_content))
-    # 파악한 식물 이름 저장하기
-    rlt = AI.predict(image)
-    print(rlt)
-    plantInt = int(rlt['plantId'][1:3])
-    print(plantInt)
-    # img = 'static/images/' + str(rlt["plantId"]) + ".jpg"
-    img = crud.get_image(db=db, plantId=plantInt)
-    result = {
-        'plantName': rlt['plantName'],
-        'detailPictureUrl': img
-    }
-    return result
+    
+    # 파악한 식물 이름 저장
+    # result >> 유사도 상위 3개 식물(plantId, plantName, similarity)을 담은 리스트 형태
+    result = AI.predict(image)
+
+    data = []
+    for plant in result:
+        # 해당 식물의 대표이미지 받아오기
+        plantInt = int(plant['plantId'][1:3])
+        # img = 'static/images/' + str(rlt["plantId"]) + ".jpg"
+        img = crud.get_image(db=db, plantId=plantInt)
+        data.append({
+            'plantId': plantInt,
+            'plantName': plant['plantName'],
+            'detailPictureUrl': img
+        })
+    return data
