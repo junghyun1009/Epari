@@ -15,7 +15,6 @@ const HerbBookStack: React.FC = () => {
           tabBarLabelStyle: styles.TabBarLabel,
           tabBarItemStyle: styles.TabBarItem,
           tabBarIndicatorStyle: styles.TabBarIndicator,
-          tabBarScrollEnabled: true,
           tabBarActiveTintColor: '#FFFFFF',
           tabBarInactiveTintColor: '#110105',
         }}>
@@ -42,13 +41,11 @@ const styles = StyleSheet.create({
   },
   TabBarLabel: {
     fontFamily: 'NeoDGM-Regular',
-    fontSize: 18,
-    width: 'auto',
+    fontSize: 16,
+
     textAlign: 'center',
   },
-  TabBarItem: {
-    width: 114,
-  },
+  TabBarItem: {},
   TabBarIndicator: {
     backgroundColor: '#007C2B',
     height: '100%',
