@@ -21,4 +21,5 @@ urlpatterns = [
     path('epari/v1/collection/', include('plantbook.urls')),
     path('epari/v1/titles/', include('titles.urls')),
     path('epari/v1/locations/', include('locations.urls')),
+    path('epari/v1/accounts/', include('accounts.urls')),
 ]
