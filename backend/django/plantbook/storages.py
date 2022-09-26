@@ -1,6 +1,7 @@
 import boto3
 import uuid
 from django.conf import settings
+import my_settings
 
 class FileUpload:
     def __init__(self, client):
@@ -35,4 +36,4 @@ class MyS3Client:
         except:
             return None
 
-s3_client = MyS3Client(settings.AWS_S3_ACCESS_KEY_ID, settings.AWS_S3_SECRET_ACCESS_KEY, 'dolarge')
+s3_client = MyS3Client(my_settings.AWS_S3_ACCESS_KEY_ID, my_settings.AWS_S3_SECRET_ACCESS_KEY, 'dolarge')
