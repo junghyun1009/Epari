@@ -1,16 +1,30 @@
 import React from 'react';
-import {View, Text, StyleSheet, ScrollView, Image} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
+import {AppStackParamList} from '../../../types';
+import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+
+export type TotalListScreenProps = NativeStackScreenProps<
+  AppStackParamList,
+  'TotalList'
+>;
 
 let herbiconURL = 'Epari/src/asset/herbIcons/HerbIcon_';
 
-const TotalList: React.FC = () => {
+const TotalList: React.FC<TotalListScreenProps> = ({navigation}) => {
   return (
     <ScrollView style={styles.background}>
       <View style={styles.container}>
         <View>
           <View style={styles.ListItem}>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('HerbDetail', {id: 1})}>
               <Image
                 style={styles.ImageItem}
                 source={require(herbiconURL + '1.png')}
@@ -181,7 +195,6 @@ const styles = StyleSheet.create({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
-
     flexDirection: 'row',
     overflow: 'scroll',
     justifyContent: 'center',
@@ -192,8 +205,8 @@ const styles = StyleSheet.create({
   },
   ListItem: {
     margin: 17,
-    width: 80,
-    height: 80,
+    width: 70,
+    height: 70,
     borderRadius: 12,
     fontFamily: 'NeoDGM-Regular',
     alignItems: 'center',
@@ -201,8 +214,8 @@ const styles = StyleSheet.create({
     borderWidth: 2.4,
   },
   ImageItem: {
-    width: 80,
-    height: 80,
+    width: 70,
+    height: 70,
   },
   ItemName: {
     alignSelf: 'center',

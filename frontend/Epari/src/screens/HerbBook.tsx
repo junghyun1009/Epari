@@ -12,7 +12,7 @@ const HerbBook: React.FC = () => {
       <AcheivePoint />
       <HerbBookStack />
       <View style={styles.container}>
-        <Text style={styles.fontTest}>Epari Herb Book Screen</Text>
+        <Text style={styles.fontTest}>Epari Herb Book Screenn</Text>
       </View>
     </ScrollView>
   );

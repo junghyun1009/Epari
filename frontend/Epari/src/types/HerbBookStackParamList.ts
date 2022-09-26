@@ -1,16 +1,13 @@
-export type AppStackParamList = {
+export type HerbBookStackParamList = {
   Home: undefined;
   Tab: undefined;
   AiCapture: undefined;
   AiResult: undefined;
   AiRegister: undefined;
+  HerbBook: undefined;
   TotalList: undefined;
   GetList: undefined;
   NoGetList: undefined;
-  HerbBook: undefined;
-  ListItem: {
-    id: number;
-  };
   HerbDetail: {
     id: number;
   };

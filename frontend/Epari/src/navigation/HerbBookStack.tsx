@@ -2,14 +2,15 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {GetList, NoGetList, TotalList} from '../components/HerbBook/Lists';
+import {HerbBookStackParamList} from '../types';
 
-const Tab = createMaterialTopTabNavigator();
+const Tab = createMaterialTopTabNavigator<HerbBookStackParamList>();
 
-const HerbBookStack: React.FC = () => {
+const HerbBookStack = () => {
   return (
     <View style={styles.HerbBookStackContatiner}>
       <Tab.Navigator
-        initialRouteName="전체"
+        initialRouteName="TotalList"
         screenOptions={{
           tabBarStyle: styles.TabBar,
           tabBarLabelStyle: styles.TabBarLabel,
@@ -18,9 +19,21 @@ const HerbBookStack: React.FC = () => {
           tabBarActiveTintColor: '#FFFFFF',
           tabBarInactiveTintColor: '#110105',
         }}>
-        <Tab.Screen name="전체" component={TotalList} />
-        <Tab.Screen name="수집완료" component={GetList} />
-        <Tab.Screen name="미수집" component={NoGetList} />
+        <Tab.Screen
+          name="TotalList"
+          component={TotalList}
+          options={{title: '전체'}}
+        />
+        <Tab.Screen
+          name="GetList"
+          component={GetList}
+          options={{title: '수집완료'}}
+        />
+        <Tab.Screen
+          name="NoGetList"
+          component={NoGetList}
+          options={{title: '미수집'}}
+        />
       </Tab.Navigator>
     </View>
   );
