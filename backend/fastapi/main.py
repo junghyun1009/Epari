@@ -4,9 +4,7 @@ from sqlalchemy.orm import Session
 import models, database, crud, schemas, AI
 import PIL, io, os
 from PIL import Image
-
-from settings import IMG_DIR
-from fastapi.responses import FileResponse
+import uvicorn
 
 # 최초 DB 생성할 때는 1번 코드를 주석해제하여 사용(2번은 주석처리)
 # DB가 이미 존재할 때는 2번 코드를 사용(1번 주석처리)
@@ -15,10 +13,6 @@ from fastapi.responses import FileResponse
 
 # 2.
 models.database.Base.metadata.bind = database.engine
-
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-IMG_DIR = os.path.join(BASE_DIR, 'static/images/')
-SERVER_IMAGE_DIR = os.path.join('http://localhost:8000/', 'static/images/')
 
 app = FastAPI()
 
@@ -29,11 +23,11 @@ def get_db():
     finally:
         db.close()
 
-@app.get("/")
+@app.get("/ai")
 def say_hello():
     return { "message": "a201 team dolarge"}
 
-@app.post("/epari/v1/plantAi")
+@app.post("/ai/plantAi")
 async def get_name(capturedImg: UploadFile, db: Session = Depends(get_db)):
     # db_plant = crud.create_plant(db, plant=plant)
     # 이미지 받아와서 어떤 식물인지 파악하기
@@ -48,7 +42,6 @@ async def get_name(capturedImg: UploadFile, db: Session = Depends(get_db)):
     for plant in result:
         # 해당 식물의 대표이미지 받아오기
         plantInt = int(plant['plantId'][1:3])
-        # img = 'static/images/' + str(rlt["plantId"]) + ".jpg"
         img = crud.get_image(db=db, plantId=plantInt)
         data.append({
             'plantId': plantInt,
@@ -56,3 +49,6 @@ async def get_name(capturedImg: UploadFile, db: Session = Depends(get_db)):
             'detailPictureUrl': img
         })
     return data
+
+if __name__ == '__main__':
+    uvicorn.run("main:app", host="127.0.0.1", port=8001)
