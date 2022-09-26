@@ -8,6 +8,7 @@ import {
   TextInput,
   StyleSheet,
   Pressable,
+  Keyboard,
 } from 'react-native';
 import {useRecoilValue} from 'recoil';
 import {picturedImage, capturedImage} from '../../store/classification';
@@ -58,15 +59,20 @@ const EnrollForm: React.FC = () => {
       })
       .catch(error => console.log('error', error));
   };
-
+  const capturedPlantName = (capturedImageState.plantName || '').split('_', 1);
   return (
     <KeyboardAvoidingView
       behavior="padding"
-      keyboardVerticalOffset={25}
+      keyboardVerticalOffset={-20}
       style={styles.container}>
       <ScrollView>
-        <Image source={{uri: picturedImageState.uri}} style={styles.image} />
-        <Text style={styles.plantName}>{capturedImageState.plantName}</Text>
+        <View style={styles.plantInfo}>
+          <Image
+            source={{uri: picturedImageState.uri}}
+            style={styles.plantImage}
+          />
+          <Text style={styles.plantName}>{capturedPlantName}</Text>
+        </View>
         <View style={styles.inputConatiner}>
           <Text style={styles.inputLabel}>제목: </Text>
           <TextInput
@@ -78,7 +84,7 @@ const EnrollForm: React.FC = () => {
         <View style={styles.inputConatiner}>
           <Text style={styles.inputLabel}>메모: </Text>
           <TextInput
-            style={styles.inputBox}
+            style={[styles.inputBox, styles.multilineInputBox]}
             onChangeText={handleContentInput}
             value={inputContent}
             multiline
@@ -91,6 +97,7 @@ const EnrollForm: React.FC = () => {
             style={styles.button}
             onPress={() => {
               saveImage();
+              Keyboard.dismiss();
             }}>
             등록하기
           </Text>
@@ -104,15 +111,29 @@ export default EnrollForm;
 
 const styles = StyleSheet.create({
   container: {
+    // flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
     padding: 24,
   },
-  image: {
+  plantInfo: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  plantImage: {
     width: 300,
     height: 300,
     borderRadius: 12,
     margin: 24,
   },
-  inputConatiner: {},
+  plantName: {
+    fontFamily: 'NeoDGM-Regular',
+    fontSize: 20,
+  },
+  inputConatiner: {
+    marginVertical: 6,
+  },
   inputLabel: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -124,6 +145,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 12,
     backgroundColor: '#F6EDD9',
+    fontFamily: 'NeoDGM-Regular',
+  },
+  multilineInputBox: {
+    minHeight: 100,
     textAlignVertical: 'top',
   },
   button: {
