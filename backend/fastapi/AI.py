@@ -47,8 +47,8 @@ def predict(img):
     # output sorting 뒤에서부터 가장 유사
     sorted_tensor = torch.argsort(output, dim=1)
 
-    # threshold >> 유사도 임계치. 유사도가 임계치 이상이어야 후보 목록에 올림 (미정)
-    threshold = 0
+    # threshold >> 유사도 임계치. 유사도가 임계치 이상이어야 후보 목록에 올림
+    threshold = 7
 
     # index >> 유사도 상위 3개 식물의 위치
     # similarity >> 해당 식물의 유사도 (소숫점 셋째자리까지 반올림)
