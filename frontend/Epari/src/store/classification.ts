@@ -1,8 +1,14 @@
 import {atom} from 'recoil';
 
-export const picturedImage = atom<string>({
-  key: 'picturedImageState',
-  default: '',
+export type PicturedImageType = {
+  uri: string;
+  type: string;
+  name: string;
+};
+
+export const picturedImage = atom<PicturedImageType[]>({
+  key: 'picturedImage',
+  default: [],
 });
 
 export type CapturedImageType = {
@@ -14,8 +20,3 @@ export const capturedImage = atom<CapturedImageType[]>({
   key: 'capturedImage',
   default: [],
 });
-
-// export const capturedImage = atom<string>({
-//   key: 'capturedImageState',
-//   default: '',
-// });
