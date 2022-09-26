@@ -3,6 +3,7 @@ from torchvision import transforms
 
 import PIL
 import json
+import os
 
 # 모델 불러오기
 model = torch.load('./model.pth')
@@ -38,12 +39,24 @@ def predict(img):
     # Tensor 내에서 최댓값을 _에, 그 인덱스 정보를 y_hat에 저장
     _, y_hat = output.max(1)
     # Tensor 형태의 인덱스 정보를 문자열로 변환
-    predicted_idx = str(y_hat.item()+1)
+    index = y_hat.item()
+
+    # 인덱스에 해당하는 폴더명 가져오기
+    # class_number = sorted(os.listdir('./flower_data/train'))[index]
+    # class_number
     # 인덱스값에 맞는 꽃이름을 찾아 출력
-    imagenet_class_index = json.load(open('./flower_class.json', 'rt', encoding='UTF8'))
+    class_number = ''
+    curr = 0
+    imagenet_class_index = json.load(open('./flower_data/flower_class.json'))
+    for x in imagenet_class_index:
+        if curr == index:
+            class_number = x
+        curr += 1
+
+    # imagenet_class_index[class_number]
     # return imagenet_class_index[predicted_idx]
     data = {
-        'plantId': int(predicted_idx),
-        'plantName': imagenet_class_index[predicted_idx],
+        'plantId': class_number,
+        'plantName': imagenet_class_index[class_number],
     }
     return data

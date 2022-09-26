@@ -26,7 +26,9 @@ SECRET_KEY = my_settings.SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'j7a201.p.ssafy.io',
+]
 
 
 # Application definition
@@ -35,6 +37,7 @@ INSTALLED_APPS = [
     'accounts',
     'plantbook',
     'titles',
+    'locations',
 
     'django_extensions',
     'rest_framework',
@@ -87,10 +90,6 @@ DATABASES = my_settings.DATABASES
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AWS_S3_SECURE_URLS = False
 AWS_QUERYSTRING_AUTH = False
-
-AWS_S3_ACCESS_KEY_ID = 'AKIASIIFUWZ57MWFU3P3'
-AWS_S3_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'dolarge'
 
 
 # Password validation
