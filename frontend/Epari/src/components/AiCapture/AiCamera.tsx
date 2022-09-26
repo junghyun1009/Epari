@@ -50,9 +50,9 @@ const AiCamera: React.FC = ({style, name}) => {
 
   return (
     <Pressable style={style}>
-      <View>
+      <View style={styles.textContainer}>
         <Text
-          style={styles.fontTest}
+          style={styles.text}
           onPress={() => {
             uploadImage();
             navigation.navigate('AiResult');
@@ -67,7 +67,13 @@ const AiCamera: React.FC = ({style, name}) => {
 export default AiCamera;
 
 const styles = StyleSheet.create({
-  fontTest: {
+  textContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  text: {
     fontFamily: 'NeoDGM-Regular',
+    // fontSize: 32,
+    // color: 'white',
   },
 });
