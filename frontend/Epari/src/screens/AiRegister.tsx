@@ -1,8 +1,14 @@
 import React from 'react';
-import RegisterForm from '../components/AiCapture/RegisterForm';
+import {View, Text} from 'react-native';
+// import RegisterForm from '../components/AiCapture/RegisterForm';
 
 const RegisterImage: React.FC = ({}) => {
-  return <RegisterForm />;
+  return (
+    <View>
+      <Text>ResterForm</Text>
+    </View>
+  );
+  //return <RegisterForm />;
 };
 
 export default RegisterImage;

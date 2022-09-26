@@ -42,7 +42,6 @@ const styles = StyleSheet.create({
   TabBarLabel: {
     fontFamily: 'NeoDGM-Regular',
     fontSize: 16,
-
     textAlign: 'center',
   },
   TabBarItem: {},
