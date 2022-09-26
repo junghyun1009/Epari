@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   KeyboardAvoidingView,
   ScrollView,
@@ -15,7 +15,17 @@ import {picturedImage, capturedImage} from '../../store/classification';
 const EnrollForm: React.FC = () => {
   const picturedImageState = useRecoilValue(picturedImage);
   const capturedImageState = useRecoilValue(capturedImage);
+  // const [inputTitle, setInputTitle] = useState('')
+  const [inputContent, setInputContent] = useState('');
   console.log('capture', capturedImageState);
+
+  // const handleTitleInput = enteredText => {
+  //   setInputTitle(enteredText)
+  // }
+  const handleContentInput = enteredText => {
+    setInputContent(enteredText);
+    console.log(inputContent);
+  };
 
   const saveImage = async () => {
     const image = {
@@ -26,13 +36,14 @@ const EnrollForm: React.FC = () => {
     image.uri = picturedImageState.uri;
     image.name = picturedImageState.name;
     image.type = picturedImageState.type;
-    // console.log('image:', image);
 
     const formdata = new FormData();
     formdata.append('plantId', 40);
     formdata.append('userId', 2);
     formdata.append('collectPictureUrl', image);
-    formdata.append('collectContent', 'a');
+    // formdata.append('collectTitle', 'title');
+    formdata.append('collectContent', inputContent);
+    console.log(inputContent);
     // console.log('formdata:', formdata);
     const requestOptions = {
       method: 'POST',
@@ -58,11 +69,20 @@ const EnrollForm: React.FC = () => {
         <Text style={styles.plantName}>{capturedImageState.plantName}</Text>
         <View style={styles.inputConatiner}>
           <Text style={styles.inputLabel}>제목: </Text>
-          <TextInput style={styles.inputBox} />
+          <TextInput
+            style={styles.inputBox}
+            // onChangeText={handleTitleInput}
+            // value={inputTitle}
+          />
         </View>
         <View style={styles.inputConatiner}>
           <Text style={styles.inputLabel}>메모: </Text>
-          <TextInput style={styles.inputBox} multiline />
+          <TextInput
+            style={styles.inputBox}
+            onChangeText={handleContentInput}
+            value={inputContent}
+            multiline
+          />
         </View>
       </ScrollView>
       <Pressable>
