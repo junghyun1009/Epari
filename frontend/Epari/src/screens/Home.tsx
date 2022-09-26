@@ -16,9 +16,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  fontTest: {
-    fontFamily: 'NeoDGM-Regular',
-  },
+  // cameraButton: {
+  //   borderWidth: 1,
+  //   borderRadius: 12,
+  //   width: 300,
+  //   height: 300,
+  // },
+  // fontTest: {
+  //   fontFamily: 'NeoDGM-Regular',
+  // },
 });
 
 export default Home;
