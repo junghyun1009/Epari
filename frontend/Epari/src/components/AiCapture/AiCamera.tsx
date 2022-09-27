@@ -49,7 +49,7 @@ const AiCamera: React.FC = ({style, name}) => {
         const mainInfo = result.slice(0, 1);
         const subInfo = result.slice(1);
         setCapturedMainImage(...mainInfo);
-        setCapturedSubImage(...subInfo);
+        setCapturedSubImage(subInfo);
       })
       .catch(error => console.log('error', error));
   };

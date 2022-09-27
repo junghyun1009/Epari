@@ -26,3 +26,8 @@ export const capturedSubImage = atom<CapturedImageType[]>({
   key: 'capturedSubImage',
   default: [],
 });
+
+export const resultPlantName = atom<string>({
+  key: 'resultPlantName',
+  default: '',
+});

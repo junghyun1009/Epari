@@ -1,19 +1,30 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
-import {useRecoilValue} from 'recoil';
-import AiCamera from '../components/AiCapture/AiCamera';
-import {picturedImage, capturedMainImage} from '../store/classification';
+import {useRecoilValue, useSetRecoilState} from 'recoil';
+import {
+  picturedImage,
+  capturedMainImage,
+  resultPlantName,
+} from '../store/classification';
 import {useNavigation} from '@react-navigation/native';
 
 const AiResult: React.FC = () => {
   const navigation = useNavigation();
   const picturedImageState = useRecoilValue(picturedImage);
   const capturedMainImageState = useRecoilValue(capturedMainImage);
+  const setResultPlantName = useSetRecoilState(resultPlantName);
 
   const picturedImageUrl = picturedImageState.uri;
   const capturedMainImageUrl = capturedMainImageState.detailPictureUrl;
-  // const capturedMainPlantName = capturedMainImageState.plantName.split('_', 1);
-  const capturedMainPlantName = capturedMainImageState.plantName;
+  const capturedMainPlantName = (capturedMainImageState.plantName || '').split(
+    '_',
+    1,
+  );
+
+  const setPlantName = () => {
+    setResultPlantName(capturedMainImageState.plantName);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
@@ -28,11 +39,18 @@ const AiResult: React.FC = () => {
         </Text>
       </View>
       <View style={styles.buttonContainer}>
-        <AiCamera style={styles.button} name={'다시 찍기'} />
         <Text
           style={styles.button}
-          onPress={() => navigation.navigate('AiRegister')}>
-          등록하기
+          onPress={() => navigation.navigate('AiSpareResult')}>
+          아니오
+        </Text>
+        <Text
+          style={styles.button}
+          onPress={() => {
+            setPlantName();
+            navigation.navigate('AiRegister');
+          }}>
+          네
         </Text>
       </View>
     </View>

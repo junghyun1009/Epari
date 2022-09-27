@@ -11,14 +11,14 @@ import {
   Keyboard,
 } from 'react-native';
 import {useRecoilValue} from 'recoil';
-import {picturedImage, capturedImage} from '../../store/classification';
+import {picturedImage, resultPlantName} from '../../store/classification';
 
 const EnrollForm: React.FC = () => {
   const picturedImageState = useRecoilValue(picturedImage);
-  const capturedImageState = useRecoilValue(capturedImage);
+  const resultPlantNameState = useRecoilValue(resultPlantName);
   // const [inputTitle, setInputTitle] = useState('')
   const [inputContent, setInputContent] = useState('');
-  console.log('capture', capturedImageState);
+  console.log('capture', resultPlantNameState);
 
   // const handleTitleInput = enteredText => {
   //   setInputTitle(enteredText)
@@ -59,7 +59,7 @@ const EnrollForm: React.FC = () => {
       })
       .catch(error => console.log('error', error));
   };
-  const capturedPlantName = (capturedImageState.plantName || '').split('_', 1);
+  const plantName = (resultPlantNameState || '').split('_', 1);
   return (
     <KeyboardAvoidingView
       behavior="padding"
@@ -71,7 +71,7 @@ const EnrollForm: React.FC = () => {
             source={{uri: picturedImageState.uri}}
             style={styles.plantImage}
           />
-          <Text style={styles.plantName}>{capturedPlantName}</Text>
+          <Text style={styles.plantName}>{plantName}</Text>
         </View>
         <View style={styles.inputConatiner}>
           <Text style={styles.inputLabel}>제목: </Text>
