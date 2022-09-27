@@ -3,10 +3,8 @@ from epari_backend import settings
 
 # Create your models here.
 class Plant(models.Model):
-    plantId = models.CharField(max_length=10, primary_key=True)
+    plantId = models.IntegerField(primary_key=True)
     plantName = models.CharField(max_length=50)
-    disabledIconUrl = models.CharField(max_length=500)
-    activeIconUrl = models.CharField(max_length=500)
     detailPictureUrl = models.CharField(max_length=500)
     plantDescription = models.TextField()
 
@@ -16,6 +14,7 @@ class Collect(models.Model):
     collectPictureUrl = models.CharField(max_length=500)
     userId = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="collection")
     collectDate = models.DateField(auto_now_add=True)
+    collectTitle = models.CharField(max_length=100)
     collectContent = models.TextField()
     collectPlace = models.CharField(max_length=50)
     areaCode = models.CharField(max_length=10)
