@@ -2,29 +2,29 @@ import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import {useRecoilValue} from 'recoil';
 import AiCamera from '../components/AiCapture/AiCamera';
-import EnrollImage from '../components/AiCapture/EnrollImage';
-import {picturedImage, capturedImage} from '../store/classification';
+import {picturedImage, capturedMainImage} from '../store/classification';
 import {useNavigation} from '@react-navigation/native';
 
 const AiResult: React.FC = () => {
   const navigation = useNavigation();
-  const picturedImageInfo = useRecoilValue(picturedImage);
-  const capturedImageInfo = useRecoilValue(capturedImage);
+  const picturedImageState = useRecoilValue(picturedImage);
+  const capturedMainImageState = useRecoilValue(capturedMainImage);
 
-  const picturedImageUrl = picturedImageInfo.uri;
-  const capturedImageUrl = capturedImageInfo.detailPictureUrl;
-  // const capturedPlantName = capturedImageInfo.plantName.split('_', 1);
-  const capturedPlantName = capturedImageInfo.plantName;
+  const picturedImageUrl = picturedImageState.uri;
+  const capturedMainImageUrl = capturedMainImageState.detailPictureUrl;
+  // const capturedMainPlantName = capturedMainImageState.plantName.split('_', 1);
+  const capturedMainPlantName = capturedMainImageState.plantName;
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
         <Image source={{uri: picturedImageUrl}} style={styles.image} />
-        <Image source={{uri: capturedImageUrl}} style={styles.image} />
+        <Image source={{uri: capturedMainImageUrl}} style={styles.image} />
       </View>
       <View style={styles.textContainer}>
         <Text style={styles.fontTest}>
           촬영한 사진이
-          <Text style={styles.plantName}> {capturedPlantName}</Text>가 맞나요?
+          <Text style={styles.plantName}> {capturedMainPlantName}</Text>가
+          맞나요?
         </Text>
       </View>
       <View style={styles.buttonContainer}>
