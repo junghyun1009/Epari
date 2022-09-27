@@ -1,5 +1,12 @@
 import React from 'react';
-import {Home, AiCapture, AiResult, HerbBook, HerbDetail} from '../screens';
+import {
+  Home,
+  AiCapture,
+  AiResult,
+  HerbBook,
+  HerbDetail,
+  Login,
+} from '../screens';
 import AiRegister from '../screens/AiRegister';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -14,6 +21,7 @@ const Tab: React.FC = () => {
       <Screen name="Home" component={Home} />
       {/* <Screen name="AiCapture" component={AiCapture} />
       <Screen name="AiResult" component={AiResult} /> */}
+      <Screen name="Login" component={Login} />
       <Screen name="HerbBook" component={HerbBook} />
     </Navigator>
   );
@@ -27,6 +35,7 @@ const AppStack: React.FC = () => {
       <Stack.Screen name="AiResult" component={AiResult} />
       <Stack.Screen name="AiRegister" component={AiRegister} />
       <Stack.Screen name="Detail" component={HerbDetail} />
+      <Stack.Screen name="Login" component={Login} />
     </Stack.Navigator>
   );
 };

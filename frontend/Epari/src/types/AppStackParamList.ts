@@ -7,4 +7,5 @@ export type AppStackParamList = {
   Detail: {
     id: number;
   };
+  Login: undefined;
 };
