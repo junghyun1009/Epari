@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Pressable, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import MemberHeader from '../components/Member/Header';
 import LoginForm from '../components/Member/LoginForm';
 
