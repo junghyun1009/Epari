@@ -1,6 +1,7 @@
 # Created by https://www.toptal.com/developers/gitignore/api/python,visualstudiocode,django,venv,windows
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,visualstudiocode,django,venv,windows
 
+epari-93d9d-firebase-adminsdk-uhhj6-0ca52f3d8f.json
 ### Django ###
 *.log
 *.pot
