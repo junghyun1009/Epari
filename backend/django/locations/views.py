@@ -2,8 +2,10 @@ from django.shortcuts import get_list_or_404
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+from locations.serializers import LocationListSerializer
 from plantbook.models import Collect
 from plantbook.serializers import CollectSerializer
+from .models import Location
 
 import requests
 import my_settings
@@ -64,4 +66,10 @@ def plant_map(request, userId):
   collects = get_list_or_404(Collect, userId=userId)
   serializer = CollectSerializer(collects, many=True)
   return Response(serializer.data, status=status.HTTP_200_OK)
-  
+
+# 프론트한테 지역 명단 넘겨주기
+@api_view(['GET'])
+def location_list():
+  locations = Location.objects.all()
+  serializer = LocationListSerializer(locations, many=True)
+  return Response(serializer.data, status=status.HTTP_200_OK)

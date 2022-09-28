@@ -1,0 +1,11 @@
+[
+  {
+    "model": "locations.location",
+    "pk": 1,
+    "fields": {
+      "locationId": 1,
+      "areaName": "서울시",
+      "sigunguName": "강남구"
+    }
+  }
+]
