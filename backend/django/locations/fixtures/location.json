@@ -3,9 +3,750 @@
     "model": "locations.location",
     "pk": 1,
     "fields": {
-      "locationId": 1,
+      "areaId": 1,
       "areaName": "서울시",
+      "sigunguId": 1,
       "sigunguName": "강남구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 2,
+    "fields": {
+      "areaId": 1,
+      "areaName": "서울시",
+      "sigunguId": 2,
+      "sigunguName": "강동구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 3,
+    "fields": {
+      "areaId": 1,
+      "areaName": "서울시",
+      "sigunguId": 3,
+      "sigunguName": "강북구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 4,
+    "fields": {
+      "areaId": 1,
+      "areaName": "서울시",
+      "sigunguId": 4,
+      "sigunguName": "강서구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 5,
+    "fields": {
+      "areaId": 1,
+      "areaName": "서울시",
+      "sigunguId": 5,
+      "sigunguName": "관악구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 6,
+    "fields": {
+      "areaId": 1,
+      "areaName": "서울시",
+      "sigunguId": 6,
+      "sigunguName": "광진구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 7,
+    "fields": {
+      "areaId": 1,
+      "areaName": "서울시",
+      "sigunguId": 7,
+      "sigunguName": "구로구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 8,
+    "fields": {
+      "areaId": 1,
+      "areaName": "서울시",
+      "sigunguId": 8,
+      "sigunguName": "금천구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 9,
+    "fields": {
+      "areaId": 1,
+      "areaName": "서울시",
+      "sigunguId": 9,
+      "sigunguName": "노원구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 10,
+    "fields": {
+      "areaId": 1,
+      "areaName": "서울시",
+      "sigunguId": 10,
+      "sigunguName": "도봉구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 11,
+    "fields": {
+      "areaId": 1,
+      "areaName": "서울시",
+      "sigunguId": 11,
+      "sigunguName": "동대문구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 12,
+    "fields": {
+      "areaId": 1,
+      "areaName": "서울시",
+      "sigunguId": 12,
+      "sigunguName": "동작구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 13,
+    "fields": {
+      "areaId": 1,
+      "areaName": "서울시",
+      "sigunguId": 13,
+      "sigunguName": "마포구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 14,
+    "fields": {
+      "areaId": 1,
+      "areaName": "서울시",
+      "sigunguId": 14,
+      "sigunguName": "서대문구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 15,
+    "fields": {
+      "areaId": 1,
+      "areaName": "서울시",
+      "sigunguId": 15,
+      "sigunguName": "서초구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 16,
+    "fields": {
+      "areaId": 1,
+      "areaName": "서울시",
+      "sigunguId": 16,
+      "sigunguName": "성동구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 17,
+    "fields": {
+      "areaId": 1,
+      "areaName": "서울시",
+      "sigunguId": 17,
+      "sigunguName": "성북구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 18,
+    "fields": {
+      "areaId": 1,
+      "areaName": "서울시",
+      "sigunguId": 18,
+      "sigunguName": "송파구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 19,
+    "fields": {
+      "areaId": 1,
+      "areaName": "서울시",
+      "sigunguId": 19,
+      "sigunguName": "양천구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 20,
+    "fields": {
+      "areaId": 1,
+      "areaName": "서울시",
+      "sigunguId": 20,
+      "sigunguName": "영등포구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 21,
+    "fields": {
+      "areaId": 1,
+      "areaName": "서울시",
+      "sigunguId": 21,
+      "sigunguName": "용산구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 22,
+    "fields": {
+      "areaId": 1,
+      "areaName": "서울시",
+      "sigunguId": 22,
+      "sigunguName": "은평구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 23,
+    "fields": {
+      "areaId": 1,
+      "areaName": "서울시",
+      "sigunguId": 23,
+      "sigunguName": "종로구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 24,
+    "fields": {
+      "areaId": 1,
+      "areaName": "서울시",
+      "sigunguId": 24,
+      "sigunguName": "중구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 25,
+    "fields": {
+      "areaId": 1,
+      "areaName": "서울시",
+      "sigunguId": 25,
+      "sigunguName": "중랑구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 26,
+    "fields": {
+      "areaId": 2,
+      "areaName": "인천시",
+      "sigunguId": "1",
+      "sigunguName": "강화군"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 27,
+    "fields": {
+      "areaId": 2,
+      "areaName": "인천시",
+      "sigunguId": "2",
+      "sigunguName": "계양구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 28,
+    "fields": {
+      "areaId": 2,
+      "areaName": "인천시",
+      "sigunguId": "3",
+      "sigunguName": "미추홀구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 29,
+    "fields": {
+      "areaId": 2,
+      "areaName": "인천시",
+      "sigunguId": "4",
+      "sigunguName": "남동구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 30,
+    "fields": {
+      "areaId": 2,
+      "areaName": "인천시",
+      "sigunguId": "5",
+      "sigunguName": "동구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 31,
+    "fields": {
+      "areaId": 2,
+      "areaName": "인천시",
+      "sigunguId": "6",
+      "sigunguName": "부평구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 32,
+    "fields": {
+      "areaId": 2,
+      "areaName": "인천시",
+      "sigunguId": "7",
+      "sigunguName": "서구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 33,
+    "fields": {
+      "areaId": 2,
+      "areaName": "인천시",
+      "sigunguId": "8",
+      "sigunguName": "연수구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 34,
+    "fields": {
+      "areaId": 2,
+      "areaName": "인천시",
+      "sigunguId": "9",
+      "sigunguName": "옹진군"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 35,
+    "fields": {
+      "areaId": 2,
+      "areaName": "인천시",
+      "sigunguId": "10",
+      "sigunguName": "중구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 36,
+    "fields": {
+      "areaId": 3,
+      "areaName": "대전시",
+      "sigunguId": 1,
+      "sigunguName": "대덕구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 37,
+    "fields": {
+      "areaId": 3,
+      "areaName": "대전시",
+      "sigunguId": 2,
+      "sigunguName": "동구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 38,
+    "fields": {
+      "areaId": 3,
+      "areaName": "대전시",
+      "sigunguId": 3,
+      "sigunguName": "서구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 39,
+    "fields": {
+      "areaId": 3,
+      "areaName": "대전시",
+      "sigunguId": 4,
+      "sigunguName": "유성구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 40,
+    "fields": {
+      "areaId": 3,
+      "areaName": "대전시",
+      "sigunguId": 5,
+      "sigunguName": "중구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 41,
+    "fields": {
+      "areaId": 4,
+      "areaName": "대구시",
+      "sigunguId": 1,
+      "sigunguName": "남구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 42,
+    "fields": {
+      "areaId": 4,
+      "areaName": "대구시",
+      "sigunguId": 2,
+      "sigunguName": "달서구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 43,
+    "fields": {
+      "areaId": 4,
+      "areaName": "대구시",
+      "sigunguId": 3,
+      "sigunguName": "달성군"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 44,
+    "fields": {
+      "areaId": 4,
+      "areaName": "대구시",
+      "sigunguId": 4,
+      "sigunguName": "동구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 45,
+    "fields": {
+      "areaId": 4,
+      "areaName": "대구시",
+      "sigunguId": 5,
+      "sigunguName": "북구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 46,
+    "fields": {
+      "areaId": 4,
+      "areaName": "대구시",
+      "sigunguId": 6,
+      "sigunguName": "서구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 47,
+    "fields": {
+      "areaId": 4,
+      "areaName": "대구시",
+      "sigunguId": 7,
+      "sigunguName": "수성구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 48,
+    "fields": {
+      "areaId": 4,
+      "areaName": "대구시",
+      "sigunguId": 8,
+      "sigunguName": "중구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 49,
+    "fields": {
+      "areaId": 5,
+      "areaName": "광주시",
+      "sigunguId": 1,
+      "sigunguName": "광산구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 50,
+    "fields": {
+      "areaId": 5,
+      "areaName": "광주시",
+      "sigunguId": 2,
+      "sigunguName": "남구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 51,
+    "fields": {
+      "areaId": 5,
+      "areaName": "광주시",
+      "sigunguId": 3,
+      "sigunguName": "동구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 52,
+    "fields": {
+      "areaId": 5,
+      "areaName": "광주시",
+      "sigunguId": 4,
+      "sigunguName": "북구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 53,
+    "fields": {
+      "areaId": 5,
+      "areaName": "광주시",
+      "sigunguId": 5,
+      "sigunguName": "서구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 54,
+    "fields": {
+      "areaId": 6,
+      "areaName": "부산시",
+      "sigunguId": 1,
+      "sigunguName": "강서구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 55,
+    "fields": {
+      "areaId": 6,
+      "areaName": "부산시",
+      "sigunguId": 2,
+      "sigunguName": "금정구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 56,
+    "fields": {
+      "areaId": 6,
+      "areaName": "부산시",
+      "sigunguId": 3,
+      "sigunguName": "기장군"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 57,
+    "fields": {
+      "areaId": 6,
+      "areaName": "부산시",
+      "sigunguId": 4,
+      "sigunguName": "남구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 58,
+    "fields": {
+      "areaId": 6,
+      "areaName": "부산시",
+      "sigunguId": 5,
+      "sigunguName": "동구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 59,
+    "fields": {
+      "areaId": 6,
+      "areaName": "부산시",
+      "sigunguId": 6,
+      "sigunguName": "동래구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 60,
+    "fields": {
+      "areaId": 6,
+      "areaName": "부산시",
+      "sigunguId": 7,
+      "sigunguName": "부산진구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 61,
+    "fields": {
+      "areaId": 6,
+      "areaName": "부산시",
+      "sigunguId": 8,
+      "sigunguName": "북구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 62,
+    "fields": {
+      "areaId": 6,
+      "areaName": "부산시",
+      "sigunguId": 9,
+      "sigunguName": "사상구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 63,
+    "fields": {
+      "areaId": 6,
+      "areaName": "부산시",
+      "sigunguId": 10,
+      "sigunguName": "사하구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 64,
+    "fields": {
+      "areaId": 6,
+      "areaName": "부산시",
+      "sigunguId": 11,
+      "sigunguName": "서구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 65,
+    "fields": {
+      "areaId": 6,
+      "areaName": "부산시",
+      "sigunguId": 12,
+      "sigunguName": "수영구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 66,
+    "fields": {
+      "areaId": 6,
+      "areaName": "부산시",
+      "sigunguId": 13,
+      "sigunguName": "연제구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 67,
+    "fields": {
+      "areaId": 6,
+      "areaName": "부산시",
+      "sigunguId": 14,
+      "sigunguName": "영도구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 68,
+    "fields": {
+      "areaId": 6,
+      "areaName": "부산시",
+      "sigunguId": 15,
+      "sigunguName": "중구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 69,
+    "fields": {
+      "areaId": 6,
+      "areaName": "부산시",
+      "sigunguId": 16,
+      "sigunguName": "해운대구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 70,
+    "fields": {
+      "areaId": 7,
+      "areaName": "울산시",
+      "sigunguId": 1,
+      "sigunguName": "중구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 71,
+    "fields": {
+      "areaId": 7,
+      "areaName": "울산시",
+      "sigunguId": 2,
+      "sigunguName": "남구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 72,
+    "fields": {
+      "areaId": 7,
+      "areaName": "울산시",
+      "sigunguId": 3,
+      "sigunguName": "동구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 73,
+    "fields": {
+      "areaId": 7,
+      "areaName": "울산시",
+      "sigunguId": 4,
+      "sigunguName": "북구"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 74,
+    "fields": {
+      "areaId": 7,
+      "areaName": "울산시",
+      "sigunguId": 5,
+      "sigunguName": "울주군"
+    }
+  },
+  {
+    "model": "locations.location",
+    "pk": 75,
+    "fields": {
+      "areaId": 8,
+      "areaName": "세종시",
+      "sigunguId": 1,
+      "sigunguName": "세종특별자치시"
     }
   }
 ]
