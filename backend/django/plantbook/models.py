@@ -1,5 +1,6 @@
 from django.db import models
 from epari_backend import settings
+from locations.models import Location
 
 # Create your models here.
 class Plant(models.Model):
@@ -17,5 +18,4 @@ class Collect(models.Model):
     collectTitle = models.CharField(max_length=100)
     collectContent = models.TextField()
     collectPlace = models.CharField(max_length=50)
-    areaCode = models.CharField(max_length=10)
-    sigunguCode = models.CharField(max_length=10)
+    locationId = models.ForeignKey(Location, on_delete=models.CASCADE, related_name="collection")
