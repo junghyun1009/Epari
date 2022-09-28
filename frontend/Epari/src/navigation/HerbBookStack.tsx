@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, Dimensions} from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {GetList, NoGetList, TotalList} from '../components/HerbBook/Lists';
 import {HerbBookStackParamList} from '../types';
@@ -39,9 +39,11 @@ const HerbBookStack = () => {
   );
 };
 
+let ScreenHeight = Dimensions.get('window').height;
+
 const styles = StyleSheet.create({
   HerbBookStackContatiner: {
-    height: 700,
+    height: ScreenHeight * 0.7,
     justifyContent: 'center',
   },
   TabBar: {

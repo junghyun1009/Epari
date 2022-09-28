@@ -1,31 +1,33 @@
 import React from 'react';
 import {View, Image, TouchableOpacity, StyleSheet} from 'react-native';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {AppStackParamList} from '../../../types';
-import type {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {useNavigation} from '@react-navigation/native';
+import {CompositeScreenProps} from '@react-navigation/native';
+import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
+import {MaterialTopTabScreenProps} from '@react-navigation/material-top-tabs';
 
-export type ListItem = {
-  id: number;
-};
-
-export type ListItemProps = NativeStackScreenProps<
+export type ListItemScreenProps = NativeStackScreenProps<
   AppStackParamList,
   'TotalList'
 >;
 
-let activeIconURL = 'Epari/src/asset/activeIcons/HerbIcon_';
+export type ListItemProps = CompositeScreenProps<
+  BottomTabScreenProps<AppStackParamList, 'HerbBook'>,
+  MaterialTopTabScreenProps<AppStackParamList, 'TotalList'>
+>;
 
-const ListItem: React.FC<ListItem> = ({id}) => {
-  const navigation = useNavigation<ListItemProps>();
+export type ListItem = {
+  id?: any;
+  navigation: any;
+};
+
+const ListItem: React.FC<ListItem> = ({id, navigation}) => {
   return (
     <View>
       <View style={styles.ListItem}>
         <TouchableOpacity
-          onPress={() => navigation.navigate('HerbDetail', {id: 1})}>
-          <Image
-            style={styles.ImageItem}
-            source={require(activeIconURL + '.png')}
-          />
+          onPress={() => navigation.navigate('HerbDetail', {id: id})}>
+          <Image style={styles.ImageItem} source={id} />
         </TouchableOpacity>
       </View>
     </View>
@@ -33,18 +35,6 @@ const ListItem: React.FC<ListItem> = ({id}) => {
 };
 
 const styles = StyleSheet.create({
-  background: {},
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-    overflow: 'scroll',
-    justifyContent: 'center',
-    backgroundColor: '#FFF7F2',
-  },
-  font: {
-    fontFamily: 'NeoDGM-Regular',
-  },
   ListItem: {
     margin: 17,
     width: 70,
@@ -56,8 +46,8 @@ const styles = StyleSheet.create({
     borderWidth: 2.4,
   },
   ImageItem: {
-    width: 70,
-    height: 70,
+    width: 60,
+    height: 60,
   },
   ItemName: {
     alignSelf: 'center',

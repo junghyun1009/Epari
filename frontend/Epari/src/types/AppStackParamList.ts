@@ -9,9 +9,9 @@ export type AppStackParamList = {
   NoGetList: undefined;
   HerbBook: undefined;
   ListItem: {
-    id: number;
+    id: string;
   };
   HerbDetail: {
-    id: number;
+    id: string;
   };
 };

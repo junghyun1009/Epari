@@ -11,4 +11,7 @@ export type HerbBookStackParamList = {
   HerbDetail: {
     id: number;
   };
+  ListItem: {
+    id: number;
+  };
 };

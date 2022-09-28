@@ -3,7 +3,9 @@ import {View, Text, ScrollView, StyleSheet} from 'react-native';
 import {StackScreenProps} from '@react-navigation/stack';
 import {AppStackParamList} from '../types';
 import {HerbDetailHeader} from '../components/HerbDetail';
-
+import {useQuery} from '@tanstack/react-query';
+import {QueryKeys, restFetcher} from '../queryClient';
+import {HerbDetailType} from '../graphql/herb';
 export type DetailScreenProps = StackScreenProps<
   AppStackParamList,
   'HerbDetail'
@@ -13,6 +15,14 @@ const HerbDetail: React.FC<DetailScreenProps> = ({
   route,
 }: DetailScreenProps) => {
   const id = route.params.id;
+
+  const {data} = useQuery<HerbDetailType>([QueryKeys.HERBDETAIL], () =>
+    restFetcher({
+      method: 'GET',
+      path: '/collection/0010',
+    }),
+  );
+  console.log('1' + data);
   return (
     <ScrollView style={styles.background}>
       <HerbDetailHeader />
