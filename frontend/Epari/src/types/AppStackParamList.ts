@@ -14,4 +14,5 @@ export type AppStackParamList = {
   HerbDetail: {
     id: string;
   };
+  Login: undefined;
 };
