@@ -1,5 +1,11 @@
 import React from 'react';
-import {View, Image, TouchableOpacity, StyleSheet} from 'react-native';
+import {
+  View,
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+  Dimensions,
+} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {AppStackParamList} from '../../../types';
 import {CompositeScreenProps} from '@react-navigation/native';
@@ -34,20 +40,23 @@ const ListItem: React.FC<ListItem> = ({id, navigation}) => {
   );
 };
 
+let ScreenWidth = Dimensions.get('window').width;
+
 const styles = StyleSheet.create({
   ListItem: {
-    margin: 17,
-    width: 70,
-    height: 70,
+    margin: ScreenWidth * 0.03,
+    width: ScreenWidth * 0.16,
+    height: ScreenWidth * 0.16,
     borderRadius: 12,
     fontFamily: 'NeoDGM-Regular',
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 2.4,
+    backgroundColor: '#FFFFFF',
   },
   ImageItem: {
-    width: 60,
-    height: 60,
+    width: ScreenWidth * 0.13,
+    height: ScreenWidth * 0.13,
   },
   ItemName: {
     alignSelf: 'center',
