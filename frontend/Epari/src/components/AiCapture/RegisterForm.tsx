@@ -11,22 +11,31 @@ import {
   Keyboard,
 } from 'react-native';
 import {useRecoilValue} from 'recoil';
-import {picturedImage, resultPlantName} from '../../store/classification';
+import {
+  areaCode,
+  picturedImage,
+  resultPlant,
+  sigunguCode,
+} from '../../store/classification';
 import LocationSelector from './LocationSelector';
 
 const EnrollForm: React.FC = () => {
   const picturedImageState = useRecoilValue(picturedImage);
-  const resultPlantNameState = useRecoilValue(resultPlantName);
-  // const [inputTitle, setInputTitle] = useState('')
+  const resultPlantState = useRecoilValue(resultPlant);
+  const [inputPlace, setInputPlace] = useState('');
+  const [inputTitle, setInputTitle] = useState('');
   const [inputContent, setInputContent] = useState('');
-  console.log('capture', resultPlantNameState);
+  const areaCodeState = useRecoilValue(areaCode);
+  const sigunguCodeState = useRecoilValue(sigunguCode);
 
-  // const handleTitleInput = enteredText => {
-  //   setInputTitle(enteredText)
-  // }
-  const handleContentInput = enteredText => {
+  const handlePlaceInput = (enteredText: string) => {
+    setInputPlace(enteredText);
+  };
+  const handleTitleInput = (enteredText: string) => {
+    setInputTitle(enteredText);
+  };
+  const handleContentInput = (enteredText: string) => {
     setInputContent(enteredText);
-    console.log(inputContent);
   };
 
   const saveImage = async () => {
@@ -40,17 +49,20 @@ const EnrollForm: React.FC = () => {
     image.type = picturedImageState.type;
 
     const formdata = new FormData();
-    formdata.append('plantId', 40);
-    formdata.append('userId', 2);
+    formdata.append('plantId', resultPlantState.plantId);
+    formdata.append('userId', 1);
     formdata.append('collectPictureUrl', image);
-    // formdata.append('collectTitle', 'title');
+    formdata.append('areaId', areaCodeState);
+    console.log(areaCodeState);
+    formdata.append('sigunguId', sigunguCodeState);
+    formdata.append('collectPlace', inputPlace);
+    formdata.append('collectTitle', inputTitle);
     formdata.append('collectContent', inputContent);
-    console.log(inputContent);
-    // console.log('formdata:', formdata);
+
     const requestOptions = {
       method: 'POST',
       body: formdata,
-      // headers: {'Content-Type': 'multipart/form-data'},
+      headers: {'Content-Type': 'multipart/form-data'},
     };
     await fetch('http://127.0.0.1:8000/epari/v1/collection/', requestOptions)
       .then(response => response.json())
@@ -60,11 +72,11 @@ const EnrollForm: React.FC = () => {
       })
       .catch(error => console.log('error', error));
   };
-  const plantName = (resultPlantNameState || '').split('_', 1);
+  const plantName = (resultPlantState.plantName || '').split('_', 1);
   return (
     <KeyboardAvoidingView
       behavior="padding"
-      keyboardVerticalOffset={-70}
+      keyboardVerticalOffset={-170}
       style={styles.container}>
       <ScrollView>
         <View style={styles.plantInfo}>
@@ -79,16 +91,18 @@ const EnrollForm: React.FC = () => {
           <Text style={styles.inputLabel}>상세 지역: </Text>
           <TextInput
             style={styles.inputBox}
-            // onChangeText={handleTitleInput}
-            // value={inputTitle}
+            onChangeText={handlePlaceInput}
+            value={inputPlace}
+            maxLength={50}
           />
         </View>
         <View style={styles.inputConatiner}>
           <Text style={styles.inputLabel}>제목: </Text>
           <TextInput
             style={styles.inputBox}
-            // onChangeText={handleTitleInput}
-            // value={inputTitle}
+            onChangeText={handleTitleInput}
+            value={inputTitle}
+            maxLength={100}
           />
         </View>
         <View style={styles.inputConatiner}>

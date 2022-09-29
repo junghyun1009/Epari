@@ -27,7 +27,22 @@ export const capturedSubImage = atom<CapturedImageType[]>({
   default: [],
 });
 
-export const resultPlantName = atom<string>({
-  key: 'resultPlantName',
-  default: '',
+export type resultPlant = {
+  plantId: number;
+  plantName: string;
+};
+
+export const resultPlant = atom<resultPlant[]>({
+  key: 'resultPlant',
+  default: [],
+});
+
+export const areaCode = atom<number>({
+  key: 'areaCode',
+  default: 0,
+});
+
+export const sigunguCode = atom<number>({
+  key: 'sigunguCode',
+  default: 0,
 });

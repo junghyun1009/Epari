@@ -4,7 +4,7 @@ import {useRecoilValue, useSetRecoilState} from 'recoil';
 import {
   picturedImage,
   capturedMainImage,
-  resultPlantName,
+  resultPlant,
 } from '../store/classification';
 import {useNavigation} from '@react-navigation/native';
 
@@ -12,7 +12,7 @@ const AiResult: React.FC = () => {
   const navigation = useNavigation();
   const picturedImageState = useRecoilValue(picturedImage);
   const capturedMainImageState = useRecoilValue(capturedMainImage);
-  const setResultPlantName = useSetRecoilState(resultPlantName);
+  const setResultPlantState = useSetRecoilState(resultPlant);
 
   const picturedImageUrl = picturedImageState.uri;
   const capturedMainImageUrl = capturedMainImageState.detailPictureUrl;
@@ -21,8 +21,12 @@ const AiResult: React.FC = () => {
     1,
   );
 
-  const setPlantName = () => {
-    setResultPlantName(capturedMainImageState.plantName);
+  const setPlantState = () => {
+    const plantState = {
+      plantId: capturedMainImageState.plantId,
+      plantName: capturedMainImageState.plantName,
+    };
+    setResultPlantState(plantState);
   };
 
   return (
@@ -47,7 +51,7 @@ const AiResult: React.FC = () => {
         <Text
           style={styles.button}
           onPress={() => {
-            setPlantName();
+            setPlantState();
             navigation.navigate('AiRegister');
           }}>
           네

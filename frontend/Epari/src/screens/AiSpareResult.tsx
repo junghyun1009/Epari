@@ -5,7 +5,7 @@ import {useRecoilValue, useSetRecoilState} from 'recoil';
 import {
   capturedSubImage,
   picturedImage,
-  resultPlantName,
+  resultPlant,
 } from '../store/classification';
 import AppText from '../components/AppText';
 import {useNavigation} from '@react-navigation/native';
@@ -14,8 +14,8 @@ const AiSpareResult: React.FC = () => {
   const navigation = useNavigation();
   const picturedImageState = useRecoilValue(picturedImage);
   const capturedSubImageState = useRecoilValue(capturedSubImage);
-  const setResultPlantName = useSetRecoilState(resultPlantName);
-  const plant = useRecoilValue(resultPlantName);
+  const setResultPlantState = useSetRecoilState(resultPlant);
+  const plant = useRecoilValue(resultPlant);
 
   const picturedImageUrl = picturedImageState.uri;
   // const priorSubImageUrl = capturedSubImageState[0].detailPictureUrl;
@@ -24,8 +24,12 @@ const AiSpareResult: React.FC = () => {
 
   const scrollY = React.useRef(new Animated.Value(0)).current;
 
-  const setPlantName = (item: any) => {
-    setResultPlantName(item.plantName);
+  const setPlantState = (item: any) => {
+    const plantState = {
+      plantId: item.plantId,
+      plantName: item.plantName,
+    };
+    setResultPlantState(plantState);
   };
 
   return (
@@ -54,7 +58,7 @@ const AiSpareResult: React.FC = () => {
                 return (
                   <Pressable
                     onPress={() => {
-                      setPlantName(item);
+                      setPlantState(item);
                       navigation.navigate('AiRegister');
                     }}>
                     <Image
