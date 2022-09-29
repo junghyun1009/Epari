@@ -15,4 +15,7 @@ export type AppStackParamList = {
     id: string;
   };
   Login: undefined;
+  UserPage: {
+    id: number;
+  };
 };
