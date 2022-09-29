@@ -7,10 +7,15 @@ type HerbInfoProps = {
     detailPictureUrl: any;
     plantDescription: string;
     collection: {
-      collectPictureUrl: any;
+      collectId: number;
+      collectPictureUrl: string;
       collectDate: string;
+      collectTitle: string;
       collectContent: string;
       collectPlace: string;
+      plantId: number;
+      userId: string;
+      locationId: string;
     }[];
   };
 };
