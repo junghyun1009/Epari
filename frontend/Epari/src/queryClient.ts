@@ -23,8 +23,8 @@ export const getClient = (() => {
   };
 })();
 
-const BASE_URL = 'http://localhost:8000/epari/v1/';
-
+// const BASE_URL = 'http://localhost:8000/epari/v1/';
+const BASE_URL = 'http://j7a201.p.ssafy.io/epari/v1/';
 export const restFetcher = async ({
   method,
   path,

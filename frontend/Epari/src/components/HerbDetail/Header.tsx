@@ -1,13 +1,21 @@
 import React from 'react';
-import {View, Image, StyleSheet} from 'react-native';
+import {View, Image, StyleSheet, TouchableOpacity} from 'react-native';
 
-const HerbDetailHeader: React.FC = () => {
+type HerbDetailHeaderProps = {
+  navigation: any;
+};
+
+const HerbDetailHeader: React.FC<HerbDetailHeaderProps> = ({navigation}) => {
   return (
     <View style={styles.header}>
-      <Image
-        style={styles.lefticon}
-        source={require('Epari/src/asset/icons/lefticon.png')}
-      />
+      <View style={styles.leftIconContainer}>
+        <TouchableOpacity onPress={() => navigation.goBack(null)}>
+          <Image
+            style={styles.lefticon}
+            source={require('Epari/src/asset/icons/lefticon.png')}
+          />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -21,11 +29,15 @@ const styles = StyleSheet.create({
   fontTest: {
     fontFamily: 'NeoDGM-Regular',
   },
+  leftIconContainer: {
+    width: 50,
+    height: 50,
+    left: 11,
+    top: 11,
+  },
   lefticon: {
     width: 40,
     height: 40,
-    left: 11,
-    top: 11,
   },
 });
 export default HerbDetailHeader;
