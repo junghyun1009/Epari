@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import {useRecoilValue} from 'recoil';
 import {picturedImage, resultPlantName} from '../../store/classification';
+import LocationSelector from './LocationSelector';
 
 const EnrollForm: React.FC = () => {
   const picturedImageState = useRecoilValue(picturedImage);
@@ -63,7 +64,7 @@ const EnrollForm: React.FC = () => {
   return (
     <KeyboardAvoidingView
       behavior="padding"
-      keyboardVerticalOffset={-20}
+      keyboardVerticalOffset={-70}
       style={styles.container}>
       <ScrollView>
         <View style={styles.plantInfo}>
@@ -72,6 +73,15 @@ const EnrollForm: React.FC = () => {
             style={styles.plantImage}
           />
           <Text style={styles.plantName}>{plantName}</Text>
+        </View>
+        <LocationSelector />
+        <View style={styles.inputConatiner}>
+          <Text style={styles.inputLabel}>상세 지역: </Text>
+          <TextInput
+            style={styles.inputBox}
+            // onChangeText={handleTitleInput}
+            // value={inputTitle}
+          />
         </View>
         <View style={styles.inputConatiner}>
           <Text style={styles.inputLabel}>제목: </Text>
@@ -122,8 +132,8 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   plantImage: {
-    width: 300,
-    height: 300,
+    width: 250,
+    height: 250,
     borderRadius: 12,
     margin: 24,
   },
