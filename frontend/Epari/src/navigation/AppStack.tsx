@@ -1,4 +1,5 @@
 import React from 'react';
+import {StyleSheet} from 'react-native';
 import {
   Home,
   AiCapture,
@@ -11,18 +12,48 @@ import AiRegister from '../screens/AiRegister';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {AppStackParamList} from '../types';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const {Navigator, Screen} = createBottomTabNavigator();
+const {Navigator, Screen} = createBottomTabNavigator<AppStackParamList>();
 const Stack = createNativeStackNavigator<AppStackParamList>();
 
 const Tab: React.FC = () => {
   return (
-    <Navigator initialRouteName="HerbBook" screenOptions={{headerShown: false}}>
-      <Screen name="Home" component={Home} />
-      {/* <Screen name="AiCapture" component={AiCapture} />
-      <Screen name="AiResult" component={AiResult} /> */}
+    <Navigator
+      initialRouteName="HerbBook"
+      screenOptions={{
+        headerShown: false,
+        tabBarLabelStyle: styles.TabBarLabel,
+        tabBarActiveTintColor: '#007C2B',
+        tabBarInactiveTintColor: '#110105',
+      }}>
+      <Screen
+        name="Home"
+        component={Home}
+        options={{
+          tabBarIcon: ({focused}) =>
+            focused ? (
+              <Ionicons name="home" size={30} color="#007C2B" />
+            ) : (
+              <Ionicons name="home-outline" size={30} color="#110105" />
+            ),
+          title: 'EPARI',
+        }}
+      />
       <Screen name="Login" component={Login} />
-      <Screen name="HerbBook" component={HerbBook} />
+      <Screen
+        name="HerbBook"
+        component={HerbBook}
+        options={{
+          tabBarIcon: ({focused}) =>
+            focused ? (
+              <Ionicons name="leaf" size={30} color="#007C2B" />
+            ) : (
+              <Ionicons name="leaf-outline" size={30} color="#110105" />
+            ),
+          title: '도감',
+        }}
+      />
     </Navigator>
   );
 };
@@ -34,9 +65,20 @@ const AppStack: React.FC = () => {
       <Stack.Screen name="AiCapture" component={AiCapture} />
       <Stack.Screen name="AiResult" component={AiResult} />
       <Stack.Screen name="AiRegister" component={AiRegister} />
-      <Stack.Screen name="Detail" component={HerbDetail} />
+      <Stack.Screen name="HerbDetail" component={HerbDetail} />
       <Stack.Screen name="Login" component={Login} />
     </Stack.Navigator>
   );
 };
+const styles = StyleSheet.create({
+  HerbBookStackContatiner: {
+    justifyContent: 'center',
+  },
+
+  TabBarLabel: {
+    fontFamily: 'NeoDGM-Regular',
+    fontSize: 16,
+    textAlign: 'center',
+  },
+});
 export default AppStack;

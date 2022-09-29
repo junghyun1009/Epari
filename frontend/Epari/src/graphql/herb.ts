@@ -1,8 +1,19 @@
 import {gql} from 'graphql-tag';
 
 export type HerbType = {
-  id: string;
-  name: string;
+  plantId: string;
+  plantName: string;
+  collectionCnt: number;
+};
+
+export type HerbDetailType = {
+  plantName: String;
+  detailPictureUrl: String;
+  collectPictureUrl: String;
+  collectDate: String;
+  collectContent: String;
+  collectPlace: String;
+  plantDescription: String;
 };
 
 export type HerbList = {
@@ -11,7 +22,20 @@ export type HerbList = {
 
 export const GET_HERBLIST = gql`
   query GET_HERBLIST($id: string) {
-    id
-    name
+    plantId
+    plantName
+    collectionCnt
+  }
+`;
+
+export const GET_HERBDETAIL = gql`
+  query GET_HERBDETAIL($id: string) {
+    plantName
+    detailPictureUrl
+    collectPictureUrl
+    collectDate
+    collectContent
+    collectPlace
+    plantDescription
   }
 `;
