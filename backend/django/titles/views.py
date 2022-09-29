@@ -34,18 +34,28 @@ def titles(request, userId):
     def change_title():
         titleId = request.data['titleId']
         title = get_object_or_404(Title, titleId=titleId)
-        if Obtained.objects.filter(userId=userId, titleId=title).exists():
-            user = User.objects.get(id=userId)
-            if user.titleId == title:
-                data = {
-                    'message': '이미 등록된 칭호입니다.'
-                }
-            else:
-                user.titleId = title
-                user.save()
-                data = {
-                    'message': '대표 칭호 등록이 완료되었습니다.'
-                }
+        if Obtained.objects.filter(userId=user, titleId=title).exists():
+            # if user.titleId == title:
+            #     data = {
+            #         'message': '이미 등록된 칭호입니다.'
+            #     }
+            # else:
+            #     user.titleId = title
+            #     user.save()
+            #     data = {
+            #         'message': '대표 칭호 등록이 완료되었습니다.'
+            #     }
+            # return Response(data, status=status.HTTP_200_OK)
+            if Obtained.objects.get(userId=userId, isRep=True).exists():
+                beforeTitle = Obtained.objects.get(userId=user, isRep=True)
+                beforeTitle.isRep = False
+                beforeTitle.save()
+
+            title.isRep = True
+            title.save()
+            data = {
+                'message': '대표 칭호 등록이 완료되었습니다.'
+            }
             return Response(data, status=status.HTTP_200_OK)
         else:
             data = {
