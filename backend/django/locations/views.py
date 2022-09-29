@@ -69,7 +69,7 @@ def plant_map(request, userId):
 
 # 프론트한테 지역 명단 넘겨주기
 @api_view(['GET'])
-def location_list():
+def location_list(request):
   locations = Location.objects.all()
   serializer = LocationListSerializer(locations, many=True)
   return Response(serializer.data, status=status.HTTP_200_OK)
