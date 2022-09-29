@@ -4,5 +4,6 @@ import AiResult from './AiResult';
 import HerbBook from './HerbBook';
 import HerbDetail from './HerbDetail';
 import Login from './Login';
+import UserPage from './UserPage';
 
-export {Home, AiCapture, AiResult, HerbBook, HerbDetail, Login};
+export {Home, AiCapture, AiResult, HerbBook, HerbDetail, Login, UserPage};
