@@ -8,6 +8,7 @@ class Plant(models.Model):
     plantName = models.CharField(max_length=50)
     detailPictureUrl = models.CharField(max_length=500)
     plantDescription = models.TextField()
+    season = models.IntegerField(null=True, blank=True)
 
 class Collect(models.Model):
     collectId = models.AutoField(primary_key=True)
