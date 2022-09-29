@@ -1,5 +1,5 @@
 import React from 'react';
-import {Home, AiCapture, AiResult, HerbBook, HerbDetail} from '../screens';
+import {Home, AiCapture, AiResult, HerbBook, HerbDetail, CollectMap} from '../screens';
 import AiRegister from '../screens/AiRegister';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -15,6 +15,7 @@ const Tab: React.FC = () => {
       {/* <Screen name="AiCapture" component={AiCapture} />
       <Screen name="AiResult" component={AiResult} /> */}
       <Screen name="HerbBook" component={HerbBook} />
+      <Screen name="CollectMap" component={CollectMap} />
     </Navigator>
   );
 };
