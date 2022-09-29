@@ -1,13 +1,19 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import MemberHeader from '../components/Member/Header';
+import Header from '../components/Member/Header';
 import LoginForm from '../components/Member/LoginForm';
+import {AppStackParamList} from '../types';
+import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
-const Login: React.FC = () => {
+export type LoginScreenProps = NativeStackScreenProps<
+  AppStackParamList,
+  'Login'
+>;
+const Login: React.FC<LoginScreenProps> = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <MemberHeader />
-      <LoginForm />
+      <Header />
+      <LoginForm navigation={navigation} />
     </View>
   );
 };
@@ -19,15 +25,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  // cameraButton: {
-  //   borderWidth: 1,
-  //   borderRadius: 12,
-  //   width: 300,
-  //   height: 300,
-  // },
-  // fontTest: {
-  //   fontFamily: 'NeoDGM-Regular',
-  // },
 });
 
 export default Login;
