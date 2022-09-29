@@ -379,7 +379,7 @@
       "plantName": "해바라기",
       "detailPictureUrl": "https://dolarge.s3.ap-northeast-2.amazonaws.com/0320.jpg",
       "plantDescription": "꽃말: 동경, 숭배\n용도: 원래 씨앗으로 기름을 짜는 특용작물로 취급되어 왔으나 지금은 관상용으로도 인기가 많아 웬만한 도시의 공원이나 산책로 주변에 흔히 심겨져 있다. 꽃이 크고 아름다울 뿐만 아니라 꽃이 오래 가기 때문에 꽃꽂이용 소재로도 쓰이며 분화용으로도 이용된다.",
-      "season":,
+      "season":"[7, 8]",
       "classification": 1
     }
   },
@@ -391,7 +391,7 @@
       "plantName": "나비꽃",
       "detailPictureUrl": "https://dolarge.s3.ap-northeast-2.amazonaws.com/0330.jpg",
       "plantDescription": "꽃말: 정성 어린 사랑, 잃어버린 사랑\n용도: 관상용으로 심고, 나물로도 먹을 수 있으나 독성이 있어 오랫동안 우려낸 뒤 먹는 것이 좋다. 한방에서는 근경을 소염제, 진해제, 진통, 편도선염, 폐렴, 해열, 각기, 진경, 완하제 등의 약재로 쓴다.",
-      "season": "[7, 8]",
+      "season": "[7, 8, 9, 10]",
       "classification": 1
     }
   },
