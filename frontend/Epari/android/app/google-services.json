@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "126188289267",
+    "project_id": "epari-93d9d",
+    "storage_bucket": "epari-93d9d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:126188289267:android:ab45a69249f21da17f0b86",
+        "android_client_info": {
+          "package_name": "com.epari"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "126188289267-4ii18qf3etih6ht49beh3ijfopfq6i6m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsRs_FuhC-EhHzPdyxYOUdEVX9rbrclJ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "epari-93d9d",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
