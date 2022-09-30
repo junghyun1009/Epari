@@ -7,6 +7,7 @@ from .serializers import PlantListSerializer, PlantSerializer, CollectSerializer
 from .storages import FileUpload, s3_client
 from accounts.authentication import is_logined, get_userId
 from accounts.models import User
+from locations.models import Location
 
 
 # Create your views here.
@@ -38,6 +39,12 @@ def plant_list_or_create(request):
         file = request.FILES.get('collectPictureUrl')
         userImageUrl = FileUpload(s3_client).upload(file)
         print('image', userImageUrl)
+
+        # areaId랑 sigunguId 받아서 locationId로 변환
+        areaId = request.data.areaId
+        sigunguId = request.data.sigunguId
+        locationId = Location.objects.filter(areaId=areaId, sigunguId=sigunguId)
+        request.data.__setitem__('locationId', locationId)
 
         def create_plant_image(userImageUrl):
             # data = request.data.copy()
