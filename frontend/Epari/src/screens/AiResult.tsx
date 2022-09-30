@@ -1,38 +1,60 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
-import {useRecoilValue} from 'recoil';
-import AiCamera from '../components/AiCapture/AiCamera';
-import EnrollImage from '../components/AiCapture/EnrollImage';
-import {picturedImage, capturedImage} from '../store/classification';
+import {useRecoilValue, useSetRecoilState} from 'recoil';
+import {
+  picturedImage,
+  capturedMainImage,
+  resultPlant,
+} from '../store/classification';
 import {useNavigation} from '@react-navigation/native';
 
 const AiResult: React.FC = () => {
   const navigation = useNavigation();
-  const picturedImageInfo = useRecoilValue(picturedImage);
-  const capturedImageInfo = useRecoilValue(capturedImage);
+  const picturedImageState = useRecoilValue(picturedImage);
+  const capturedMainImageState = useRecoilValue(capturedMainImage);
+  const setResultPlantState = useSetRecoilState(resultPlant);
 
-  const picturedImageUrl = picturedImageInfo.uri;
-  const capturedImageUrl = capturedImageInfo.detailPictureUrl;
-  // const capturedPlantName = capturedImageInfo.plantName.split('_', 1);
-  const capturedPlantName = capturedImageInfo.plantName;
+  const picturedImageUrl = picturedImageState.uri;
+  const capturedMainImageUrl = capturedMainImageState.detailPictureUrl;
+  const capturedMainPlantName = (capturedMainImageState.plantName || '').split(
+    '_',
+    1,
+  );
+
+  const setPlantState = () => {
+    const plantState = {
+      plantId: capturedMainImageState.plantId,
+      plantName: capturedMainImageState.plantName,
+    };
+    setResultPlantState(plantState);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
         <Image source={{uri: picturedImageUrl}} style={styles.image} />
-        <Image source={{uri: capturedImageUrl}} style={styles.image} />
+        <Image source={{uri: capturedMainImageUrl}} style={styles.image} />
       </View>
       <View style={styles.textContainer}>
         <Text style={styles.fontTest}>
           촬영한 사진이
-          <Text style={styles.plantName}> {capturedPlantName}</Text>가 맞나요?
+          <Text style={styles.plantName}> {capturedMainPlantName}</Text>가
+          맞나요?
         </Text>
       </View>
       <View style={styles.buttonContainer}>
-        <AiCamera style={styles.button} name={'다시 찍기'} />
         <Text
           style={styles.button}
-          onPress={() => navigation.navigate('AiRegister')}>
-          등록하기
+          onPress={() => navigation.navigate('AiSpareResult')}>
+          아니오
+        </Text>
+        <Text
+          style={styles.button}
+          onPress={() => {
+            setPlantState();
+            navigation.navigate('AiRegister');
+          }}>
+          네
         </Text>
       </View>
     </View>
