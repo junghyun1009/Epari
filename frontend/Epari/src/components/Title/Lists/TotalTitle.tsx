@@ -12,11 +12,9 @@ export type TotalListScreenProps = NativeStackScreenProps<
 const TotalTitle: React.FC<TotalListScreenProps> = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <View style={styles.container}>
-        {imageList.map(item => (
-          <TitleItem id={item} navigation={navigation} key={item} />
-        ))}
-      </View>
+      {imageList.map(item => (
+        <TitleItem id={item} navigation={navigation} key={item} />
+      ))}
     </View>
   );
 };
@@ -25,7 +23,7 @@ const styles = StyleSheet.create({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
-    flexDirection: 'row',
+    flexDirection: 'column',
     overflow: 'scroll',
     justifyContent: 'center',
     backgroundColor: '#FFF7F2',
