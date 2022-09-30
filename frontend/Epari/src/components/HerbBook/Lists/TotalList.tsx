@@ -22,7 +22,9 @@ const TotalList: React.FC<TotalListScreenProps> = ({navigation}) => {
 };
 
 const styles = StyleSheet.create({
-  background: {flex: 1},
+  background: {
+    flex: 1,
+  },
   container: {
     display: 'flex',
     flexWrap: 'wrap',

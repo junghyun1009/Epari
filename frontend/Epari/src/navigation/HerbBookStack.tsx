@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderWidth: 2.5,
     borderColor: '#110105',
+    marginBottom: 6,
   },
   TabBarLabel: {
     fontFamily: 'NeoDGM-Regular',

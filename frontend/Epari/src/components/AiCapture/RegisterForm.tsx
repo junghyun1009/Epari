@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
+import React, {isValidElement, useState} from 'react';
 import {
   KeyboardAvoidingView,
   ScrollView,
@@ -17,25 +18,32 @@ import {
   resultPlant,
   sigunguCode,
 } from '../../store/classification';
+import AppText from '../AppText';
 import LocationSelector from './LocationSelector';
 
-const EnrollForm: React.FC = () => {
+const EnrollForm: React.FC = ({}) => {
+  const navigation = useNavigation();
   const picturedImageState = useRecoilValue(picturedImage);
   const resultPlantState = useRecoilValue(resultPlant);
-  const [inputPlace, setInputPlace] = useState('');
-  const [inputTitle, setInputTitle] = useState('');
-  const [inputContent, setInputContent] = useState('');
   const areaCodeState = useRecoilValue(areaCode);
   const sigunguCodeState = useRecoilValue(sigunguCode);
 
-  const handlePlaceInput = (enteredText: string) => {
-    setInputPlace(enteredText);
-  };
-  const handleTitleInput = (enteredText: string) => {
-    setInputTitle(enteredText);
-  };
-  const handleContentInput = (enteredText: string) => {
-    setInputContent(enteredText);
+  const [inputs, setInputs] = useState({
+    // place: '',
+    title: {value: '', isValid: true},
+    content: {value: '', isValid: true},
+  });
+
+  const inputChangedHandler = (
+    inputIdentifier: string,
+    enteredValue: string,
+  ) => {
+    setInputs(curInputs => {
+      return {
+        ...curInputs,
+        [inputIdentifier]: {value: enteredValue, isValid: false},
+      };
+    });
   };
 
   const saveImage = async () => {
@@ -53,11 +61,11 @@ const EnrollForm: React.FC = () => {
     formdata.append('userId', 1);
     formdata.append('collectPictureUrl', image);
     formdata.append('areaId', areaCodeState);
-    console.log(areaCodeState);
     formdata.append('sigunguId', sigunguCodeState);
-    formdata.append('collectPlace', inputPlace);
-    formdata.append('collectTitle', inputTitle);
-    formdata.append('collectContent', inputContent);
+    // formdata.append('collectPlace', inputs.place);
+    formdata.append('collectPlace', '1');
+    formdata.append('collectTitle', inputs.title.value);
+    formdata.append('collectContent', inputs.content.value);
 
     const requestOptions = {
       method: 'POST',
@@ -71,8 +79,25 @@ const EnrollForm: React.FC = () => {
         console.log('formdata-', formdata);
       })
       .catch(error => console.log('error', error));
+
+    const titleIsValid = inputs.title.value.trim().length > 0;
+    const contentIsValid = inputs.content.value.trim().length > 0;
+    if (!titleIsValid) {
+      setInputs(curInputs => {
+        return {
+          title: {value: curInputs.title.value, isValid: titleIsValid},
+          content: {value: curInputs.content.value, isValid: contentIsValid},
+        };
+      });
+      return;
+    }
+    navigation.navigate('HerbDetail', {id: resultPlantState.plantId});
   };
+
   const plantName = (resultPlantState.plantName || '').split('_', 1);
+
+  const formIsInvalid = !inputs.title.isValid || !inputs.content.isValid;
+
   return (
     <KeyboardAvoidingView
       behavior="padding"
@@ -87,32 +112,35 @@ const EnrollForm: React.FC = () => {
           <Text style={styles.plantName}>{plantName}</Text>
         </View>
         <LocationSelector />
-        <View style={styles.inputConatiner}>
+        {/* <View style={styles.inputConatiner}>
           <Text style={styles.inputLabel}>상세 지역: </Text>
           <TextInput
             style={styles.inputBox}
-            onChangeText={handlePlaceInput}
-            value={inputPlace}
+            onChangeText={inputChangedHandler.bind(this, 'place')}
+            value={inputs.place}
             maxLength={50}
           />
-        </View>
+        </View> */}
         <View style={styles.inputConatiner}>
           <Text style={styles.inputLabel}>제목: </Text>
           <TextInput
             style={styles.inputBox}
-            onChangeText={handleTitleInput}
-            value={inputTitle}
+            onChangeText={inputChangedHandler.bind(this, 'title')}
+            value={inputs.title.value}
             maxLength={100}
           />
         </View>
         <View style={styles.inputConatiner}>
-          <Text style={styles.inputLabel}>메모: </Text>
+          <Text style={styles.inputLabel}>내용: </Text>
           <TextInput
             style={[styles.inputBox, styles.multilineInputBox]}
-            onChangeText={handleContentInput}
-            value={inputContent}
+            onChangeText={inputChangedHandler.bind(this, 'content')}
+            value={inputs.content.value}
             multiline
           />
+          {formIsInvalid && (
+            <AppText style={styles.errorText}>빠짐없이 입력해주세요</AppText>
+          )}
         </View>
       </ScrollView>
       <Pressable>
@@ -174,6 +202,12 @@ const styles = StyleSheet.create({
   multilineInputBox: {
     minHeight: 100,
     textAlignVertical: 'top',
+  },
+  errorText: {
+    marginVertical: 12,
+    color: '#99AEBB',
+    textAlign: 'center',
+    fontSize: 12,
   },
   button: {
     paddingHorizontal: 14,

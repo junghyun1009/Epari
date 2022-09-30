@@ -7,6 +7,7 @@ import {
   HerbBook,
   HerbDetail,
   Login,
+  UserPage,
 } from '../screens';
 import AiRegister from '../screens/AiRegister';
 import AiSpareResult from '../screens/AiSpareResult';
@@ -21,7 +22,7 @@ const Stack = createNativeStackNavigator<AppStackParamList>();
 const Tab: React.FC = () => {
   return (
     <Navigator
-      initialRouteName="HerbBook"
+      initialRouteName="Login"
       screenOptions={{
         headerShown: false,
         tabBarLabelStyle: styles.TabBarLabel,
@@ -42,6 +43,7 @@ const Tab: React.FC = () => {
         }}
       />
       <Screen name="Login" component={Login} />
+      <Screen name="UserPage" component={UserPage} />
       <Screen
         name="HerbBook"
         component={HerbBook}
@@ -69,6 +71,7 @@ const AppStack: React.FC = () => {
       <Stack.Screen name="AiSpareResult" component={AiSpareResult} />
       <Stack.Screen name="HerbDetail" component={HerbDetail} />
       <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="UserPage" component={UserPage} />
     </Stack.Navigator>
   );
 };
