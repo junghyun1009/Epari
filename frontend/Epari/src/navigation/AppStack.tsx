@@ -23,7 +23,7 @@ const Stack = createNativeStackNavigator<AppStackParamList>();
 const Tab: React.FC = () => {
   return (
     <Navigator
-      initialRouteName="Login"
+      initialRouteName="HerbBook"
       screenOptions={{
         headerShown: false,
         tabBarLabelStyle: styles.TabBarLabel,
@@ -43,7 +43,36 @@ const Tab: React.FC = () => {
           title: 'EPARI',
         }}
       />
-      <Screen name="Login" component={Login} />
+      <Screen
+        name="Login"
+        component={Login}
+        options={{
+          tabBarIcon: ({focused}) =>
+            focused ? (
+              <Ionicons name="person" size={30} color="#007C2B" />
+            ) : (
+              <Ionicons name="person-outline" size={30} color="#110105" />
+            ),
+          title: '로그인',
+        }}
+      />
+      <Screen
+        name="UserPage"
+        component={UserPage}
+        options={{
+          tabBarIcon: ({focused}) =>
+            focused ? (
+              <Ionicons name="person-circle" size={30} color="#007C2B" />
+            ) : (
+              <Ionicons
+                name="person-circle-outline"
+                size={30}
+                color="#110105"
+              />
+            ),
+          title: '내 정보',
+        }}
+      />
       <Screen name="TitleList" component={TitleList} />
       <Screen
         name="HerbBook"
