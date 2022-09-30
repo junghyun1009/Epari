@@ -109,16 +109,3 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
 });
-
-// [{"areaName": "서울시", "locationId": 1, "sigunguName": "강남구"}, {"areaName": "서울시", "locationId": 2, "sigunguName":"관악구"}]
-
-// const categories = [
-//     {key: 1, value: '서울시'},
-//     {key: 1, value: '서울시'}
-// ]
-
-// const subcategories = [
-//     1: [
-//         {key: ?, value: '강남구'}
-//     ]
-// ]
