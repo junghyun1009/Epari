@@ -40,37 +40,50 @@ const HerbCollectionModal: React.FC<HerbCollectionModalProps> = ({
       onBackdropPress={() => setModalVisible(!modalVisible)}
       useNativeDriver={true}>
       <View style={styles.ModalContainer}>
-        <Image
-          source={{
-            uri: 'https://dolarge.s3.ap-northeast-2.amazonaws.com/0010.jpg',
-          }}
-          style={styles.ModalImage}
-        />
-        <View style={styles.TitleContainer}>
-          <Text style={styles.TitleFont}>
-            제목 : {collectionItem.collectTitle}
-          </Text>
-        </View>
-        <ScrollView>
-          <View style={styles.ContentContainer}>
-            <Text style={styles.ContentFont}>
-              내용 : {collectionItem.collectContent}
-            </Text>
+        <View style={styles.topContainer}>
+          <View style={styles.ProfileContainer}>
+            <Image
+              source={require('Epari/src/asset/temp/avatar-1.png')}
+              style={styles.userProfile}
+            />
           </View>
-        </ScrollView>
-        <View style={styles.DateContainer}>
-          <Text style={styles.DateFont}>
-            등록날짜 : {collectionItem.collectDate}
-          </Text>
+          <View style={styles.TitleContainer}>
+            <Text style={styles.TitleFont}>{collectionItem.collectTitle}</Text>
+            <View style={styles.DateContainer}>
+              <Text style={styles.DateFont}>{collectionItem.collectDate}</Text>
+            </View>
+          </View>
         </View>
-        <View style={styles.PlaceContainer}>
-          <Text style={styles.PlaceFont}>
-            장소 : {collectionItem.collectPlace}
-          </Text>
+        <View style={styles.CenterContainer}>
+          <View style={styles.PlaceContainer}>
+            <View>
+              <Ionicons name="location-outline" size={24} color="#11015" />
+            </View>
+            <View style={styles.place}>
+              <Text style={styles.PlaceFont}>
+                {collectionItem.collectPlace}
+              </Text>
+            </View>
+          </View>
+          <View style={styles.ImageContainer}>
+            <Image
+              source={require('Epari/src/asset/temp/image7.png')}
+              style={styles.ModalImage}
+            />
+          </View>
+          <View style={styles.ContentContainer}>
+            <ScrollView>
+              <Text style={styles.ContentFont}>
+                {collectionItem.collectContent}
+              </Text>
+            </ScrollView>
+          </View>
+          <TouchableOpacity
+            onPress={() => setModalVisible(!modalVisible)}
+            style={styles.closeButton}>
+            <Ionicons name="md-close" size={30} color="#474747" />
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
-          <Ionicons name="md-close" size={50} color="#110105" />
-        </TouchableOpacity>
       </View>
     </Modal>
   );
@@ -81,68 +94,82 @@ const ScreenHeight = Dimensions.get('window').height;
 const styles = StyleSheet.create({
   ModalContainer: {
     width: ScreenWidth * 0.8,
-    height: ScreenHeight * 0.8,
+    height: ScreenHeight * 0.65,
     alignSelf: 'center',
-    alignItems: 'center',
-    backgroundColor: '#FFF7F2',
-    borderRadius: 15,
-  },
-  ModalImage: {
-    width: ScreenWidth * 0.6,
-    height: ScreenWidth * 0.6,
-    margin: ScreenWidth * 0.03,
-    borderRadius: 15,
-  },
-
-  TitleContainer: {
     backgroundColor: '#F6EDD9',
-    width: ScreenWidth * 0.72,
+    borderRadius: 15,
+    borderWidth: 4,
+  },
+  topContainer: {
+    flexDirection: 'row',
+  },
+  ProfileContainer: {
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    marginLeft: ScreenWidth * 0.03,
+    marginTop: ScreenWidth * 0.03,
+  },
+  userProfile: {
+    width: ScreenWidth * 0.1,
+    height: ScreenWidth * 0.1,
+  },
+  TitleContainer: {
+    width: ScreenWidth * 0.6,
     height: 30,
-    alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 8,
-    margin: 7,
+    marginTop: 20,
+    marginLeft: 15,
   },
   TitleFont: {
     fontFamily: 'NeoDGM-Regular',
     fontSize: 21,
+    color: '#110105',
   },
   DateContainer: {
-    backgroundColor: '#F6EDD9',
-    width: ScreenWidth * 0.72,
-    height: 30,
-    alignItems: 'center',
-    justifyContent: 'center',
+    margin: 6,
     borderRadius: 8,
-    margin: 7,
   },
   DateFont: {
     fontFamily: 'NeoDGM-Regular',
   },
-  ContentContainer: {
-    backgroundColor: '#F6EDD9',
-    width: ScreenWidth * 0.72,
-    height: ScreenHeight * 0.24,
-    alignItems: 'center',
-    padding: 7,
-    borderRadius: 8,
-    margin: 7,
-  },
-  ContentFont: {
-    fontFamily: 'NeoDGM-Regular',
-    fontSize: 15,
-  },
+  CenterContainer: {},
   PlaceContainer: {
-    backgroundColor: '#F6EDD9',
-    width: ScreenWidth * 0.72,
-    height: 30,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 8,
-    margin: 7,
+    flexDirection: 'row',
+    margin: 10,
+    marginLeft: 30,
+    marginBottom: 5,
   },
   PlaceFont: {
     fontFamily: 'NeoDGM-Regular',
+  },
+  place: {
+    justifyContent: 'center',
+  },
+  ImageContainer: {
+    alignSelf: 'center',
+    margin: 0,
+  },
+  ModalImage: {
+    width: ScreenWidth * 0.67,
+    height: ScreenWidth * 0.67,
+    borderRadius: 15,
+  },
+  ContentContainer: {
+    alignItems: 'center',
+    height: ScreenHeight * 0.14,
+    padding: 7,
+    borderRadius: 8,
+    margin: 7,
+    marginBottom: 0,
+  },
+  ContentFont: {
+    fontFamily: 'NeoDGM-Regular',
+    color: '#110105',
+    fontSize: 15,
+  },
+  closeButton: {
+    alignSelf: 'center',
   },
 });
 export default HerbCollectionModal;
