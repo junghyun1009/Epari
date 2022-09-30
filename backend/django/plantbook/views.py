@@ -5,16 +5,32 @@ from rest_framework import status
 from .models import Plant, Collect
 from .serializers import PlantListSerializer, PlantSerializer, CollectSerializer
 from .storages import FileUpload, s3_client
+from accounts.authentication import is_logined, get_userId
+from accounts.models import User
 
 
 # Create your views here.
 @api_view(['GET', 'POST'])
 def plant_list_or_create(request):
+    # isLogin = is_logined(request)
+    # if not isLogin:
+    #     data = {
+    #         "message": "Invalid Token!"
+    #     }
+    #     return Response(data, status=status.HTTP_401_UNAUTHORIZED)
+    
+    # userId = get_userId(isLogin)
+    # user = User.objects.get(userId=userId)
 
     def plant_list():
-        plants = Plant.objects.all()
-        serializer = PlantListSerializer(plants, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        collects = Collect.objects.filter(userId=1312313)
+        collection = set()
+        for collect in collects:
+            collection.add(collect.plantId.plantId)
+        data = {
+            "collection": collection
+        }
+        return Response(data, status=status.HTTP_200_OK)
     
     def create_plant():
         # 이미지를 폼 데이터로 가져와서 s3 서버에 저장하고 반환된 uri를 db에 저장
@@ -27,6 +43,7 @@ def plant_list_or_create(request):
             # data = request.data.copy()
             # data['collectPictureUrl'] = userImageUrl
             request.data.__setitem__('collectPictureUrl', userImageUrl)
+            request.data.__setitem__('userId', 1)
             print(request.data)
             serializer = CollectSerializer(data=request.data)
             if serializer.is_valid(raise_exception=True):
@@ -43,9 +60,20 @@ def plant_list_or_create(request):
 
 @api_view(['GET'])
 def plant_detail(request, plantId):
+    # isLogin = is_logined(request)
+    # if not isLogin:
+    #     data = {
+    #         "message": "Invalid Token!"
+    #     }
+    #     return Response(data, status=status.HTTP_401_UNAUTHORIZED)
+    
+    # userId = get_userId(isLogin)
+    # user = User.objects.get(userId=userId)
+
     plant = get_object_or_404(Plant, pk=plantId)
-    if Collect.objects.filter(plantId=plant, userId=request.user).exists():
-        serializer = PlantSerializer(plant)
+    collects = Collect.objects.filter(plantId=plant, userId=1)
+    if collects.exists():
+        serializer = CollectSerializer(collects, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     else:
         data = {

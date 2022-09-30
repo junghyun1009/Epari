@@ -22,7 +22,7 @@ def login(request):
     userEmail = decoded_token['firebase']['identities']['email'][0]
     userName = userEmail.split('@')[0]
 
-    if User.objects.get(id=userId).exists():
+    if User.objects.get(userId=userId).exists():
         data = {
             'message': '성공적으로 로그인되었습니다.'
         }

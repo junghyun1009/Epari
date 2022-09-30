@@ -12,7 +12,7 @@ from django.contrib.auth.decorators import login_required
 @api_view(['GET', 'PUT', 'POST'])
 def titles(request, userId):
     titles = Obtained.objects.filter(userId=userId)
-    user = User.objects.get(id=userId)
+    user = User.objects.get(userId=userId)
 
     # 사용자 전체 칭호 확인
     def title_list():
@@ -35,7 +35,7 @@ def titles(request, userId):
         titleId = request.data['titleId']
         title = get_object_or_404(Title, titleId=titleId)
         if Obtained.objects.filter(userId=userId, titleId=title).exists():
-            user = User.objects.get(id=userId)
+            user = User.objects.get(userId=userId)
             if user.titleId == title:
                 data = {
                     'message': '이미 등록된 칭호입니다.'
