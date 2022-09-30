@@ -9,7 +9,7 @@ const HerbDetailHeader: React.FC<HerbDetailHeaderProps> = ({navigation}) => {
   return (
     <View style={styles.header}>
       <View style={styles.leftIconContainer}>
-        <TouchableOpacity onPress={() => navigation.goBack(null)}>
+        <TouchableOpacity onPress={() => navigation.navigate('HerbBook')}>
           <Image
             style={styles.lefticon}
             source={require('Epari/src/asset/icons/lefticon.png')}
