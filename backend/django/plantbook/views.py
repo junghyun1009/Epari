@@ -13,20 +13,20 @@ from locations.models import Location
 # Create your views here.
 @api_view(['GET', 'POST'])
 def plant_list_or_create(request):
-    # isLogin = is_logined(request)
-    # if not isLogin:
-    #     data = {
-    #         "message": "Invalid Token!"
-    #     }
-    #     return Response(data, status=status.HTTP_401_UNAUTHORIZED)
+    isLogin = is_logined(request)
+    if not isLogin:
+        data = {
+            "message": "Invalid Token!"
+        }
+        return Response(data, status=status.HTTP_401_UNAUTHORIZED)
     
-    # userEmail = get_userEmail(isLogin)
-    # user = User.objects.get(userEmail=userEmail)
+    userEmail = get_userEmail(isLogin)
+    user = User.objects.get(userEmail=userEmail)
 
     def plant_list():
         plants = Plant.objects.all()
         for plant in plants:
-            if Collect.objects.filter(plantId=plant.plantId, userId=1).exists():
+            if Collect.objects.filter(plantId=plant.plantId, userId=user).exists():
                 plant.isCollected = True
             else:
                 plant.isCollected = False
@@ -79,7 +79,7 @@ def plant_detail(request, plantId):
     user = User.objects.get(userEmail=userEmail)
     
     plant = get_object_or_404(Plant, pk=plantId)
-    collects = Collect.objects.filter(plantId=plant, userEmail=userEmail)
+    collects = Collect.objects.filter(plantId=plant, userId=user)
     if collects.exists():
         serializer = CollectSerializer(collects, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)

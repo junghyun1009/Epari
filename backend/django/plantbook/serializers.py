@@ -7,7 +7,7 @@ class PlantListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Plant
         # fields = '__all__'
-        fields = ('plantId', 'plantName', 'season', 'classification', 'isCollected')
+        fields = ('plantId', 'plantName', 'season', 'classification', 'isCollected', 'detailPictureUrl', 'plantDescription',)
         # exclude = ('detailPictureUrl', 'plantDescription', )
 
 class CollectSerializer(serializers.ModelSerializer):
