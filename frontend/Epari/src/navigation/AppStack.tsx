@@ -21,7 +21,7 @@ const Stack = createNativeStackNavigator<AppStackParamList>();
 const Tab: React.FC = () => {
   return (
     <Navigator
-      initialRouteName="Login"
+      initialRouteName="HerbBook"
       screenOptions={{
         headerShown: false,
         tabBarLabelStyle: styles.TabBarLabel,

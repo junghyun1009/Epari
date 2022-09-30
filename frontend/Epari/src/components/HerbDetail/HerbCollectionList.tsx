@@ -1,5 +1,5 @@
 import React from 'react';
-import {View} from 'react-native';
+import {ScrollView, View, Text, StyleSheet} from 'react-native';
 import HerbCollectionItem from './HerbCollectionItem';
 
 type HerbCollectionListProps = {
@@ -21,12 +21,22 @@ const HerbCollectionList: React.FC<HerbCollectionListProps> = ({
   collection,
 }) => {
   return (
-    <View>
-      <View>
-        <HerbCollectionItem collectionItem={collection[0]} />
+    <ScrollView>
+      <View style={styles.container}>
+        <Text>
+          {collection.map(item => (
+            <HerbCollectionItem collectionItem={item} key={item.collectId} />
+          ))}
+        </Text>
       </View>
-    </View>
+    </ScrollView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+  },
+});
 
 export default HerbCollectionList;

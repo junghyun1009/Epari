@@ -12,3 +12,8 @@ export const picturedImage = atom<GoogleUserInform[]>({
   key: 'picturedImage',
   default: [],
 });
+
+export const loginState = atom({
+  key: 'loginState',
+  default: false,
+});

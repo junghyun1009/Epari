@@ -38,7 +38,7 @@ const HerbDetail: React.FC<DetailScreenProps> = ({
         locationId: '20',
       },
       {
-        collectId: 1,
+        collectId: 2,
         collectPictureUrl:
           'http://www.hortitimes.com/news/photo/first/201606/img_6009_1.jpg',
         collectDate: '2022-09-28',
@@ -50,7 +50,79 @@ const HerbDetail: React.FC<DetailScreenProps> = ({
         locationId: '20',
       },
       {
-        collectId: 1,
+        collectId: 3,
+        collectPictureUrl:
+          'http://www.hortitimes.com/news/photo/first/201606/img_6009_1.jpg',
+        collectDate: '2022-09-28',
+        collectTitle: '도라지 짱 좋아',
+        collectContent: '청계산에서 득템한 도라지 ^^',
+        collectPlace: '강원도 양양시',
+        plantId: 1,
+        userId: '1',
+        locationId: '20',
+      },
+      {
+        collectId: 4,
+        collectPictureUrl:
+          'http://www.hortitimes.com/news/photo/first/201606/img_6009_1.jpg',
+        collectDate: '2022-09-28',
+        collectTitle: '도라지 짱 좋아',
+        collectContent: '청계산에서 득템한 도라지 ^^',
+        collectPlace: '강원도 양양시',
+        plantId: 1,
+        userId: '1',
+        locationId: '20',
+      },
+      {
+        collectId: 5,
+        collectPictureUrl:
+          'http://www.hortitimes.com/news/photo/first/201606/img_6009_1.jpg',
+        collectDate: '2022-09-28',
+        collectTitle: '도라지 짱 좋아',
+        collectContent: '청계산에서 득템한 도라지 ^^',
+        collectPlace: '강원도 양양시',
+        plantId: 1,
+        userId: '1',
+        locationId: '20',
+      },
+      {
+        collectId: 6,
+        collectPictureUrl:
+          'http://www.hortitimes.com/news/photo/first/201606/img_6009_1.jpg',
+        collectDate: '2022-09-28',
+        collectTitle: '도라지 짱 좋아',
+        collectContent: '청계산에서 득템한 도라지 ^^',
+        collectPlace: '강원도 양양시',
+        plantId: 1,
+        userId: '1',
+        locationId: '20',
+      },
+      {
+        collectId: 7,
+        collectPictureUrl:
+          'http://www.hortitimes.com/news/photo/first/201606/img_6009_1.jpg',
+        collectDate: '2022-09-28',
+        collectTitle: '도라지 짱 좋아',
+        collectContent: '청계산에서 득템한 도라지 ^^',
+        collectPlace: '강원도 양양시',
+        plantId: 1,
+        userId: '1',
+        locationId: '20',
+      },
+      {
+        collectId: 8,
+        collectPictureUrl:
+          'http://www.hortitimes.com/news/photo/first/201606/img_6009_1.jpg',
+        collectDate: '2022-09-28',
+        collectTitle: '도라지 짱 좋아',
+        collectContent: '청계산에서 득템한 도라지 ^^',
+        collectPlace: '강원도 양양시',
+        plantId: 1,
+        userId: '1',
+        locationId: '20',
+      },
+      {
+        collectId: 9,
         collectPictureUrl:
           'http://www.hortitimes.com/news/photo/first/201606/img_6009_1.jpg',
         collectDate: '2022-09-28',
