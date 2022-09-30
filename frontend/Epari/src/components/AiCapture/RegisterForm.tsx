@@ -1,9 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
-<<<<<<< HEAD
 import React, {isValidElement, useState} from 'react';
-=======
-import React, {useState} from 'react';
->>>>>>> 7d30fb5f5e782a7bf865387eea4065d9c39bf50b
 import {
   KeyboardAvoidingView,
   ScrollView,
@@ -25,45 +21,27 @@ import {
 import AppText from '../AppText';
 import LocationSelector from './LocationSelector';
 
-<<<<<<< HEAD
 const EnrollForm: React.FC = ({}) => {
-=======
-const EnrollForm: React.FC = () => {
->>>>>>> 7d30fb5f5e782a7bf865387eea4065d9c39bf50b
   const navigation = useNavigation();
   const picturedImageState = useRecoilValue(picturedImage);
   const resultPlantState = useRecoilValue(resultPlant);
   const areaCodeState = useRecoilValue(areaCode);
   const sigunguCodeState = useRecoilValue(sigunguCode);
 
-<<<<<<< HEAD
   const [inputs, setInputs] = useState({
     // place: '',
     title: {value: '', isValid: true},
     content: {value: '', isValid: true},
-=======
-  const [inputValues, setInputValues] = useState({
-    place: '',
-    title: '',
-    content: '',
->>>>>>> 7d30fb5f5e782a7bf865387eea4065d9c39bf50b
   });
 
   const inputChangedHandler = (
     inputIdentifier: string,
     enteredValue: string,
   ) => {
-<<<<<<< HEAD
     setInputs(curInputs => {
       return {
         ...curInputs,
         [inputIdentifier]: {value: enteredValue, isValid: false},
-=======
-    setInputValues(curInputValues => {
-      return {
-        ...curInputValues,
-        [inputIdentifier]: enteredValue,
->>>>>>> 7d30fb5f5e782a7bf865387eea4065d9c39bf50b
       };
     });
   };
@@ -84,16 +62,10 @@ const EnrollForm: React.FC = () => {
     formdata.append('collectPictureUrl', image);
     formdata.append('areaId', areaCodeState);
     formdata.append('sigunguId', sigunguCodeState);
-<<<<<<< HEAD
     // formdata.append('collectPlace', inputs.place);
     formdata.append('collectPlace', '1');
     formdata.append('collectTitle', inputs.title.value);
     formdata.append('collectContent', inputs.content.value);
-=======
-    formdata.append('collectPlace', inputValues.place);
-    formdata.append('collectTitle', inputValues.title);
-    formdata.append('collectContent', inputValues.content);
->>>>>>> 7d30fb5f5e782a7bf865387eea4065d9c39bf50b
 
     const requestOptions = {
       method: 'POST',
@@ -145,11 +117,7 @@ const EnrollForm: React.FC = () => {
           <TextInput
             style={styles.inputBox}
             onChangeText={inputChangedHandler.bind(this, 'place')}
-<<<<<<< HEAD
             value={inputs.place}
-=======
-            value={inputValues.place}
->>>>>>> 7d30fb5f5e782a7bf865387eea4065d9c39bf50b
             maxLength={50}
           />
         </View> */}
@@ -158,11 +126,7 @@ const EnrollForm: React.FC = () => {
           <TextInput
             style={styles.inputBox}
             onChangeText={inputChangedHandler.bind(this, 'title')}
-<<<<<<< HEAD
             value={inputs.title.value}
-=======
-            value={inputValues.title}
->>>>>>> 7d30fb5f5e782a7bf865387eea4065d9c39bf50b
             maxLength={100}
           />
         </View>
@@ -171,11 +135,7 @@ const EnrollForm: React.FC = () => {
           <TextInput
             style={[styles.inputBox, styles.multilineInputBox]}
             onChangeText={inputChangedHandler.bind(this, 'content')}
-<<<<<<< HEAD
             value={inputs.content.value}
-=======
-            value={inputValues.content}
->>>>>>> 7d30fb5f5e782a7bf865387eea4065d9c39bf50b
             multiline
           />
           {formIsInvalid && (
@@ -190,7 +150,6 @@ const EnrollForm: React.FC = () => {
             onPress={() => {
               saveImage();
               Keyboard.dismiss();
-              navigation.navigate('HerbBook');
             }}>
             등록하기
           </Text>
