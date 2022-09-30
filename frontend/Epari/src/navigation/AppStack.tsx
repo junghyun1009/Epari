@@ -8,6 +8,7 @@ import {
   HerbDetail,
   Login,
   UserPage,
+  TitleList,
 } from '../screens';
 import AiRegister from '../screens/AiRegister';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -42,7 +43,7 @@ const Tab: React.FC = () => {
         }}
       />
       <Screen name="Login" component={Login} />
-      <Screen name="UserPage" component={UserPage} />
+      <Screen name="TitleList" component={TitleList} />
       <Screen
         name="HerbBook"
         component={HerbBook}
@@ -70,6 +71,7 @@ const AppStack: React.FC = () => {
       <Stack.Screen name="HerbDetail" component={HerbDetail} />
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="UserPage" component={UserPage} />
+      <Stack.Screen name="TitleList" component={TitleList} />
     </Stack.Navigator>
   );
 };
