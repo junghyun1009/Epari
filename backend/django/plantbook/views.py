@@ -5,14 +5,31 @@ from rest_framework import status
 from .models import Plant, Collect
 from .serializers import PlantListSerializer, PlantSerializer, CollectSerializer
 from .storages import FileUpload, s3_client
+from accounts.authentication import is_logined, get_userEmail
+from accounts.models import User
+from locations.models import Location
 
 
 # Create your views here.
 @api_view(['GET', 'POST'])
 def plant_list_or_create(request):
+    isLogin = is_logined(request)
+    if not isLogin:
+        data = {
+            "message": "Invalid Token!"
+        }
+        return Response(data, status=status.HTTP_401_UNAUTHORIZED)
+    
+    userEmail = get_userEmail(isLogin)
+    user = User.objects.get(userEmail=userEmail)
 
     def plant_list():
         plants = Plant.objects.all()
+        for plant in plants:
+            if Collect.objects.filter(plantId=plant.plantId, userId=user).exists():
+                plant.isCollected = True
+            else:
+                plant.isCollected = False
         serializer = PlantListSerializer(plants, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
@@ -23,10 +40,18 @@ def plant_list_or_create(request):
         userImageUrl = FileUpload(s3_client).upload(file)
         print('image', userImageUrl)
 
+        # areaId랑 sigunguId 받아서 locationId로 변환
+        areaId = request.data['areaId']
+        sigunguId = request.data['sigunguId']
+        locationId = Location.objects.get(areaId=areaId, sigunguId=sigunguId)
+        print(locationId)
+        request.data.__setitem__('locationId', locationId.locationId)
+
         def create_plant_image(userImageUrl):
             # data = request.data.copy()
             # data['collectPictureUrl'] = userImageUrl
             request.data.__setitem__('collectPictureUrl', userImageUrl)
+            request.data.__setitem__('userId', user)
             print(request.data)
             serializer = CollectSerializer(data=request.data)
             if serializer.is_valid(raise_exception=True):
@@ -43,9 +68,20 @@ def plant_list_or_create(request):
 
 @api_view(['GET'])
 def plant_detail(request, plantId):
+    isLogin = is_logined(request)
+    if not isLogin:
+        data = {
+            "message": "Invalid Token!"
+        }
+        return Response(data, status=status.HTTP_401_UNAUTHORIZED)
+    
+    userEmail = get_userEmail(isLogin)
+    user = User.objects.get(userEmail=userEmail)
+    
     plant = get_object_or_404(Plant, pk=plantId)
-    if Collect.objects.filter(plantId=plant, userId=request.user).exists():
-        serializer = PlantSerializer(plant)
+    collects = Collect.objects.filter(plantId=plant, userId=user)
+    if collects.exists():
+        serializer = CollectSerializer(collects, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     else:
         data = {
