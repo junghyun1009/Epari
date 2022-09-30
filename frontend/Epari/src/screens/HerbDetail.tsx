@@ -31,7 +31,8 @@ const HerbDetail: React.FC<DetailScreenProps> = ({
           'http://www.hortitimes.com/news/photo/first/201606/img_6009_1.jpg',
         collectDate: '2022-09-28',
         collectTitle: '도라지 짱 좋아',
-        collectContent: '청계산에서 득템한 도라지 ^^',
+        collectContent:
+          '청계산에서 득템한 도라지 ^^청계산에서 득템한 도라지 ^^청계산에서 득템한 도라지 ^^청계산에서 득템한 도라지 ^^청계산에서 득템한 도라지 ^^청계산에서 득템한 도라지 ^^청계산에서 득템한 도라지 ^^청계산에서 득템한 도라지 ^^청계산에서 득템한 도라지 ^^청계산에서 득템한 도라지 ^^청계산에서 득템한 도라지 ^^청계산에서 득템한 도라지 ^^청계산에서 득템한 도라지 ^^청계산에서 득템한 도라지 ^^',
         collectPlace: '강원도 양양시',
         plantId: 1,
         userId: '1',
