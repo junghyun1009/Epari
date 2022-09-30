@@ -12,11 +12,37 @@ export const picturedImage = atom<PicturedImageType[]>({
 });
 
 export type CapturedImageType = {
+  plantId: number;
   plantName: string;
   detailPictureUrl: string;
 };
 
-export const capturedImage = atom<CapturedImageType[]>({
-  key: 'capturedImage',
+export const capturedMainImage = atom<CapturedImageType[]>({
+  key: 'capturedMainImage',
   default: [],
+});
+
+export const capturedSubImage = atom<CapturedImageType[]>({
+  key: 'capturedSubImage',
+  default: [],
+});
+
+export type resultPlant = {
+  plantId: number;
+  plantName: string;
+};
+
+export const resultPlant = atom<resultPlant[]>({
+  key: 'resultPlant',
+  default: [],
+});
+
+export const areaCode = atom<number>({
+  key: 'areaCode',
+  default: 0,
+});
+
+export const sigunguCode = atom<number>({
+  key: 'sigunguCode',
+  default: 0,
 });

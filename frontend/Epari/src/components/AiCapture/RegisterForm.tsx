@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {
   KeyboardAvoidingView,
@@ -11,21 +12,37 @@ import {
   Keyboard,
 } from 'react-native';
 import {useRecoilValue} from 'recoil';
-import {picturedImage, capturedImage} from '../../store/classification';
+import {
+  areaCode,
+  picturedImage,
+  resultPlant,
+  sigunguCode,
+} from '../../store/classification';
+import LocationSelector from './LocationSelector';
 
 const EnrollForm: React.FC = () => {
+  const navigation = useNavigation();
   const picturedImageState = useRecoilValue(picturedImage);
-  const capturedImageState = useRecoilValue(capturedImage);
-  // const [inputTitle, setInputTitle] = useState('')
-  const [inputContent, setInputContent] = useState('');
-  console.log('capture', capturedImageState);
+  const resultPlantState = useRecoilValue(resultPlant);
+  const areaCodeState = useRecoilValue(areaCode);
+  const sigunguCodeState = useRecoilValue(sigunguCode);
 
-  // const handleTitleInput = enteredText => {
-  //   setInputTitle(enteredText)
-  // }
-  const handleContentInput = enteredText => {
-    setInputContent(enteredText);
-    console.log(inputContent);
+  const [inputValues, setInputValues] = useState({
+    place: '',
+    title: '',
+    content: '',
+  });
+
+  const inputChangedHandler = (
+    inputIdentifier: string,
+    enteredValue: string,
+  ) => {
+    setInputValues(curInputValues => {
+      return {
+        ...curInputValues,
+        [inputIdentifier]: enteredValue,
+      };
+    });
   };
 
   const saveImage = async () => {
@@ -39,17 +56,19 @@ const EnrollForm: React.FC = () => {
     image.type = picturedImageState.type;
 
     const formdata = new FormData();
-    formdata.append('plantId', 40);
-    formdata.append('userId', 2);
+    formdata.append('plantId', resultPlantState.plantId);
+    formdata.append('userId', 1);
     formdata.append('collectPictureUrl', image);
-    // formdata.append('collectTitle', 'title');
-    formdata.append('collectContent', inputContent);
-    console.log(inputContent);
-    // console.log('formdata:', formdata);
+    formdata.append('areaId', areaCodeState);
+    formdata.append('sigunguId', sigunguCodeState);
+    formdata.append('collectPlace', inputValues.place);
+    formdata.append('collectTitle', inputValues.title);
+    formdata.append('collectContent', inputValues.content);
+
     const requestOptions = {
       method: 'POST',
       body: formdata,
-      // headers: {'Content-Type': 'multipart/form-data'},
+      headers: {'Content-Type': 'multipart/form-data'},
     };
     await fetch('http://127.0.0.1:8000/epari/v1/collection/', requestOptions)
       .then(response => response.json())
@@ -59,11 +78,11 @@ const EnrollForm: React.FC = () => {
       })
       .catch(error => console.log('error', error));
   };
-  const capturedPlantName = (capturedImageState.plantName || '').split('_', 1);
+  const plantName = (resultPlantState.plantName || '').split('_', 1);
   return (
     <KeyboardAvoidingView
       behavior="padding"
-      keyboardVerticalOffset={-20}
+      keyboardVerticalOffset={-170}
       style={styles.container}>
       <ScrollView>
         <View style={styles.plantInfo}>
@@ -71,22 +90,33 @@ const EnrollForm: React.FC = () => {
             source={{uri: picturedImageState.uri}}
             style={styles.plantImage}
           />
-          <Text style={styles.plantName}>{capturedPlantName}</Text>
+          <Text style={styles.plantName}>{plantName}</Text>
+        </View>
+        <LocationSelector />
+        <View style={styles.inputConatiner}>
+          <Text style={styles.inputLabel}>상세 지역: </Text>
+          <TextInput
+            style={styles.inputBox}
+            onChangeText={inputChangedHandler.bind(this, 'place')}
+            value={inputValues.place}
+            maxLength={50}
+          />
         </View>
         <View style={styles.inputConatiner}>
           <Text style={styles.inputLabel}>제목: </Text>
           <TextInput
             style={styles.inputBox}
-            // onChangeText={handleTitleInput}
-            // value={inputTitle}
+            onChangeText={inputChangedHandler.bind(this, 'title')}
+            value={inputValues.title}
+            maxLength={100}
           />
         </View>
         <View style={styles.inputConatiner}>
-          <Text style={styles.inputLabel}>메모: </Text>
+          <Text style={styles.inputLabel}>내용: </Text>
           <TextInput
             style={[styles.inputBox, styles.multilineInputBox]}
-            onChangeText={handleContentInput}
-            value={inputContent}
+            onChangeText={inputChangedHandler.bind(this, 'content')}
+            value={inputValues.content}
             multiline
           />
         </View>
@@ -98,6 +128,7 @@ const EnrollForm: React.FC = () => {
             onPress={() => {
               saveImage();
               Keyboard.dismiss();
+              navigation.navigate('HerbBook');
             }}>
             등록하기
           </Text>
@@ -122,8 +153,8 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   plantImage: {
-    width: 300,
-    height: 300,
+    width: 250,
+    height: 250,
     borderRadius: 12,
     margin: 24,
   },

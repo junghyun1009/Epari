@@ -2,14 +2,18 @@ import React from 'react';
 import {View, Text, StyleSheet, Pressable} from 'react-native';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {useSetRecoilState} from 'recoil';
-import {capturedImage, picturedImage} from '../../store/classification';
+import {
+  picturedImage,
+  capturedMainImage,
+  capturedSubImage,
+} from '../../store/classification';
 import {useNavigation} from '@react-navigation/native';
 
 const AiCamera: React.FC = ({style, name}) => {
   const navigation = useNavigation();
   const setPicturedImage = useSetRecoilState(picturedImage);
-  const setCapturedImage = useSetRecoilState(capturedImage);
-
+  const setCapturedMainImage = useSetRecoilState(capturedMainImage);
+  const setCapturedSubImage = useSetRecoilState(capturedSubImage);
   const uploadImage = async () => {
     const image = {
       uri: '',
@@ -39,11 +43,13 @@ const AiCamera: React.FC = ({style, name}) => {
         // 'Content-Type': 'multipart/form-data; ',
       },
     };
-    await fetch('http://127.0.0.1:8001/epari/v1/plantAi', requestOptions)
+    await fetch('http://127.0.0.1:8001/ai/plantAi', requestOptions)
       .then(response => response.json())
       .then(result => {
-        console.log('result', result);
-        setCapturedImage(result);
+        const mainInfo = result.slice(0, 1);
+        const subInfo = result.slice(1);
+        setCapturedMainImage(...mainInfo);
+        setCapturedSubImage(subInfo);
       })
       .catch(error => console.log('error', error));
   };
