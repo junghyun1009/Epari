@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, Text, Image, StyleSheet, Dimensions} from 'react-native';
+import {
+  ScrollView,
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  Dimensions,
+} from 'react-native';
 
 type HerbInfoProps = {
   DetailInfo: {
@@ -7,10 +14,15 @@ type HerbInfoProps = {
     detailPictureUrl: any;
     plantDescription: string;
     collection: {
-      collectPictureUrl: any;
+      collectId: number;
+      collectPictureUrl: string;
       collectDate: string;
+      collectTitle: string;
       collectContent: string;
       collectPlace: string;
+      plantId: number;
+      userId: string;
+      locationId: string;
     }[];
   };
 };
@@ -30,28 +42,30 @@ const HerbInfo: React.FC<HerbInfoProps> = ({DetailInfo}) => {
       <View style={styles.nameContatiner}>
         <Text style={styles.nameFont}>{DetailInfo.plantName}</Text>
       </View>
-      <View style={styles.DesContainer}>
-        <Text style={styles.desFont}>{DetailInfo.plantDescription}</Text>
-      </View>
+      <ScrollView>
+        <View style={styles.DesContainer}>
+          <Text style={styles.desFont}>{DetailInfo.plantDescription}</Text>
+        </View>
+      </ScrollView>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    height: ScreenHeight * 0.7,
-    justifyContent: 'center',
+    marginTop: 30,
+    height: ScreenHeight * 0.5,
     alignItems: 'center',
     backgroundColor: '#FFF7F2',
   },
   ImageContainer: {
-    marginTop: 5,
+    marginTop: 1,
   },
   nameContatiner: {
-    marginTop: 5,
+    marginTop: 10,
   },
   DesContainer: {
-    marginTop: 5,
+    marginTop: 10,
     justifyContent: 'center',
     alignItems: 'center',
     width: ScreenWidth * 0.88,
