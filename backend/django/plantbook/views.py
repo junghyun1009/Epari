@@ -5,7 +5,7 @@ from rest_framework import status
 from .models import Plant, Collect
 from .serializers import PlantListSerializer, PlantSerializer, CollectSerializer
 from .storages import FileUpload, s3_client
-from accounts.authentication import is_logined, get_userId
+from accounts.authentication import is_logined, get_userEmail
 from accounts.models import User
 from locations.models import Location
 
@@ -13,18 +13,18 @@ from locations.models import Location
 # Create your views here.
 @api_view(['GET', 'POST'])
 def plant_list_or_create(request):
-    # isLogin = is_logined(request)
-    # if not isLogin:
-    #     data = {
-    #         "message": "Invalid Token!"
-    #     }
-    #     return Response(data, status=status.HTTP_401_UNAUTHORIZED)
+    isLogin = is_logined(request)
+    if not isLogin:
+        data = {
+            "message": "Invalid Token!"
+        }
+        return Response(data, status=status.HTTP_401_UNAUTHORIZED)
     
-    # userId = get_userId(isLogin)
-    # user = User.objects.get(userId=userId)
+    userEmail = get_userEmail(isLogin)
+    user = User.objects.get(userEmail=userEmail)
 
     def plant_list():
-        collects = Collect.objects.filter(userId=1312313)
+        collects = Collect.objects.filter(userEmail=userEmail)
         collection = set()
         for collect in collects:
             collection.add(collect.plantId.plantId)
@@ -51,7 +51,7 @@ def plant_list_or_create(request):
             # data = request.data.copy()
             # data['collectPictureUrl'] = userImageUrl
             request.data.__setitem__('collectPictureUrl', userImageUrl)
-            request.data.__setitem__('userId', 1)
+            request.data.__setitem__('userId', user)
             print(request.data)
             serializer = CollectSerializer(data=request.data)
             if serializer.is_valid(raise_exception=True):
@@ -68,18 +68,18 @@ def plant_list_or_create(request):
 
 @api_view(['GET'])
 def plant_detail(request, plantId):
-    # isLogin = is_logined(request)
-    # if not isLogin:
-    #     data = {
-    #         "message": "Invalid Token!"
-    #     }
-    #     return Response(data, status=status.HTTP_401_UNAUTHORIZED)
+    isLogin = is_logined(request)
+    if not isLogin:
+        data = {
+            "message": "Invalid Token!"
+        }
+        return Response(data, status=status.HTTP_401_UNAUTHORIZED)
     
-    # userId = get_userId(isLogin)
-    # user = User.objects.get(userId=userId)
-
+    userEmail = get_userEmail(isLogin)
+    user = User.objects.get(userEmail=userEmail)
+    
     plant = get_object_or_404(Plant, pk=plantId)
-    collects = Collect.objects.filter(plantId=plant, userId=1)
+    collects = Collect.objects.filter(plantId=plant, userEmail=userEmail)
     if collects.exists():
         serializer = CollectSerializer(collects, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)

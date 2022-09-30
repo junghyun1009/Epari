@@ -7,20 +7,20 @@ from rest_framework.response import Response
 from rest_framework import status
 from accounts.models import User
 from django.contrib.auth.decorators import login_required
-from accounts.authentication import get_userId, is_logined
+from accounts.authentication import get_userEmail, is_logined
 
 # Create your views here.
 @api_view(['GET', 'PUT', 'POST'])
 def titles(request):
-    # isLogin = is_logined(request)
-    # if not isLogin:
-    #     data = {
-    #         "message": "Invalid Token!"
-    #     }
-    #     return Response(data, status=status.HTTP_401_UNAUTHORIZED)
+    isLogin = is_logined(request)
+    if not isLogin:
+        data = {
+            "message": "Invalid Token!"
+        }
+        return Response(data, status=status.HTTP_401_UNAUTHORIZED)
     
-    # userId = get_userId(isLogin)
-    # user = User.objects.get(userId=userId)
+    userEmail = get_userEmail(isLogin)
+    user = User.objects.get(userEmail=userEmail)
 
     titles = Obtained.objects.filter(userId=user)
 
@@ -33,7 +33,7 @@ def titles(request):
         titleId = request.data['titleId']
         title = get_object_or_404(Title, titleId=titleId)
         data = {
-            'userId': userId,
+            'userId': user.userId,
             'titleId': titleId
         }
         serializer = ObtainedSerializer(data=data)

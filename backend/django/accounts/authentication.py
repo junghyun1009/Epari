@@ -12,5 +12,5 @@ def is_logined(request):
 
     return decoded_token
 
-def get_userId(token):
-    return int(token['firebase']['identities']['google.com'][0])
+def get_userEmail(token):
+    return int(token['firebase']['identities']['email'][0])

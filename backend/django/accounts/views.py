@@ -15,25 +15,18 @@ if not firebase_admin._apps:
 @api_view(['POST'])
 def login(request):
     # 확인해야함
-    print('hi')
     id_token = request.META.get('HTTP_AUTHORIZATION')
     decoded_token = auth.verify_id_token(id_token)
-    
-    userId = int(decoded_token['firebase']['identities']['google.com'][0])
     userEmail = decoded_token['firebase']['identities']['email'][0]
     userName = userEmail.split('@')[0]
-    print(f'userId: {userId}')
-    print(f'userEmail: {userEmail}')
-    print(f'userName: {userName}')
 
-
-    if User.objects.filter(userId=userId).exists():
+    if User.objects.filter(userEmail=userEmail).exists():
         data = {
             'message': '성공적으로 로그인되었습니다.'
         }
     else:
         print('hello')
-        User.objects.create(userId=userId, userName=userName, userEmail=userEmail)
+        User.objects.create(userName=userName, userEmail=userEmail)
         data = {
             'message': '새로운 사용자가 DB에 등록되었습니다.'
         }
