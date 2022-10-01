@@ -1,5 +1,12 @@
 import React from 'react';
-import {Image, StyleSheet, View, Animated, Pressable} from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  View,
+  Animated,
+  Pressable,
+  Dimensions,
+} from 'react-native';
 import AiCamera from '../components/AiCapture/AiCamera';
 import {useRecoilValue, useSetRecoilState} from 'recoil';
 import {
@@ -18,8 +25,6 @@ const AiSpareResult: React.FC = () => {
   const plant = useRecoilValue(resultPlant);
 
   const picturedImageUrl = picturedImageState.uri;
-  // const priorSubImageUrl = capturedSubImageState[0].detailPictureUrl;
-  // const secondarySubImageUrl = capturedSubImageState[1].detailPictureUrl;
   console.log('capture', capturedSubImageState);
 
   const scrollY = React.useRef(new Animated.Value(0)).current;
@@ -39,10 +44,6 @@ const AiSpareResult: React.FC = () => {
           <View>
             <Image source={{uri: picturedImageUrl}} style={styles.image} />
           </View>
-          {/* <Image source={{uri: priorSubImageUrl}} style={styles.image} />
-          <Text>{capturedSubImageState[0].plantName}</Text>
-          <Image source={{uri: secondarySubImageUrl}} style={styles.image} />
-          <Text>{capturedSubImageState[1].plantName}</Text> */}
           <View style={styles.carousel}>
             <Animated.FlatList
               data={capturedSubImageState}
@@ -96,11 +97,17 @@ const AiSpareResult: React.FC = () => {
         </View>
       </View>
       <View style={styles.textContainer}>
-        <AppText>둘 중 일치하는 식물을 선택해주세요</AppText>
+        <AppText style={styles.text}>
+          둘 중 일치하는 식물을 선택해주세요
+        </AppText>
       </View>
       <View style={styles.textContainer}>
-        <AppText>일치하는 식물이 없나요?</AppText>
-        <AiCamera style={styles.button} name={'다시 찍기'} />
+        <AppText style={styles.text}>일치하는 식물이 없나요?</AppText>
+        <AiCamera
+          buttonStyle={styles.button}
+          textStyle={styles.buttonText}
+          name={'다시 찍기'}
+        />
       </View>
       {/* <View style={styles.buttonContainer}></View> */}
     </View>
@@ -108,6 +115,9 @@ const AiSpareResult: React.FC = () => {
 };
 
 export default AiSpareResult;
+
+const ScreenWidth = Dimensions.get('window').width;
+const ScreenHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   container: {
@@ -129,14 +139,15 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   image: {
-    width: 150,
-    height: 150,
+    width: ScreenWidth * 0.35,
+    height: ScreenWidth * 0.35,
     borderRadius: 12,
-    margin: 8,
+    margin: ScreenWidth * 0.03,
     resizeMode: 'cover',
   },
   plantName: {
-    margin: 3,
+    fontSize: ScreenHeight * 0.018,
+    margin: ScreenWidth * 0.01,
     textAlign: 'center',
   },
   pagination: {
@@ -167,18 +178,23 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  text: {
+    fontSize: ScreenHeight * 0.02,
+  },
   buttonContainer: {
     flex: 1,
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   button: {
-    flexDirection: 'row',
-    paddingHorizontal: 24,
-    paddingVertical: 8,
-    backgroundColor: '#00845E',
+    width: ScreenWidth * 0.3,
+    paddingVertical: ScreenHeight * 0.02,
     borderRadius: 8,
-    margin: 8,
-    fontFamily: 'NeoDGM-Regular',
+    margin: ScreenWidth * 0.03,
+    backgroundColor: '#00845E',
+  },
+  buttonText: {
+    textAlign: 'center',
+    color: '#fff',
   },
 });

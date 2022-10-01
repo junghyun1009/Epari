@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Dimensions,
+  Pressable,
+} from 'react-native';
 import {useRecoilValue, useSetRecoilState} from 'recoil';
 import {
   picturedImage,
@@ -7,6 +14,7 @@ import {
   resultPlant,
 } from '../store/classification';
 import {useNavigation} from '@react-navigation/native';
+import AppText from '../components/AppText';
 
 const AiResult: React.FC = () => {
   const navigation = useNavigation();
@@ -36,32 +44,35 @@ const AiResult: React.FC = () => {
         <Image source={{uri: capturedMainImageUrl}} style={styles.image} />
       </View>
       <View style={styles.textContainer}>
-        <Text style={styles.fontTest}>
+        <AppText style={styles.font}>
           촬영한 사진이
-          <Text style={styles.plantName}> {capturedMainPlantName}</Text>가
+          <AppText style={styles.plantName}> {capturedMainPlantName}</AppText>가
           맞나요?
-        </Text>
+        </AppText>
       </View>
       <View style={styles.buttonContainer}>
-        <Text
-          style={styles.button}
+        <Pressable
+          style={[styles.button, styles.cancelButton]}
           onPress={() => navigation.navigate('AiSpareResult')}>
-          아니오
-        </Text>
-        <Text
-          style={styles.button}
+          <AppText>아니오</AppText>
+        </Pressable>
+        <Pressable
+          style={[styles.button, styles.rightButton]}
           onPress={() => {
             setPlantState();
             navigation.navigate('AiRegister');
           }}>
-          네
-        </Text>
+          <AppText style={styles.rightText}>네</AppText>
+        </Pressable>
       </View>
     </View>
   );
 };
 
 export default AiResult;
+
+const ScreenWidth = Dimensions.get('window').width;
+const ScreenHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   container: {
@@ -76,21 +87,21 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   image: {
-    width: 150,
-    height: 150,
+    width: ScreenWidth * 0.35,
+    height: ScreenWidth * 0.35,
     borderRadius: 12,
-    margin: 8,
+    margin: ScreenWidth * 0.03,
   },
   textContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  fontTest: {
-    fontFamily: 'NeoDGM-Regular',
-    fontSize: 16,
+  font: {
+    fontSize: ScreenHeight * 0.02,
   },
   plantName: {
+    fontSize: ScreenHeight * 0.02,
     color: '#00845E',
   },
   buttonContainer: {
@@ -101,11 +112,19 @@ const styles = StyleSheet.create({
   },
   button: {
     flexDirection: 'row',
-    paddingHorizontal: 24,
-    paddingVertical: 8,
-    backgroundColor: '#00845E',
+    justifyContent: 'center',
+    width: ScreenWidth * 0.3,
+    paddingVertical: ScreenHeight * 0.02,
     borderRadius: 8,
-    margin: 8,
-    fontFamily: 'NeoDGM-Regular',
+    margin: ScreenWidth * 0.03,
+  },
+  cancelButton: {
+    backgroundColor: '#F6EDD9',
+  },
+  rightButton: {
+    backgroundColor: '#00845E',
+  },
+  rightText: {
+    color: '#fff',
   },
 });
