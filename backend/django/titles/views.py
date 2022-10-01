@@ -12,21 +12,23 @@ from accounts.authentication import get_userEmail, is_logined
 # Create your views here.
 @api_view(['GET', 'PUT', 'POST'])
 def titles(request):
-    isLogin = is_logined(request)
-    if not isLogin:
-        data = {
-            "message": "Invalid Token!"
-        }
-        return Response(data, status=status.HTTP_401_UNAUTHORIZED)
+    # isLogin = is_logined(request)
+    # if not isLogin:
+    #     data = {
+    #         "message": "Invalid Token!"
+    #     }
+    #     return Response(data, status=status.HTTP_401_UNAUTHORIZED)
     
-    userEmail = get_userEmail(isLogin)
-    user = User.objects.get(userEmail=userEmail)
+    # userEmail = get_userEmail(isLogin)
+    # user = User.objects.get(userEmail=userEmail)
 
-    titles = Obtained.objects.filter(userId=user)
+    # titles = Obtained.objects.filter(userId=user)
+    titles = Obtained.objects.all()
 
     # 사용자 전체 칭호 확인
     def title_list():
         serializer = ObtainedSerializer(titles, many=True)
+        print(serializer.data)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def obtain_title():
