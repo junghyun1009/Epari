@@ -213,6 +213,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#00845E',
     borderRadius: 8,
     margin: ScreenWidth * 0.03,
+    elevation: 1,
   },
   buttonText: {
     textAlign: 'center',

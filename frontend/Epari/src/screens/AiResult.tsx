@@ -117,6 +117,7 @@ const styles = StyleSheet.create({
     paddingVertical: ScreenHeight * 0.02,
     borderRadius: 8,
     margin: ScreenWidth * 0.03,
+    elevation: 1,
   },
   cancelButton: {
     backgroundColor: '#F6EDD9',

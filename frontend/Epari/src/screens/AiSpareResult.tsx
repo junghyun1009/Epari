@@ -186,6 +186,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     margin: ScreenWidth * 0.03,
     backgroundColor: '#00845E',
+    elevation: 1,
   },
   buttonText: {
     textAlign: 'center',
