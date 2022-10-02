@@ -19,7 +19,8 @@ const LocationSelector: React.FC = () => {
   }, []);
 
   const locationList = () => {
-    fetch('http://127.0.0.1:8000/epari/v1/locations/location')
+    // fetch('http://127.0.0.1:8000/epari/v1/locations/location')
+    fetch('http://j7a201.p.ssafy.io/epari/v1/locations/location')
       .then(response => response.json())
       .then(result => {
         let tmpArea = 0;

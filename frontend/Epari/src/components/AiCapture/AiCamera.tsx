@@ -44,7 +44,8 @@ const AiCamera: React.FC = ({buttonStyle, textStyle, name}) => {
         // 'Content-Type': 'multipart/form-data; ',
       },
     };
-    await fetch('http://127.0.0.1:8001/ai/plantAi', requestOptions)
+    // await fetch('http://127.0.0.1:8001/ai/plantAi', requestOptions)
+    await fetch('http://j7a201.p.ssafy.io/ai/plantAi', requestOptions)
       .then(response => response.json())
       .then(result => {
         const mainInfo = result.slice(0, 1);
