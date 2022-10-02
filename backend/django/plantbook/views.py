@@ -24,14 +24,14 @@ def plant_list_or_create(request):
     user = User.objects.get(userEmail=userEmail)
 
     def plant_list():
-        collects = Collect.objects.filter(userEmail=userEmail)
-        collection = set()
-        for collect in collects:
-            collection.add(collect.plantId.plantId)
-        data = {
-            "collection": collection
-        }
-        return Response(data, status=status.HTTP_200_OK)
+        plants = Plant.objects.all()
+        for plant in plants:
+            if Collect.objects.filter(plantId=plant.plantId, userId=user).exists():
+                plant.isCollected = True
+            else:
+                plant.isCollected = False
+        serializer = PlantListSerializer(plants, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
     
     def create_plant():
         # 이미지를 폼 데이터로 가져와서 s3 서버에 저장하고 반환된 uri를 db에 저장
@@ -79,7 +79,7 @@ def plant_detail(request, plantId):
     user = User.objects.get(userEmail=userEmail)
     
     plant = get_object_or_404(Plant, pk=plantId)
-    collects = Collect.objects.filter(plantId=plant, userEmail=userEmail)
+    collects = Collect.objects.filter(plantId=plant, userId=user)
     if collects.exists():
         serializer = CollectSerializer(collects, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
