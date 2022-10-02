@@ -1,18 +1,36 @@
-import React, {useState} from 'react';
-import {Alert, Pressable, Modal, StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import {StyleSheet, View} from 'react-native';
 import auth from '@react-native-firebase/auth';
 import {
   GoogleSignin,
   GoogleSigninButton,
 } from '@react-native-google-signin/google-signin';
 import axios from 'axios';
-import LogoutButton from './LogoutButton';
-
-const GoogleSignIn: React.FC = () => {
-  const [modalVisible, setModalVisible] = useState(false);
+import LogoImage from '../LogoImage';
+// import LogoutButton from './LogoutButton';
+type GoogleSignInProps = {navigation: any};
+const GoogleSignIn: React.FC<GoogleSignInProps> = ({navigation}) => {
+  // const [modalVisible, setModalVisible] = useState(false);
   return (
     <View style={styles.header}>
-      <Modal
+      <LogoImage />
+      <GoogleSigninButton
+        style={styles.gbtn}
+        size={GoogleSigninButton.Size.Wide}
+        color={GoogleSigninButton.Color.Dark}
+        // size={GoogleSigninButton.Size.Icon}
+        onPress={() =>
+          onGoogleButtonPress()
+            .then(() => {
+              console.log('Signed in with Google!');
+              fetchToken();
+            })
+            .then(() => {
+              navigation.navigate('Home');
+            })
+        }
+      />
+      {/* <Modal
         animationType="fade"
         transparent={true}
         visible={modalVisible}
@@ -46,21 +64,23 @@ const GoogleSignIn: React.FC = () => {
         style={[styles.button, styles.buttonOpen]}
         onPress={() => setModalVisible(true)}>
         <Text style={styles.textStyle}>로그인 필요!!</Text>
-      </Pressable>
-      <LogoutButton />
+      </Pressable> */}
+      {/* <LogoutButton /> */}
     </View>
   );
 };
 
-async function tokenToken() {
+async function fetchToken() {
   const user = auth().currentUser;
-  user.getIdToken().then(idToken => postToken(idToken));
+  console.log('fetch Token');
+  await user?.getIdToken(true).then(idToken => postToken(idToken));
   console.log(user);
 }
 
 async function postToken(idToken: any) {
+  console.log('123:', idToken);
   axios
-    .post('http://127.0.0.1:8000/epari/v1/accounts/login', {
+    .post('http://10.0.2.2:8000/epari/v1/accounts/login', {}, {
       // userId: header,
       // userPassword: user.password,
       headers: {
@@ -68,18 +88,21 @@ async function postToken(idToken: any) {
       },
     })
     .then(function (response) {
-      console.log(response);
+      console.log('456:', response);
     })
     .catch(error => {
-      console.log('error : ', error.response);
+      console.log('error : ', error.message);
     });
 }
 
 // 구글 로그인 과정
 async function onGoogleButtonPress() {
-  const {idToken, user} = await GoogleSignin.signIn();
+  console.log('로그인한다');
+  const {idToken} = await GoogleSignin.signIn();
+  console.log('idToken');
   // Create a Google credential with the token
   const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+  console.log('googleCredential')
   // Sign-in the user with the credential
   return auth().signInWithCredential(googleCredential);
 }
@@ -87,10 +110,16 @@ async function onGoogleButtonPress() {
 const styles = StyleSheet.create({
   header: {
     flex: 1,
-    flexDirection: 'row',
+    // flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 22,
+  },
+  lefticon: {
+    marginTop: -100,
+    marginBottom: 100,
+    width: 200,
+    height: 200,
   },
   gbtn: {
     width: 240,

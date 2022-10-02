@@ -4,8 +4,22 @@ export type AppStackParamList = {
   AiCapture: undefined;
   AiResult: undefined;
   AiRegister: undefined;
-  Detail: {
-    id: number;
+  TotalList: undefined;
+  GetList: undefined;
+  NoGetList: undefined;
+  HerbBook: undefined;
+  ListItem: {
+    id: string;
+  };
+  HerbDetail: {
+    id: string;
   };
   Login: undefined;
+  UserPage: {
+    id: number;
+  };
+  TitleList: undefined;
+  TotalTitle: undefined;
+  GetTitle: undefined;
+  NoGetTitle: undefined;
 };

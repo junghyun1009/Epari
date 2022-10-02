@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
+import React, {isValidElement, useState} from 'react';
 import {
   KeyboardAvoidingView,
   ScrollView,
@@ -11,21 +12,38 @@ import {
   Keyboard,
 } from 'react-native';
 import {useRecoilValue} from 'recoil';
-import {picturedImage, capturedImage} from '../../store/classification';
+import {
+  areaCode,
+  picturedImage,
+  resultPlant,
+  sigunguCode,
+} from '../../store/classification';
+import AppText from '../AppText';
+import LocationSelector from './LocationSelector';
 
-const EnrollForm: React.FC = () => {
+const EnrollForm: React.FC = ({}) => {
+  const navigation = useNavigation();
   const picturedImageState = useRecoilValue(picturedImage);
-  const capturedImageState = useRecoilValue(capturedImage);
-  // const [inputTitle, setInputTitle] = useState('')
-  const [inputContent, setInputContent] = useState('');
-  console.log('capture', capturedImageState);
+  const resultPlantState = useRecoilValue(resultPlant);
+  const areaCodeState = useRecoilValue(areaCode);
+  const sigunguCodeState = useRecoilValue(sigunguCode);
 
-  // const handleTitleInput = enteredText => {
-  //   setInputTitle(enteredText)
-  // }
-  const handleContentInput = enteredText => {
-    setInputContent(enteredText);
-    console.log(inputContent);
+  const [inputs, setInputs] = useState({
+    // place: '',
+    title: {value: '', isValid: true},
+    content: {value: '', isValid: true},
+  });
+
+  const inputChangedHandler = (
+    inputIdentifier: string,
+    enteredValue: string,
+  ) => {
+    setInputs(curInputs => {
+      return {
+        ...curInputs,
+        [inputIdentifier]: {value: enteredValue, isValid: false},
+      };
+    });
   };
 
   const saveImage = async () => {
@@ -39,17 +57,20 @@ const EnrollForm: React.FC = () => {
     image.type = picturedImageState.type;
 
     const formdata = new FormData();
-    formdata.append('plantId', 40);
-    formdata.append('userId', 2);
+    formdata.append('plantId', resultPlantState.plantId);
+    formdata.append('userId', 1);
     formdata.append('collectPictureUrl', image);
-    // formdata.append('collectTitle', 'title');
-    formdata.append('collectContent', inputContent);
-    console.log(inputContent);
-    // console.log('formdata:', formdata);
+    formdata.append('areaId', areaCodeState);
+    formdata.append('sigunguId', sigunguCodeState);
+    // formdata.append('collectPlace', inputs.place);
+    formdata.append('collectPlace', '1');
+    formdata.append('collectTitle', inputs.title.value);
+    formdata.append('collectContent', inputs.content.value);
+
     const requestOptions = {
       method: 'POST',
       body: formdata,
-      // headers: {'Content-Type': 'multipart/form-data'},
+      headers: {'Content-Type': 'multipart/form-data'},
     };
     await fetch('http://127.0.0.1:8000/epari/v1/collection/', requestOptions)
       .then(response => response.json())
@@ -58,12 +79,29 @@ const EnrollForm: React.FC = () => {
         console.log('formdata-', formdata);
       })
       .catch(error => console.log('error', error));
+
+    const titleIsValid = inputs.title.value.trim().length > 0;
+    const contentIsValid = inputs.content.value.trim().length > 0;
+    if (!titleIsValid) {
+      setInputs(curInputs => {
+        return {
+          title: {value: curInputs.title.value, isValid: titleIsValid},
+          content: {value: curInputs.content.value, isValid: contentIsValid},
+        };
+      });
+      return;
+    }
+    navigation.navigate('HerbDetail', {id: resultPlantState.plantId});
   };
-  const capturedPlantName = (capturedImageState.plantName || '').split('_', 1);
+
+  const plantName = (resultPlantState.plantName || '').split('_', 1);
+
+  const formIsInvalid = !inputs.title.isValid || !inputs.content.isValid;
+
   return (
     <KeyboardAvoidingView
       behavior="padding"
-      keyboardVerticalOffset={-20}
+      keyboardVerticalOffset={-170}
       style={styles.container}>
       <ScrollView>
         <View style={styles.plantInfo}>
@@ -71,24 +109,38 @@ const EnrollForm: React.FC = () => {
             source={{uri: picturedImageState.uri}}
             style={styles.plantImage}
           />
-          <Text style={styles.plantName}>{capturedPlantName}</Text>
+          <Text style={styles.plantName}>{plantName}</Text>
         </View>
+        <LocationSelector />
+        {/* <View style={styles.inputConatiner}>
+          <Text style={styles.inputLabel}>상세 지역: </Text>
+          <TextInput
+            style={styles.inputBox}
+            onChangeText={inputChangedHandler.bind(this, 'place')}
+            value={inputs.place}
+            maxLength={50}
+          />
+        </View> */}
         <View style={styles.inputConatiner}>
           <Text style={styles.inputLabel}>제목: </Text>
           <TextInput
             style={styles.inputBox}
-            // onChangeText={handleTitleInput}
-            // value={inputTitle}
+            onChangeText={inputChangedHandler.bind(this, 'title')}
+            value={inputs.title.value}
+            maxLength={100}
           />
         </View>
         <View style={styles.inputConatiner}>
-          <Text style={styles.inputLabel}>메모: </Text>
+          <Text style={styles.inputLabel}>내용: </Text>
           <TextInput
             style={[styles.inputBox, styles.multilineInputBox]}
-            onChangeText={handleContentInput}
-            value={inputContent}
+            onChangeText={inputChangedHandler.bind(this, 'content')}
+            value={inputs.content.value}
             multiline
           />
+          {formIsInvalid && (
+            <AppText style={styles.errorText}>빠짐없이 입력해주세요</AppText>
+          )}
         </View>
       </ScrollView>
       <Pressable>
@@ -122,8 +174,8 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   plantImage: {
-    width: 300,
-    height: 300,
+    width: 250,
+    height: 250,
     borderRadius: 12,
     margin: 24,
   },
@@ -150,6 +202,12 @@ const styles = StyleSheet.create({
   multilineInputBox: {
     minHeight: 100,
     textAlignVertical: 'top',
+  },
+  errorText: {
+    marginVertical: 12,
+    color: '#99AEBB',
+    textAlign: 'center',
+    fontSize: 12,
   },
   button: {
     paddingHorizontal: 14,
