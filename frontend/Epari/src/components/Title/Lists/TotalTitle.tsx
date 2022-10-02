@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, StyleSheet, Text, Image} from 'react-native';
+import {View, StyleSheet, Text, Image, Dimensions} from 'react-native';
 import {AppStackParamList} from '../../../types';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import TitleItem from './TitleItem';
@@ -20,24 +20,36 @@ const TotalTitle: React.FC<TotalListScreenProps> = () => {
     fetch('http://127.0.0.1:8000/epari/v1/titles')
       .then(response => response.json())
       .then(result => {
-        let tmpTitleArray = [];
-        result.map(item => {
-          tmpTitleArray.push(item);
-        });
-        console.log(1, tmpTitleArray);
-        setTitles(tmpTitleArray);
+        console.log(0, result);
+        // let tmpTitleArray = [];
+        // result.map(item => {
+        //   tmpTitleArray.push(item);
+        // });
+        // console.log(1, tmpTitleArray);
+        setTitles(result);
         console.log(2, titles);
       });
   };
 
   return (
-    <View style={styles.container}>
-      {titles.map(title => (
-        <Text key={title.titleId.titleId}>{title}</Text>
-      ))}
+    <View>
+      <View style={styles.container}>
+        {titles.map(title => (
+          <View key={title.titleId.titleId}>
+            <Image
+              source={{uri: title.titleId.titlePictureUrl}}
+              style={styles.ImageItem}
+            />
+            <Text>{title.titleId.titleName}</Text>
+            <Text>{title.titleId.titleDescription}</Text>
+          </View>
+        ))}
+      </View>
     </View>
   );
 };
+
+let ScreenWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   container: {
@@ -47,6 +59,10 @@ const styles = StyleSheet.create({
     overflow: 'scroll',
     justifyContent: 'center',
     backgroundColor: '#FFF7F2',
+  },
+  ImageItem: {
+    width: ScreenWidth * 0.13,
+    height: ScreenWidth * 0.13,
   },
 });
 
