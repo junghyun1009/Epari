@@ -8,6 +8,7 @@ import {
   HerbDetail,
   Login,
   UserPage,
+  TitleList,
 } from '../screens';
 import AiRegister from '../screens/AiRegister';
 import AiSpareResult from '../screens/AiSpareResult';
@@ -72,6 +73,7 @@ const Tab: React.FC = () => {
           title: '내 정보',
         }}
       />
+      <Screen name="TitleList" component={TitleList} />
       <Screen
         name="HerbBook"
         component={HerbBook}
@@ -100,6 +102,7 @@ const AppStack: React.FC = () => {
       <Stack.Screen name="HerbDetail" component={HerbDetail} />
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="UserPage" component={UserPage} />
+      <Stack.Screen name="TitleList" component={TitleList} />
     </Stack.Navigator>
   );
 };

@@ -72,13 +72,15 @@ const GoogleSignIn: React.FC<GoogleSignInProps> = ({navigation}) => {
 
 async function fetchToken() {
   const user = auth().currentUser;
-  user?.getIdToken(true).then(idToken => postToken(idToken));
+  console.log('fetch Token');
+  await user?.getIdToken(true).then(idToken => postToken(idToken));
   console.log(user);
 }
 
 async function postToken(idToken: any) {
+  console.log('123:', idToken);
   axios
-    .post('http://127.0.0.1:8000/epari/v1/accounts/login', {
+    .post('http://10.0.2.2:8000/epari/v1/accounts/login', {}, {
       // userId: header,
       // userPassword: user.password,
       headers: {
@@ -86,18 +88,21 @@ async function postToken(idToken: any) {
       },
     })
     .then(function (response) {
-      console.log(response);
+      console.log('456:', response);
     })
     .catch(error => {
-      console.log('error : ', error.response);
+      console.log('error : ', error.message);
     });
 }
 
 // 구글 로그인 과정
 async function onGoogleButtonPress() {
+  console.log('로그인한다');
   const {idToken} = await GoogleSignin.signIn();
+  console.log('idToken');
   // Create a Google credential with the token
   const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+  console.log('googleCredential')
   // Sign-in the user with the credential
   return auth().signInWithCredential(googleCredential);
 }
