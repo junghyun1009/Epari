@@ -27,9 +27,6 @@ type HerbInfoProps = {
   };
 };
 
-let ScreenWidth = Dimensions.get('window').width;
-let ScreenHeight = Dimensions.get('window').height;
-
 const HerbInfo: React.FC<HerbInfoProps> = ({DetailInfo}) => {
   return (
     <View style={styles.container}>
@@ -42,19 +39,21 @@ const HerbInfo: React.FC<HerbInfoProps> = ({DetailInfo}) => {
       <View style={styles.nameContatiner}>
         <Text style={styles.nameFont}>{DetailInfo.plantName}</Text>
       </View>
-      <ScrollView>
-        <View style={styles.DesContainer}>
+      <View style={styles.DesContainer}>
+        <ScrollView>
           <Text style={styles.desFont}>{DetailInfo.plantDescription}</Text>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </View>
     </View>
   );
 };
+const ScreenWidth = Dimensions.get('window').width;
+const ScreenHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   container: {
     marginTop: 30,
-    height: ScreenHeight * 0.5,
+
     alignItems: 'center',
     backgroundColor: '#FFF7F2',
   },
@@ -66,6 +65,7 @@ const styles = StyleSheet.create({
   },
   DesContainer: {
     marginTop: 10,
+    height: ScreenHeight * 0.2,
     justifyContent: 'center',
     alignItems: 'center',
     width: ScreenWidth * 0.88,
