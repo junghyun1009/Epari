@@ -75,5 +75,12 @@ const styles = StyleSheet.create({
     fontFamily: 'NeoDGM-Regular',
     fontSize: ScreenWidth * 0.033,
   },
+  textContainer: {
+    marginTop: ScreenWidth * 0.02,
+    padding: ScreenWidth * 0.02,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  textFont: {fontFamily: 'NeoDGM-Regular', fontSize: ScreenWidth * 0.033},
 });
 export default HerbInfo;

@@ -27,7 +27,7 @@ const HerbBookStack = () => {
         <Tab.Screen
           name="GetList"
           component={GetList}
-          options={{title: '수집완료'}}
+          options={{title: '수집'}}
         />
         <Tab.Screen
           name="NoGetList"

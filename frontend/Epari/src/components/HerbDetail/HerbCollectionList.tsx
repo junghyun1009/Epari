@@ -22,6 +22,11 @@ const HerbCollectionList: React.FC<HerbCollectionListProps> = ({
 }) => {
   return (
     <View style={styles.container}>
+      {collection.length > 0 ? (
+        <View style={styles.textContainer}>
+          <Text style={styles.textFont}>↓ 내가 수집한 꽃 사진들 ↓</Text>
+        </View>
+      ) : null}
       <ScrollView>
         <Text>
           {collection.map(item => (
@@ -44,6 +49,12 @@ const styles = StyleSheet.create({
     height: ScreenHeight * 0.35,
     justifyContent: 'center',
   },
+  textContainer: {
+    padding: ScreenWidth * 0.02,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  textFont: {fontFamily: 'NeoDGM-Regular', fontSize: ScreenWidth * 0.033},
 });
 
 export default HerbCollectionList;

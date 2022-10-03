@@ -46,8 +46,7 @@ const Bottom: React.FC<BottomProps> = ({navigation}) => {
         </TouchableOpacity>
         <TouchableOpacity>
           <View style={styles.rightButton2}>
-            <Text style={styles.font_3}>앳햄</Text>
-            <Text style={styles.font_2}>추가기능 예정</Text>
+            <Text style={styles.font_4}>Log ! Out ?</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -66,8 +65,8 @@ const styles = StyleSheet.create({
   font_2: {
     fontFamily: 'NeoDGM-Regular',
     color: '#FFFFFF',
-    fontSize: 15,
-    textShadowColor: 'rgb(244, 182, 255)',
+    fontSize: ScreenWidth * 0.03,
+    textShadowColor: '#474747',
     textShadowRadius: 2,
     textShadowOffset: {
       width: 1.8,
@@ -77,7 +76,18 @@ const styles = StyleSheet.create({
   font_3: {
     fontFamily: 'NeoDGM-Regular',
     color: '#FFFFFF',
-    fontSize: 65,
+    fontSize: ScreenWidth * 0.15,
+    textShadowColor: 'rgb(244, 182, 255)',
+    textShadowRadius: 2,
+    textShadowOffset: {
+      width: 1.8,
+      height: 1.8,
+    },
+  },
+  font_4: {
+    fontFamily: 'NeoDGM-Regular',
+    color: '#FFFFFF',
+    fontSize: ScreenWidth * 0.11,
     textShadowColor: 'rgb(244, 182, 255)',
     textShadowRadius: 2,
     textShadowOffset: {
@@ -124,7 +134,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-
     backgroundColor: '#3561F1',
     borderRadius: 15,
     borderWidth: 7,
