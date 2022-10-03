@@ -1,12 +1,17 @@
 import React from 'react';
-import {useRecoilValue} from 'recoil';
-import AppStack from './AppStack';
-import {View} from 'react-native';
-import {loginState} from '../store/user';
+import {Login} from '../screens';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {AuthStackParamList} from '../types';
 
+const Stack = createNativeStackNavigator<AuthStackParamList>();
 const AuthStack: React.FC = () => {
-  const isLogin = useRecoilValue(loginState);
-  return <View>{isLogin ? <AppStack /> : null}</View>;
+  return (
+    <Stack.Navigator
+      initialRouteName="Login"
+      screenOptions={{headerShown: false}}>
+      <Stack.Screen name="Login" component={Login} />
+    </Stack.Navigator>
+  );
 };
 
 export default AuthStack;
