@@ -1,15 +1,15 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {isValidElement, useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {
   KeyboardAvoidingView,
   ScrollView,
   View,
   Image,
-  Text,
   TextInput,
   StyleSheet,
   Pressable,
   Keyboard,
+  Dimensions,
 } from 'react-native';
 import {useRecoilValue} from 'recoil';
 import {
@@ -23,7 +23,7 @@ import AppText from '../AppText';
 import LocationSelector from './LocationSelector';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const EnrollForm: React.FC = ({}) => {
+const RegisterForm: React.FC = ({}) => {
   const navigation = useNavigation();
   const picturedImageState = useRecoilValue(picturedImage);
   const resultPlantState = useRecoilValue(resultPlant);
@@ -146,8 +146,8 @@ const EnrollForm: React.FC = ({}) => {
 
   return (
     <KeyboardAvoidingView
-      behavior="padding"
-      keyboardVerticalOffset={-170}
+      // behavior="padding"
+      // keyboardVerticalOffset={-170}
       style={styles.container}>
       <ScrollView>
         <View style={styles.plantInfo}>
@@ -155,7 +155,7 @@ const EnrollForm: React.FC = ({}) => {
             source={{uri: picturedImageState.uri}}
             style={styles.plantImage}
           />
-          <Text style={styles.plantName}>{plantName}</Text>
+          <AppText style={styles.plantName}>{plantName}</AppText>
         </View>
         <LocationSelector />
         {/* <View style={styles.inputConatiner}>
@@ -168,7 +168,7 @@ const EnrollForm: React.FC = ({}) => {
           />
         </View> */}
         <View style={styles.inputConatiner}>
-          <Text style={styles.inputLabel}>제목: </Text>
+          <AppText style={styles.inputLabel}>제목: </AppText>
           <TextInput
             style={styles.inputBox}
             onChangeText={inputChangedHandler.bind(this, 'title')}
@@ -177,7 +177,7 @@ const EnrollForm: React.FC = ({}) => {
           />
         </View>
         <View style={styles.inputConatiner}>
-          <Text style={styles.inputLabel}>내용: </Text>
+          <AppText style={styles.inputLabel}>내용: </AppText>
           <TextInput
             style={[styles.inputBox, styles.multilineInputBox]}
             onChangeText={inputChangedHandler.bind(this, 'content')}
@@ -189,78 +189,80 @@ const EnrollForm: React.FC = ({}) => {
           )}
         </View>
       </ScrollView>
-      <Pressable>
-        <View>
-          <Text
-            style={styles.button}
-            onPress={() => {
-              saveImage();
-              Keyboard.dismiss();
-            }}>
-            등록하기
-          </Text>
-        </View>
+      <Pressable style={styles.button}>
+        <AppText
+          style={styles.buttonText}
+          onPress={() => {
+            saveImage();
+            Keyboard.dismiss();
+          }}>
+          등록하기
+        </AppText>
       </Pressable>
     </KeyboardAvoidingView>
   );
 };
 
-export default EnrollForm;
+export default RegisterForm;
+
+const ScreenWidth = Dimensions.get('window').width;
+const ScreenHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 24,
+    padding: ScreenWidth * 0.05,
   },
   plantInfo: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 12,
+    marginBottom: ScreenWidth * 0.03,
   },
   plantImage: {
-    width: 250,
-    height: 250,
+    width: ScreenWidth * 0.65,
+    height: ScreenWidth * 0.65,
     borderRadius: 12,
-    margin: 24,
+    margin: ScreenWidth * 0.06,
   },
   plantName: {
-    fontFamily: 'NeoDGM-Regular',
-    fontSize: 20,
+    fontSize: ScreenHeight * 0.03,
   },
   inputConatiner: {
-    marginVertical: 6,
+    marginTop: ScreenHeight * 0.01,
   },
   inputLabel: {
     justifyContent: 'center',
     alignItems: 'center',
-    fontFamily: 'NeoDGM-Regular',
-    marginVertical: 6,
+    marginVertical: ScreenHeight * 0.01,
   },
   inputBox: {
     alignItems: 'center',
     borderWidth: 1,
     borderRadius: 12,
     backgroundColor: '#F6EDD9',
-    fontFamily: 'NeoDGM-Regular',
   },
   multilineInputBox: {
-    minHeight: 100,
+    minHeight: ScreenHeight * 0.12,
     textAlignVertical: 'top',
   },
   errorText: {
-    marginVertical: 12,
+    marginVertical: ScreenHeight * 0.02,
     color: '#99AEBB',
     textAlign: 'center',
-    fontSize: 12,
+    fontSize: ScreenHeight * 0.018,
   },
   button: {
-    paddingHorizontal: 14,
-    paddingVertical: 8,
+    width: ScreenWidth * 0.3,
+    paddingVertical: ScreenHeight * 0.02,
     backgroundColor: '#00845E',
     borderRadius: 8,
-    margin: 8,
-    fontFamily: 'NeoDGM-Regular',
+    margin: ScreenWidth * 0.03,
+    elevation: 1,
+  },
+  buttonText: {
+    textAlign: 'center',
+    color: '#fff',
   },
 });
