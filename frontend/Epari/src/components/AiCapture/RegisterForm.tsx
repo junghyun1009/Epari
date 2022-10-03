@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {isValidElement, useState} from 'react';
+import React, {isValidElement, useEffect, useState} from 'react';
 import {
   KeyboardAvoidingView,
   ScrollView,
@@ -18,8 +18,10 @@ import {
   resultPlant,
   sigunguCode,
 } from '../../store/classification';
+import axios from 'axios';
 import AppText from '../AppText';
 import LocationSelector from './LocationSelector';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const EnrollForm: React.FC = ({}) => {
   const navigation = useNavigation();
@@ -34,6 +36,12 @@ const EnrollForm: React.FC = ({}) => {
     content: {value: '', isValid: true},
   });
 
+  const [token, setToken] = useState('');
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   const inputChangedHandler = (
     inputIdentifier: string,
     enteredValue: string,
@@ -45,6 +53,40 @@ const EnrollForm: React.FC = ({}) => {
       };
     });
   };
+
+  const getData = async () => {
+    try {
+      const storedToken = await AsyncStorage.getItem('GoogleAccessToken');
+      if (storedToken !== null) {
+        console.log('storedToken : ', storedToken);
+        setToken(storedToken);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  console.log('token', token);
+
+  // async function postToken(idToken: any) {
+  //   console.log('123:', idToken);
+  //   axios
+  //     // .post('http://10.0.2.2:8000/epari/v1/accounts/login', {}, {
+  //     .post(
+  //       'http://j7a201.p.ssafy.io/epari/v1/collection/',
+  //       {},
+  //       {
+  //         headers: {
+  //           Authorization: idToken,
+  //         },
+  //       },
+  //     )
+  //     .then(function (response) {
+  //       console.log('456:', response);
+  //     })
+  //     .catch(error => {
+  //       console.log('error : ', error.message);
+  //     });
+  // }
 
   const saveImage = async () => {
     const image = {
@@ -58,7 +100,7 @@ const EnrollForm: React.FC = ({}) => {
 
     const formdata = new FormData();
     formdata.append('plantId', resultPlantState.plantId);
-    formdata.append('userId', 1);
+    // formdata.append('userId', token);
     formdata.append('collectPictureUrl', image);
     formdata.append('areaId', areaCodeState);
     formdata.append('sigunguId', sigunguCodeState);
@@ -70,9 +112,13 @@ const EnrollForm: React.FC = ({}) => {
     const requestOptions = {
       method: 'POST',
       body: formdata,
-      headers: {'Content-Type': 'multipart/form-data'},
+      headers: {
+        // 'Content-Type': 'multipart/form-data',
+        Authorization: token,
+      },
     };
-    await fetch('http://127.0.0.1:8000/epari/v1/collection/', requestOptions)
+    // await fetch('http://127.0.0.1:8000/epari/v1/collection/', requestOptions)
+    await fetch('http://j7a201.p.ssafy.io/epari/v1/collection/', requestOptions)
       .then(response => response.json())
       .then(result => {
         console.log('result-', result);
