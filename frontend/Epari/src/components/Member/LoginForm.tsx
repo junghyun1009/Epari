@@ -6,7 +6,6 @@ import {
   GoogleSigninButton,
 } from '@react-native-google-signin/google-signin';
 import axios from 'axios';
-import LogoImage from '../LogoImage';
 // import LogoutButton from './LogoutButton';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -15,7 +14,6 @@ const GoogleSignIn: React.FC<GoogleSignInProps> = ({navigation}) => {
   // const [modalVisible, setModalVisible] = useState(false);
   return (
     <View style={styles.header}>
-      <LogoImage />
       <GoogleSigninButton
         style={styles.gbtn}
         size={GoogleSigninButton.Size.Wide}

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, ScrollView, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import {StackScreenProps} from '@react-navigation/stack';
 import {AppStackParamList} from '../types';
 import {
@@ -144,7 +144,7 @@ const HerbDetail: React.FC<DetailScreenProps> = ({
   // );
   // console.log('1' + data);
   return (
-    <ScrollView style={styles.background}>
+    <View style={styles.background}>
       <HerbDetailHeader navigation={navigation} />
       <HerbInfo DetailInfo={DetailInfo} />
       <HerbCollectionList collection={DetailInfo.collection} />
@@ -152,7 +152,7 @@ const HerbDetail: React.FC<DetailScreenProps> = ({
         <Text style={styles.fontTest}>Epari Herb Detail Screenn</Text>
         {id === undefined ? null : <Text>id:{id}</Text>}
       </View>
-    </ScrollView>
+    </View>
   );
 };
 

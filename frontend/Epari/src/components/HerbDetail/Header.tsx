@@ -1,5 +1,11 @@
 import React from 'react';
-import {View, Image, StyleSheet, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  Dimensions,
+} from 'react-native';
 
 type HerbDetailHeaderProps = {
   navigation: any;
@@ -20,24 +26,27 @@ const HerbDetailHeader: React.FC<HerbDetailHeaderProps> = ({navigation}) => {
   );
 };
 
+let ScreenWidth = Dimensions.get('window').width;
+let ScreenHeight = Dimensions.get('window').height;
+
 const styles = StyleSheet.create({
   header: {
     backgroundColor: '#007C2B',
-    height: 60,
+    height: ScreenHeight * 0.07,
     flexDirection: 'row',
   },
   fontTest: {
     fontFamily: 'NeoDGM-Regular',
   },
   leftIconContainer: {
-    width: 50,
-    height: 50,
-    left: 11,
-    top: 11,
+    width: ScreenWidth * 0.09,
+    height: ScreenWidth * 0.09,
+    left: ScreenWidth * 0.02,
+    top: ScreenWidth * 0.02,
   },
   lefticon: {
-    width: 40,
-    height: 40,
+    width: ScreenWidth * 0.09,
+    height: ScreenWidth * 0.09,
   },
 });
 export default HerbDetailHeader;
