@@ -2,12 +2,12 @@ from rest_framework import serializers
 from .models import Collect, Plant
 
 class PlantListSerializer(serializers.ModelSerializer):
-    isCollected = serializers.BooleanField(read_only=True)
+    collectionCnt = serializers.IntegerField(source='collection.count', read_only=True)
 
     class Meta:
         model = Plant
         # fields = '__all__'
-        fields = ('plantId', 'plantName', 'season', 'classification', 'isCollected', 'detailPictureUrl', 'plantDescription',)
+        fields = ('plantId', 'plantName', 'season', 'classification', 'collectionCnt')
         # exclude = ('detailPictureUrl', 'plantDescription', )
 
 class CollectSerializer(serializers.ModelSerializer):

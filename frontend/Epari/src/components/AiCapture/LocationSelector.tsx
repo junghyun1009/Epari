@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Dimensions} from 'react-native';
 import SelectList from 'react-native-dropdown-select-list';
 import {useSetRecoilState} from 'recoil';
 import {areaCode, sigunguCode} from '../../store/classification';
@@ -19,7 +19,8 @@ const LocationSelector: React.FC = () => {
   }, []);
 
   const locationList = () => {
-    fetch('http://127.0.0.1:8000/epari/v1/locations/location')
+    // fetch('http://127.0.0.1:8000/epari/v1/locations/location')
+    fetch('http://j7a201.p.ssafy.io/epari/v1/locations/location')
       .then(response => response.json())
       .then(result => {
         let tmpArea = 0;
@@ -69,10 +70,16 @@ const LocationSelector: React.FC = () => {
           dafaultOption={{key: 1, value: '서울시'}}
           boxStyles={{
             backgroundColor: '#F6EDD9',
-            // maxWidth: 150,
+            width: ScreenWidth / 3,
             // marginHorizontal: 10,
+            borderWidth: 1,
+            borderColor: 'black',
           }}
-          dropdownStyles={{backgroundColor: '#F6EDD9'}}
+          dropdownStyles={{
+            backgroundColor: '#F6EDD9',
+            borderWidth: 1,
+            borderColor: 'black',
+          }}
           inputStyles={{fontFamily: 'NeoDGM-Regular'}}
           dropdownTextStyles={{fontFamily: 'NeoDGM-Regular'}}
         />
@@ -83,8 +90,17 @@ const LocationSelector: React.FC = () => {
           search={false}
           placeholder={'시/군/구'}
           // dafaultOption={subCategories[categories][0]}
-          boxStyles={{backgroundColor: '#F6EDD9'}}
-          dropdownStyles={{backgroundColor: '#F6EDD9'}}
+          boxStyles={{
+            backgroundColor: '#F6EDD9',
+            width: ScreenWidth / 3,
+            borderWidth: 1,
+            borderColor: 'black',
+          }}
+          dropdownStyles={{
+            backgroundColor: '#F6EDD9',
+            borderWidth: 1,
+            borderColor: 'black',
+          }}
           inputStyles={{fontFamily: 'NeoDGM-Regular'}}
           dropdownTextStyles={{fontFamily: 'NeoDGM-Regular'}}
         />
@@ -95,17 +111,20 @@ const LocationSelector: React.FC = () => {
 
 export default LocationSelector;
 
+const ScreenWidth = Dimensions.get('window').width;
+const ScreenHeight = Dimensions.get('window').height;
+
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
+    // flex: 1,
+    // justifyContent: 'center',
   },
   selectLabel: {
-    marginVertical: 6,
+    marginVertical: ScreenHeight * 0.02,
   },
   selectContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'flex-start',
+    // alignItems: 'flex-start',
   },
 });
