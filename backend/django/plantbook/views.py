@@ -26,6 +26,7 @@ def plant_list_or_create(request):
     def plant_list():
         plants = Plant.objects.all()
         for plant in plants:
+            plant.collectionCnt = Collect.objects.filter(plantId=plant.plantId, userId=user).count()
             if Collect.objects.filter(plantId=plant.plantId, userId=user).exists():
                 plant.isCollected = True
             else:
