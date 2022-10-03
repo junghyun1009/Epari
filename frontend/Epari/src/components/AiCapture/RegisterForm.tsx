@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   KeyboardAvoidingView,
   ScrollView,
@@ -18,7 +18,7 @@ import {
   resultPlant,
   sigunguCode,
 } from '../../store/classification';
-import axios from 'axios';
+
 import AppText from '../AppText';
 import LocationSelector from './LocationSelector';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -67,27 +67,6 @@ const RegisterForm: React.FC = ({}) => {
   };
   console.log('token', token);
 
-  // async function postToken(idToken: any) {
-  //   console.log('123:', idToken);
-  //   axios
-  //     // .post('http://10.0.2.2:8000/epari/v1/accounts/login', {}, {
-  //     .post(
-  //       'http://j7a201.p.ssafy.io/epari/v1/collection/',
-  //       {},
-  //       {
-  //         headers: {
-  //           Authorization: idToken,
-  //         },
-  //       },
-  //     )
-  //     .then(function (response) {
-  //       console.log('456:', response);
-  //     })
-  //     .catch(error => {
-  //       console.log('error : ', error.message);
-  //     });
-  // }
-
   const saveImage = async () => {
     const image = {
       uri: '',
@@ -100,11 +79,9 @@ const RegisterForm: React.FC = ({}) => {
 
     const formdata = new FormData();
     formdata.append('plantId', resultPlantState.plantId);
-    // formdata.append('userId', token);
     formdata.append('collectPictureUrl', image);
     formdata.append('areaId', areaCodeState);
     formdata.append('sigunguId', sigunguCodeState);
-    // formdata.append('collectPlace', inputs.place);
     formdata.append('collectPlace', '1');
     formdata.append('collectTitle', inputs.title.value);
     formdata.append('collectContent', inputs.content.value);
@@ -113,7 +90,7 @@ const RegisterForm: React.FC = ({}) => {
       method: 'POST',
       body: formdata,
       headers: {
-        // 'Content-Type': 'multipart/form-data',
+        'Content-Type': 'multipart/form-data',
         Authorization: token,
       },
     };
@@ -242,6 +219,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 12,
     backgroundColor: '#F6EDD9',
+    fontFamily: 'NeoDGM-Regular',
   },
   multilineInputBox: {
     minHeight: ScreenHeight * 0.12,
