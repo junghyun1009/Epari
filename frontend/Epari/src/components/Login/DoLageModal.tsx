@@ -37,14 +37,17 @@ const DoLargeModal: React.FC<DoLargeModalProps> = ({DoLarge, setDoLarge}) => {
               <Text style={styles.ThemeFont}>SSAFY 특화프로젝트 인공지능</Text>
             </View>
             <View style={styles.DateContainer}>
-              <Text style={styles.DateFont}>20220822 - 20221007</Text>
+              <Text style={styles.DateFont}>
+                <Text style={styles.FromTo}>From </Text>20220822{' '}
+                <Text style={styles.FromTo}>To</Text> 20221007
+              </Text>
             </View>
           </View>
         </View>
         <View style={styles.CenterContainer}>
           <View style={styles.PlaceContainer}>
             <View>
-              <Ionicons name="location-outline" size={24} color="#11015" />
+              <Ionicons name="location-outline" size={24} color="#474747" />
             </View>
             <View style={styles.place}>
               <Text style={styles.PlaceFont}>
@@ -158,7 +161,7 @@ const DoLargeModal: React.FC<DoLargeModalProps> = ({DoLarge, setDoLarge}) => {
                 </View>
                 <View style={styles.userRoleContainer}>
                   <Text style={styles.userRoleFont}>
-                    FrontEnd ( 도감 관리 ){' '}
+                    FrontEnd ( 도감 리스트 ){' '}
                   </Text>
                 </View>
               </View>
@@ -185,7 +188,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#C5D7F2',
     borderRadius: 15,
     borderWidth: 4,
-    borderColor: '#FFAAAA',
+    borderColor: '#FFC67D',
   },
   topContainer: {
     flexDirection: 'row',
@@ -226,6 +229,13 @@ const styles = StyleSheet.create({
   },
   DateFont: {
     fontFamily: 'NeoDGM-Regular',
+    fontSize: ScreenWidth * 0.037,
+    color: '#666666',
+  },
+  FromTo: {
+    fontFamily: 'NeoDGM-Regular',
+    fontSize: ScreenWidth * 0.037,
+    color: '#999999',
   },
   CenterContainer: {},
   PlaceContainer: {
@@ -235,6 +245,8 @@ const styles = StyleSheet.create({
   },
   PlaceFont: {
     fontFamily: 'NeoDGM-Regular',
+    fontSize: ScreenWidth * 0.03,
+    color: '#474747',
   },
   place: {
     justifyContent: 'center',
@@ -284,7 +296,7 @@ const styles = StyleSheet.create({
   userRoleFont: {
     fontFamily: 'NeoDGM-Regular',
     fontSize: ScreenWidth * 0.037,
-    color: '#FFF7F2',
+    color: '#FFAAAA',
   },
   closeButton: {
     alignSelf: 'center',

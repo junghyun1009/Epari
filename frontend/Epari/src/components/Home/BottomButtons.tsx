@@ -1,4 +1,5 @@
 import React from 'react';
+import auth from '@react-native-firebase/auth';
 import {
   View,
   Text,
@@ -20,6 +21,11 @@ const Bottom: React.FC<BottomProps> = ({navigation}) => {
   }
   async function movePageTitle() {
     navigation.navigate('TitleList');
+  }
+  async function movePageLogin() {
+    auth()
+      .signOut()
+      .then(() => navigation.navigate('Login'));
   }
   return (
     <View style={styles.bottomContainer}>
@@ -44,7 +50,7 @@ const Bottom: React.FC<BottomProps> = ({navigation}) => {
             <Text style={styles.font_2}>내가 획득한 칭호는?</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => movePageLogin()}>
           <View style={styles.rightButton2}>
             <Text style={styles.font_4}>Log ! Out ?</Text>
           </View>
@@ -60,11 +66,11 @@ let ScreenHeight = Dimensions.get('window').height;
 const styles = StyleSheet.create({
   font_1: {
     fontFamily: 'NeoDGM-Regular',
-    color: '#FFFFFF',
+    color: '#FFF7F2',
   },
   font_2: {
     fontFamily: 'NeoDGM-Regular',
-    color: '#FFFFFF',
+    color: '#FFF7F2',
     fontSize: ScreenWidth * 0.03,
     textShadowColor: '#474747',
     textShadowRadius: 2,
@@ -75,9 +81,9 @@ const styles = StyleSheet.create({
   },
   font_3: {
     fontFamily: 'NeoDGM-Regular',
-    color: '#FFFFFF',
+    color: '#FFF7F2',
     fontSize: ScreenWidth * 0.15,
-    textShadowColor: 'rgb(244, 182, 255)',
+    textShadowColor: '#110105',
     textShadowRadius: 2,
     textShadowOffset: {
       width: 1.8,
@@ -86,9 +92,9 @@ const styles = StyleSheet.create({
   },
   font_4: {
     fontFamily: 'NeoDGM-Regular',
-    color: '#FFFFFF',
+    color: '#FFF7F2',
     fontSize: ScreenWidth * 0.11,
-    textShadowColor: 'rgb(244, 182, 255)',
+    textShadowColor: '#110105',
     textShadowRadius: 2,
     textShadowOffset: {
       width: 1.8,
