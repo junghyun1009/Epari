@@ -51,7 +51,7 @@ def plant_list_or_create(request):
             # data = request.data.copy()
             # data['collectPictureUrl'] = userImageUrl
             request.data.__setitem__('collectPictureUrl', userImageUrl)
-            request.data.__setitem__('userId', user)
+            request.data.__setitem__('userId', user.userId)
             print(request.data)
             serializer = CollectSerializer(data=request.data)
             if serializer.is_valid(raise_exception=True):

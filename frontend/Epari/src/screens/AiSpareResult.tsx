@@ -1,5 +1,12 @@
 import React from 'react';
-import {Image, StyleSheet, View, Animated, Pressable} from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  View,
+  Animated,
+  Pressable,
+  Dimensions,
+} from 'react-native';
 import AiCamera from '../components/AiCapture/AiCamera';
 import {useRecoilValue, useSetRecoilState} from 'recoil';
 import {
@@ -9,6 +16,7 @@ import {
 } from '../store/classification';
 import AppText from '../components/AppText';
 import {useNavigation} from '@react-navigation/native';
+import PlantCarousel from '../components/AiCapture/PlantCarousel';
 
 const AiSpareResult: React.FC = () => {
   const navigation = useNavigation();
@@ -18,8 +26,6 @@ const AiSpareResult: React.FC = () => {
   const plant = useRecoilValue(resultPlant);
 
   const picturedImageUrl = picturedImageState.uri;
-  // const priorSubImageUrl = capturedSubImageState[0].detailPictureUrl;
-  // const secondarySubImageUrl = capturedSubImageState[1].detailPictureUrl;
   console.log('capture', capturedSubImageState);
 
   const scrollY = React.useRef(new Animated.Value(0)).current;
@@ -34,80 +40,85 @@ const AiSpareResult: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.subContainer}>
-        <View style={styles.imageContainer}>
-          <View>
-            <Image source={{uri: picturedImageUrl}} style={styles.image} />
-          </View>
-          {/* <Image source={{uri: priorSubImageUrl}} style={styles.image} />
-          <Text>{capturedSubImageState[0].plantName}</Text>
-          <Image source={{uri: secondarySubImageUrl}} style={styles.image} />
-          <Text>{capturedSubImageState[1].plantName}</Text> */}
-          <View style={styles.carousel}>
-            <Animated.FlatList
-              data={capturedSubImageState}
-              keyExtractor={(_, index) => index.toString()}
-              snapToInterval={190}
-              decelerationRate="fast"
-              showsVerticalScrollIndicator={false}
-              onScroll={Animated.event(
-                [{nativeEvent: {contentOffset: {y: scrollY}}}],
-                {useNativeDriver: true},
-              )}
-              renderItem={({item}) => {
-                return (
-                  <Pressable
-                    onPress={() => {
-                      setPlantState(item);
-                      navigation.navigate('AiRegister');
-                    }}>
-                    <Image
-                      source={{uri: item.detailPictureUrl}}
-                      style={styles.image}
-                    />
-                    <AppText style={styles.plantName}>
-                      {(item.plantName || '').split('_', 1)}
-                    </AppText>
-                  </Pressable>
-                );
-              }}
+      <View style={styles.textContainer}>
+        <AppText style={styles.text}>
+          둘 중 일치하는 식물을 선택해주세요
+        </AppText>
+      </View>
+      <View style={styles.imageContainer}>
+        <View>
+          <Image source={{uri: picturedImageUrl}} style={styles.image} />
+        </View>
+        <View style={styles.carousel}>
+          <Animated.FlatList
+            data={capturedSubImageState}
+            keyExtractor={(_, index) => index.toString()}
+            snapToInterval={190}
+            decelerationRate="fast"
+            showsVerticalScrollIndicator={false}
+            onScroll={Animated.event(
+              [{nativeEvent: {contentOffset: {y: scrollY}}}],
+              {useNativeDriver: true},
+            )}
+            renderItem={({item}) => {
+              return (
+                <Pressable
+                  onPress={() => {
+                    setPlantState(item);
+                    navigation.navigate('AiRegister');
+                  }}>
+                  <Image
+                    source={{uri: item.detailPictureUrl}}
+                    style={styles.image}
+                  />
+                  <AppText style={styles.plantName}>
+                    {(item.plantName || '').split('_', 1)}
+                  </AppText>
+                </Pressable>
+              );
+            }}
+          />
+          <View style={styles.pagination}>
+            {capturedSubImageState.map((_, index) => {
+              return <View key={index} style={[styles.dot]} />;
+            })}
+            <Animated.View
+              style={[
+                styles.dotIndicator,
+                {
+                  transform: [
+                    {
+                      translateY: Animated.divide(
+                        scrollY,
+                        ScreenWidth * 0.35 + ScreenHeight * 0.06,
+                      ).interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [0, ScreenHeight * 0.07],
+                      }),
+                    },
+                  ],
+                },
+              ]}
             />
-            <View style={styles.pagination}>
-              {capturedSubImageState.map((_, index) => {
-                return <View key={index} style={[styles.dot]} />;
-              })}
-              <Animated.View
-                style={[
-                  styles.dotIndicator,
-                  {
-                    transform: [
-                      {
-                        translateY: Animated.divide(scrollY, 190).interpolate({
-                          inputRange: [0, 1],
-                          outputRange: [0, 12],
-                        }),
-                      },
-                    ],
-                  },
-                ]}
-              />
-            </View>
           </View>
         </View>
       </View>
-      <View style={styles.textContainer}>
-        <AppText>둘 중 일치하는 식물을 선택해주세요</AppText>
+      <View style={styles.buttonContainer}>
+        <AppText style={styles.text}>일치하는 식물이 없나요?</AppText>
+        <AiCamera
+          buttonStyle={styles.button}
+          textStyle={styles.buttonText}
+          name={'다시 찍기'}
+        />
       </View>
-      <View style={styles.textContainer}>
-        <AppText>일치하는 식물이 없나요?</AppText>
-        <AiCamera style={styles.button} name={'다시 찍기'} />
-      </View>
-      {/* <View style={styles.buttonContainer}></View> */}
     </View>
   );
 };
 
 export default AiSpareResult;
+
+const ScreenWidth = Dimensions.get('window').width;
+const ScreenHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   container: {
@@ -115,70 +126,70 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  subContainer: {
-    flex: 2,
+
+  textContainer: {
+    flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
   },
+  text: {
+    fontSize: ScreenHeight * 0.02,
+    padding: ScreenHeight * 0.02,
+  },
   imageContainer: {
+    flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
   },
   carousel: {
-    height: 190,
+    height: ScreenWidth * 0.35 + ScreenHeight * 0.06,
     overflow: 'hidden',
   },
   image: {
-    width: 150,
-    height: 150,
+    width: ScreenWidth * 0.35,
+    height: ScreenWidth * 0.35,
     borderRadius: 12,
-    margin: 8,
+    margin: ScreenWidth * 0.03,
     resizeMode: 'cover',
   },
   plantName: {
-    margin: 3,
+    fontSize: ScreenHeight * 0.018,
+    margin: ScreenWidth * 0.01,
     textAlign: 'center',
   },
   pagination: {
     position: 'absolute',
-    top: 75,
-    right: 12,
+    top: ScreenHeight * 0.035,
+    right: 1,
   },
   dot: {
-    width: 6,
-    height: 6,
+    width: ScreenWidth * 0.01,
+    height: ScreenHeight * 0.07,
     borderRadius: 8,
-    backgroundColor: '#F6EDD9',
-    marginBottom: 6,
+    backgroundColor: '#D3D3D3',
   },
   dotIndicator: {
-    width: 12,
-    height: 12,
-    borderRadius: 12,
-    borderWidth: 1,
+    width: ScreenWidth * 0.01,
+    height: ScreenHeight * 0.07,
+    borderRadius: 8,
     backgroundColor: '#00845E',
-    borderColor: '#F6EDD9',
     position: 'absolute',
-    top: -3,
-    right: -3,
   },
-  textContainer: {
+  buttonContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  buttonContainer: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-  },
   button: {
-    flexDirection: 'row',
-    paddingHorizontal: 24,
-    paddingVertical: 8,
-    backgroundColor: '#00845E',
+    width: ScreenWidth * 0.3,
+    paddingVertical: ScreenHeight * 0.02,
     borderRadius: 8,
-    margin: 8,
-    fontFamily: 'NeoDGM-Regular',
+    margin: ScreenWidth * 0.03,
+    backgroundColor: '#00845E',
+    elevation: 1,
+  },
+  buttonText: {
+    textAlign: 'center',
+    color: '#fff',
   },
 });

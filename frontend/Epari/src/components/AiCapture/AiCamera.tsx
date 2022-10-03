@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, Pressable} from 'react-native';
+import {Pressable} from 'react-native';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {useSetRecoilState} from 'recoil';
 import {
@@ -8,8 +8,9 @@ import {
   capturedSubImage,
 } from '../../store/classification';
 import {useNavigation} from '@react-navigation/native';
+import AppText from '../AppText';
 
-const AiCamera: React.FC = ({style, name}) => {
+const AiCamera: React.FC = ({buttonStyle, textStyle, name}) => {
   const navigation = useNavigation();
   const setPicturedImage = useSetRecoilState(picturedImage);
   const setCapturedMainImage = useSetRecoilState(capturedMainImage);
@@ -43,7 +44,8 @@ const AiCamera: React.FC = ({style, name}) => {
         // 'Content-Type': 'multipart/form-data; ',
       },
     };
-    await fetch('http://127.0.0.1:8001/ai/plantAi', requestOptions)
+    // await fetch('http://127.0.0.1:8001/ai/plantAi', requestOptions)
+    await fetch('http://j7a201.p.ssafy.io/ai/plantAi', requestOptions)
       .then(response => response.json())
       .then(result => {
         const mainInfo = result.slice(0, 1);
@@ -55,31 +57,17 @@ const AiCamera: React.FC = ({style, name}) => {
   };
 
   return (
-    <Pressable style={style}>
-      <View style={styles.textContainer}>
-        <Text
-          style={styles.text}
-          onPress={() => {
-            uploadImage();
-            navigation.navigate('AiResult');
-          }}>
-          {name}
-        </Text>
-      </View>
+    <Pressable style={buttonStyle}>
+      <AppText
+        style={textStyle}
+        onPress={() => {
+          uploadImage();
+          navigation.navigate('AiResult');
+        }}>
+        {name}
+      </AppText>
     </Pressable>
   );
 };
 
 export default AiCamera;
-
-const styles = StyleSheet.create({
-  textContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  text: {
-    fontFamily: 'NeoDGM-Regular',
-    // fontSize: 32,
-    // color: 'white',
-  },
-});
