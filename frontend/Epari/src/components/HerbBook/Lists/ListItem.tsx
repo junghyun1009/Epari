@@ -24,19 +24,35 @@ export type ListItemProps = CompositeScreenProps<
 >;
 
 export type ListItem = {
-  id?: any;
+  id: number;
   plantName: string;
   count: number;
+  description: string;
+  detailPictureUrl: string;
   navigation: any;
 };
 
-const ListItem: React.FC<ListItem> = ({id, plantName, count, navigation}) => {
+const ListItem: React.FC<ListItem> = ({
+  id,
+  plantName,
+  count,
+  description,
+  detailPictureUrl,
+  navigation,
+}) => {
   if (count > 0) {
     return (
       <View>
         <View style={styles.ListItem}>
           <TouchableOpacity
-            onPress={() => navigation.navigate('HerbDetail', {id: id})}>
+            onPress={() =>
+              navigation.navigate('HerbDetail', {
+                id: id,
+                plantName: plantName,
+                description: description,
+                detailPictureUrl: detailPictureUrl,
+              })
+            }>
             <Image style={styles.ImageItem} source={id} />
           </TouchableOpacity>
         </View>
@@ -50,7 +66,14 @@ const ListItem: React.FC<ListItem> = ({id, plantName, count, navigation}) => {
       <View>
         <View style={styles.ListItem}>
           <TouchableOpacity
-            onPress={() => navigation.navigate('HerbDetail', {id: id})}>
+            onPress={() =>
+              navigation.navigate('HerbDetail', {
+                id: id,
+                plantName: plantName,
+                description: description,
+                detailPictureUrl: detailPictureUrl,
+              })
+            }>
             <Image
               style={styles.ImageItem}
               source={require('Epari/src/asset/icons/question_mark.png')}

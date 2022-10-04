@@ -39,6 +39,8 @@ const NoGetList: React.FC<GetListScreenProps> = ({navigation}) => {
                   imageSrc: imageList[i],
                   season: item.season,
                   isCollected: item.isCollected,
+                  plantDescription: item.plantDescription,
+                  detailPictureUrl: item.detailPictureUrl,
                 });
               });
               console.log(temp_List);
@@ -63,6 +65,8 @@ const NoGetList: React.FC<GetListScreenProps> = ({navigation}) => {
                 id={item.imageSrc}
                 navigation={navigation}
                 key={item.id}
+                description={item.plantDescription}
+                detailPictureUrl={item.detailPictureUrl}
                 plantName={item.plantName}
                 count={item.collectionCnt}
               />

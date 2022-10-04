@@ -19,7 +19,10 @@ const HerbDetail: React.FC<DetailScreenProps> = ({
   navigation,
 }: DetailScreenProps) => {
   const id = route.params.id;
-  console.log(id);
+  const description = route.params.description;
+  const detailPictureUrl = route.params.detailPictureUrl;
+  const plantName = route.params.plantName;
+  console.log(typeof id);
   React.useEffect(() => {
     const getData = async () => {
       try {
@@ -31,20 +34,19 @@ const HerbDetail: React.FC<DetailScreenProps> = ({
               'Content-Type': 'application/json',
               Authorization: storedToken,
             },
-            param: {
-              id: id,
-            },
           };
+          const url = 'http://j7a201.p.ssafy.io/epari/v1/collection/' + '2';
 
-          await fetch(
-            'http://j7a201.p.ssafy.io/epari/v1/collection',
-            requestOptions,
-          )
-            .then(response => response.json())
+          console.log(url);
+          await fetch(url, requestOptions)
+            .then(response => {
+              console.log(response);
+              response.json();
+            })
             .then(result => {
               console.log(result);
             })
-            .catch(error => console.log('error', error));
+            .catch(error => console.log(error));
         }
       } catch (e) {
         console.log(e);
@@ -173,7 +175,12 @@ const HerbDetail: React.FC<DetailScreenProps> = ({
   return (
     <View style={styles.background}>
       <HerbDetailHeader navigation={navigation} />
-      <HerbInfo DetailInfo={DetailInfo} />
+      <HerbInfo
+        plantName={plantName}
+        description={description}
+        detailPictureUrl={detailPictureUrl}
+        DetailInfo={DetailInfo}
+      />
       <HerbCollectionList collection={DetailInfo.collection} />
       <View style={styles.container}>
         <Text style={styles.fontTest}>Epari Herb Detail Screenn</Text>

@@ -39,6 +39,8 @@ const TotalList: React.FC<TotalListScreenProps> = ({navigation}) => {
                   imageSrc: imageList[i],
                   season: item.season,
                   isCollected: item.isCollected,
+                  plantDescription: item.plantDescription,
+                  detailPictureUrl: item.detailPictureUrl,
                 });
               });
               console.log(temp_List);
@@ -61,6 +63,8 @@ const TotalList: React.FC<TotalListScreenProps> = ({navigation}) => {
             id={item.imageSrc}
             navigation={navigation}
             key={item.id}
+            description={item.plantDescription}
+            detailPictureUrl={item.detailPictureUrl}
             count={item.collectionCnt}
             plantName={item.plantName}
           />
