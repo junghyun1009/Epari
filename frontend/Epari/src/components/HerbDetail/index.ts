@@ -1,3 +1,5 @@
 import HerbDetailHeader from './Header';
 import HerbInfo from './HerbInfo';
-export {HerbDetailHeader, HerbInfo};
+import HerbCollectionList from './HerbCollectionList';
+
+export {HerbDetailHeader, HerbInfo, HerbCollectionList};
