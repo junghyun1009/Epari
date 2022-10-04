@@ -7,6 +7,7 @@ import {
   HerbDetailHeader,
   HerbInfo,
 } from '../components/HerbDetail';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export type DetailScreenProps = StackScreenProps<
   AppStackParamList,
@@ -18,7 +19,39 @@ const HerbDetail: React.FC<DetailScreenProps> = ({
   navigation,
 }: DetailScreenProps) => {
   const id = route.params.id;
+  console.log(id);
+  React.useEffect(() => {
+    const getData = async () => {
+      try {
+        const storedToken = await AsyncStorage.getItem('GoogleAccessToken');
+        if (storedToken !== null) {
+          const requestOptions = {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: storedToken,
+            },
+            param: {
+              id: id,
+            },
+          };
 
+          await fetch(
+            'http://j7a201.p.ssafy.io/epari/v1/collection',
+            requestOptions,
+          )
+            .then(response => response.json())
+            .then(result => {
+              console.log(result);
+            })
+            .catch(error => console.log('error', error));
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    getData();
+  }, [id]);
   const DetailInfo = {
     plantName: '도라지',
     detailPictureUrl: require('Epari/src/asset/icons/Detail_example.jpg'),
@@ -136,13 +169,7 @@ const HerbDetail: React.FC<DetailScreenProps> = ({
       },
     ],
   };
-  // const {data} = useQuery<HerbDetailType>([QueryKeys.HERBDETAIL], () =>
-  //   restFetcher({
-  //     method: 'GET',
-  //     path: '/collection',
-  //   }),
-  // );
-  // console.log('1' + data);
+
   return (
     <View style={styles.background}>
       <HerbDetailHeader navigation={navigation} />

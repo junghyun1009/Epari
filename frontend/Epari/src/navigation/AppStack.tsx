@@ -23,14 +23,14 @@ const Stack = createNativeStackNavigator<AppStackParamList>();
 const Tab: React.FC = () => {
   return (
     <Navigator
-      initialRouteName="HerbBook"
+      initialRouteName="Home"
       screenOptions={{
         headerShown: false,
         tabBarLabelStyle: styles.TabBarLabel,
         tabBarActiveTintColor: '#007C2B',
         tabBarInactiveTintColor: '#110105',
       }}>
-      <Screen
+      {/* <Screen
         name="Login"
         component={Login}
         options={{
@@ -42,7 +42,7 @@ const Tab: React.FC = () => {
             ),
           title: '로그인',
         }}
-      />
+      /> */}
       <Screen
         name="UserPage"
         component={UserPage}
