@@ -12,22 +12,6 @@ type HerbInfoProps = {
   description: string;
   detailPictureUrl: string;
   plantName: string;
-  DetailInfo?: {
-    plantName: string;
-    detailPictureUrl: any;
-    plantDescription: string;
-    collection: {
-      collectId: number;
-      collectPictureUrl: string;
-      collectDate: string;
-      collectTitle: string;
-      collectContent: string;
-      collectPlace: string;
-      plantId: number;
-      userId: string;
-      locationId: string;
-    }[];
-  };
 };
 
 const HerbInfo: React.FC<HerbInfoProps> = ({

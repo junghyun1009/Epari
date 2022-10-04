@@ -68,7 +68,7 @@ const NoGetList: React.FC<GetListScreenProps> = ({navigation}) => {
                 description={item.plantDescription}
                 detailPictureUrl={item.detailPictureUrl}
                 plantName={item.plantName}
-                count={item.collectionCnt}
+                isCollected={item.isCollected}
               />
             );
           }

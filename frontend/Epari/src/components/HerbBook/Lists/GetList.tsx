@@ -4,6 +4,12 @@ import {AppStackParamList} from '../../../types';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import ListItem from './ListItem';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useSetRecoilState} from 'recoil';
+import {
+  flowerCntState,
+  herbCntState,
+  totalCntState,
+} from '../../../store/herblist';
 
 export type GetListScreenProps = NativeStackScreenProps<
   AppStackParamList,
@@ -12,6 +18,12 @@ export type GetListScreenProps = NativeStackScreenProps<
 
 const GetList: React.FC<GetListScreenProps> = ({navigation}) => {
   const [bookList, setBookList] = React.useState([]);
+  const setFlowerCnt = useSetRecoilState(flowerCntState);
+  const setHerbCnt = useSetRecoilState(herbCntState);
+  const setTotalCnt = useSetRecoilState(totalCntState);
+  let flowerCnt = 0;
+  let herbCnt = 0;
+  let totalCnt = 0;
   React.useEffect(() => {
     const getData = async () => {
       try {
@@ -33,6 +45,13 @@ const GetList: React.FC<GetListScreenProps> = ({navigation}) => {
             .then(result => {
               let temp_List: any = [];
               result.map((item: any, i: number) => {
+                if (i < 55 && item.isCollected) {
+                  flowerCnt++;
+                  totalCnt++;
+                } else if (i >= 55 && item.isCollected) {
+                  herbCnt++;
+                  totalCnt++;
+                }
                 temp_List.push({
                   id: item.plantId,
                   plantName: item.plantName,
@@ -45,6 +64,9 @@ const GetList: React.FC<GetListScreenProps> = ({navigation}) => {
               });
               console.log(temp_List);
               setBookList(temp_List);
+              setFlowerCnt(flowerCnt);
+              setHerbCnt(herbCnt);
+              setTotalCnt(totalCnt);
             })
             .catch(error => console.log('error', error));
         }
@@ -53,7 +75,7 @@ const GetList: React.FC<GetListScreenProps> = ({navigation}) => {
       }
     };
     getData();
-  }, []);
+  }, [flowerCnt, herbCnt, totalCnt, setFlowerCnt, setHerbCnt, setTotalCnt]);
 
   return (
     <ScrollView style={styles.background}>
@@ -68,7 +90,7 @@ const GetList: React.FC<GetListScreenProps> = ({navigation}) => {
                 description={item.plantDescription}
                 detailPictureUrl={item.detailPictureUrl}
                 plantName={item.plantName}
-                count={item.collectionCnt}
+                isCollected={item.isCollected}
               />
             );
           }

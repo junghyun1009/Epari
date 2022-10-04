@@ -26,21 +26,21 @@ export type ListItemProps = CompositeScreenProps<
 export type ListItem = {
   id: number;
   plantName: string;
-  count: number;
   description: string;
   detailPictureUrl: string;
+  isCollected: boolean;
   navigation: any;
 };
 
 const ListItem: React.FC<ListItem> = ({
   id,
   plantName,
-  count,
   description,
   detailPictureUrl,
+  isCollected,
   navigation,
 }) => {
-  if (count > 0) {
+  if (isCollected) {
     return (
       <View>
         <View style={styles.ListItem}>

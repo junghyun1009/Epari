@@ -12,6 +12,7 @@ export type TotalListScreenProps = NativeStackScreenProps<
 
 const TotalList: React.FC<TotalListScreenProps> = ({navigation}) => {
   const [bookList, setBookList] = React.useState([]);
+
   React.useEffect(() => {
     const getData = async () => {
       try {
@@ -65,8 +66,8 @@ const TotalList: React.FC<TotalListScreenProps> = ({navigation}) => {
             key={item.id}
             description={item.plantDescription}
             detailPictureUrl={item.detailPictureUrl}
-            count={item.collectionCnt}
             plantName={item.plantName}
+            isCollected={item.isCollected}
           />
         ))}
       </View>
