@@ -22,8 +22,8 @@ export type AppStackParamList = {
   UserPage: {
     id: number;
   };
-  TitleList: undefined;
+  // TitleList: undefined;
   TotalTitle: undefined;
-  GetTitle: undefined;
-  NoGetTitle: undefined;
+  // GetTitle: undefined;
+  // NoGetTitle: undefined;
 };
