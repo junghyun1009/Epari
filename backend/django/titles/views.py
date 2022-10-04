@@ -26,8 +26,10 @@ def titles(request):
     def title_list():
         titles = Title.objects.all()
         for title in titles:
-            if Obtained.objects.filter(titleId=title.titleId, userId=user).exists():
+            obtained = Obtained.objects.filter(titleId=title.titleId, userId=user)
+            if obtained.exists():
                 title.isObtained = True
+                title.isRep = obtained[0].isRep
             else:
                 title.isObtained = False
         serializer = TitleListSerializer(titles, many=True)
