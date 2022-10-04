@@ -55,7 +55,6 @@ const RegisterForm: React.FC = ({}) => {
     });
   };
   async function fetchToken() {
-    console.log('111', await AsyncStorage.getItem('GoogleAccessToken'));
     const user = auth().currentUser;
     await user
       ?.getIdToken(true)
@@ -81,7 +80,6 @@ const RegisterForm: React.FC = ({}) => {
 
   const saveImage = async () => {
     await fetchToken();
-    console.log('222222', await AsyncStorage.getItem('GoogleAccessToken'));
     const image = {
       uri: '',
       type: '',
