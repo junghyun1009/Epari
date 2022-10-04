@@ -80,7 +80,7 @@ def plant_detail(request, plantId):
     user = User.objects.get(userEmail=userEmail)
     
     plant = get_object_or_404(Plant, pk=plantId)
-    collects = Collect.objects.filter(plantId=plant, userId=user)
+    collects = Collect.objects.filter(plantId=plant, userEmail=userEmail)
     if collects.exists():
         serializer = CollectSerializer(collects, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)

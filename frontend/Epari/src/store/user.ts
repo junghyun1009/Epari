@@ -8,7 +8,12 @@ export type GoogleUserInform = {
   photoURL: string;
 };
 
-export const picturedImage = atom<GoogleUserInform[]>({
-  key: 'picturedImage',
-  default: [],
+export const loginState = atom({
+  key: 'loginState',
+  default: false,
+});
+
+export const userTokenState = atom({
+  key: 'userTokenState',
+  default: '123',
 });
