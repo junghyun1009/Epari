@@ -4,10 +4,17 @@ import {ScrollView} from 'react-native-gesture-handler';
 import HerbBookHeader from '../components/HerbBook/Header';
 import AcheivePoint from '../components/HerbBook/AchievePoint';
 import HerbBookStack from '../navigation/HerbBookStack';
+import {AppStackParamList} from '../types';
+import {StackScreenProps} from '@react-navigation/stack';
 // import {useQuery} from '@tanstack/react-query';
 // import {QueryKeys, restFetcher} from '../queryClient';
 
-const HerbBook: React.FC = () => {
+export type HerbBookScreenProps = StackScreenProps<
+  AppStackParamList,
+  'HerbBook'
+>;
+
+const HerbBook: React.FC<HerbBookScreenProps> = ({navigation}) => {
   const id = '123';
   // const {data} = useQuery([QueryKeys.HERBLIST], () =>
   //   restFetcher({
@@ -19,7 +26,7 @@ const HerbBook: React.FC = () => {
   // console.log('2' + data);
   return (
     <ScrollView style={styles.background}>
-      <HerbBookHeader />
+      <HerbBookHeader navigation={navigation} />
       <AcheivePoint />
       <HerbBookStack />
     </ScrollView>

@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
   HerbBookStackContatiner: {
     height: ScreenHeight * 0.7,
     justifyContent: 'center',
+    backgroundColor: '#FFF7F2',
   },
   TabBar: {
     width: '72%',

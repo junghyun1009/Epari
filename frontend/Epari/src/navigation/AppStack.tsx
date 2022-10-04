@@ -31,19 +31,6 @@ const Tab: React.FC = () => {
         tabBarInactiveTintColor: '#110105',
       }}>
       <Screen
-        name="Home"
-        component={Home}
-        options={{
-          tabBarIcon: ({focused}) =>
-            focused ? (
-              <Ionicons name="home" size={30} color="#007C2B" />
-            ) : (
-              <Ionicons name="home-outline" size={30} color="#110105" />
-            ),
-          title: 'EPARI',
-        }}
-      />
-      <Screen
         name="Login"
         component={Login}
         options={{
@@ -71,6 +58,19 @@ const Tab: React.FC = () => {
               />
             ),
           title: '내 정보',
+        }}
+      />
+      <Screen
+        name="Home"
+        component={Home}
+        options={{
+          tabBarIcon: ({focused}) =>
+            focused ? (
+              <Ionicons name="home" size={30} color="#007C2B" />
+            ) : (
+              <Ionicons name="home-outline" size={30} color="#110105" />
+            ),
+          title: 'EPARI',
         }}
       />
       <Screen name="TitleList" component={TitleList} />

@@ -2,6 +2,7 @@ import React from 'react';
 import {
   View,
   Image,
+  Text,
   TouchableOpacity,
   StyleSheet,
   Dimensions,
@@ -24,20 +25,44 @@ export type ListItemProps = CompositeScreenProps<
 
 export type ListItem = {
   id?: any;
+  plantName: string;
+  count: number;
   navigation: any;
 };
 
-const ListItem: React.FC<ListItem> = ({id, navigation}) => {
-  return (
-    <View>
-      <View style={styles.ListItem}>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('HerbDetail', {id: id})}>
-          <Image style={styles.ImageItem} source={id} />
-        </TouchableOpacity>
+const ListItem: React.FC<ListItem> = ({id, plantName, count, navigation}) => {
+  if (count > 0) {
+    return (
+      <View>
+        <View style={styles.ListItem}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('HerbDetail', {id: id})}>
+            <Image style={styles.ImageItem} source={id} />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.plantNameContainer}>
+          <Text style={styles.fontName}>{plantName}</Text>
+        </View>
       </View>
-    </View>
-  );
+    );
+  } else {
+    return (
+      <View>
+        <View style={styles.ListItem}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('HerbDetail', {id: id})}>
+            <Image
+              style={styles.ImageItem}
+              source={require('Epari/src/asset/icons/question_mark.png')}
+            />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.plantNameContainer}>
+          <Text style={styles.fontName}>{plantName}</Text>
+        </View>
+      </View>
+    );
+  }
 };
 
 let ScreenWidth = Dimensions.get('window').width;
@@ -45,8 +70,8 @@ let ScreenWidth = Dimensions.get('window').width;
 const styles = StyleSheet.create({
   ListItem: {
     margin: ScreenWidth * 0.03,
-    width: ScreenWidth * 0.16,
-    height: ScreenWidth * 0.16,
+    width: ScreenWidth * 0.17,
+    height: ScreenWidth * 0.17,
     borderRadius: 12,
     fontFamily: 'NeoDGM-Regular',
     alignItems: 'center',
@@ -55,12 +80,26 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
   },
   ImageItem: {
-    width: ScreenWidth * 0.13,
-    height: ScreenWidth * 0.13,
+    width: ScreenWidth * 0.14,
+    height: ScreenWidth * 0.14,
   },
   ItemName: {
     alignSelf: 'center',
     borderWidth: 1,
+  },
+  plantNameContainer: {
+    marginTop: -ScreenWidth * 0.027,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgb(152,180,234)',
+    borderRadius: 30,
+    width: ScreenWidth * 0.18,
+    alignSelf: 'center',
+  },
+  fontName: {
+    fontFamily: 'NeoDGM-Regular',
+    fontSize: 11,
+    color: '#FFFFFF',
   },
 });
 

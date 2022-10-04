@@ -1,17 +1,8 @@
 import React from 'react';
-import {View, Image, StyleSheet, Text, Dimensions} from 'react-native';
-
+import {View, Text, StyleSheet, Dimensions} from 'react-native';
 const Header: React.FC = () => {
   return (
     <View style={styles.HeaderContainer}>
-      <Image
-        source={require('Epari/src/asset/loginpageicons/active_0320.png')}
-        style={styles.headerImage1}
-      />
-      <Image
-        source={require('Epari/src/asset/loginpageicons/active_0400.png')}
-        style={styles.headerImage2}
-      />
       <Text style={styles.Header}>EPARI</Text>
       <View>
         <Text style={styles.font_2}>
@@ -30,23 +21,9 @@ let ScreenWidth = Dimensions.get('window').width;
 let ScreenHeight = Dimensions.get('window').height;
 const styles = StyleSheet.create({
   HeaderContainer: {
-    marginTop: ScreenHeight * 0.13,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  headerImage1: {
-    width: ScreenWidth * 0.3,
-    height: ScreenWidth * 0.3,
-    position: 'absolute',
-    right: ScreenWidth * 0.65,
-    top: -ScreenWidth * 0.13,
-  },
-  headerImage2: {
-    width: ScreenWidth * 0.4,
-    height: ScreenWidth * 0.4,
-    position: 'absolute',
-    left: ScreenWidth * 0.45,
-    top: ScreenWidth * 0.16,
+    backgroundColor: '474747',
   },
   Header: {
     fontFamily: 'NeoDGM-Regular',

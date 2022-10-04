@@ -4,6 +4,7 @@ export type AppStackParamList = {
   AiCapture: undefined;
   AiResult: undefined;
   AiRegister: undefined;
+  AiSpareResult: undefined;
   TotalList: undefined;
   GetList: undefined;
   NoGetList: undefined;
