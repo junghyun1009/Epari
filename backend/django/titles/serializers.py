@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .models import Title, Obtained
 
 class TitleListSerializer(serializers.ModelSerializer):
+    isObtained = serializers.BooleanField(read_only=True, default=False)
 
     class Meta:
         model = Title
