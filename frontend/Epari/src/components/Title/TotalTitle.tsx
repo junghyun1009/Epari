@@ -7,9 +7,9 @@ import {
   Dimensions,
   Pressable,
 } from 'react-native';
-import {AppStackParamList} from '../../../types';
+import {AppStackParamList} from '../../types';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
-import AppText from '../../AppText';
+import AppText from '../AppText';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export type TotalListScreenProps = NativeStackScreenProps<
@@ -20,18 +20,15 @@ export type TotalListScreenProps = NativeStackScreenProps<
 const TotalTitle: React.FC<TotalListScreenProps> = () => {
   const [titles, setTitles] = useState([]);
   const [token, setToken] = useState('');
-  const [collected, setCollected] = useState(0);
 
   useEffect(() => {
-    // titleList();
     getData();
-    // getCollection();
   }, []);
   useEffect(() => {
-    getCollection();
+    getTitles();
   }, [token]);
 
-  const getData = async () => {
+  async function getData() {
     try {
       const storedToken = await AsyncStorage.getItem('GoogleAccessToken');
       if (storedToken !== null) {
@@ -44,7 +41,7 @@ const TotalTitle: React.FC<TotalListScreenProps> = () => {
   };
   console.log('토큰', token);
 
-  const getCollection = () => {
+  const getTitles = async () => {
     const requestOptions = {
       method: 'GET',
       headers: {
@@ -52,95 +49,29 @@ const TotalTitle: React.FC<TotalListScreenProps> = () => {
         Authorization: token,
       },
     };
-    fetch('http://j7a201.p.ssafy.io/epari/v1/collection/', requestOptions)
+    fetch('http://j7a201.p.ssafy.io/epari/v1/titles/', requestOptions)
       .then(response => response.json())
       .then(result => {
-        console.log('내꺼', result);
-        const collected = 0;
-        result.map(item => {
-          if (item.isCollected === true) {
-            console.log('모은 거', item);
-            collected += 1;
-
-            if (collected === 1) {
-              const obtained = new FormData();
-              obtained.append('titleId', 1);
-
-              const requestPost = {
-                method: 'POST',
-                body: obtained,
-                headers: {
-                  'Content-Type': 'multipart/form-data',
-                  Authorization: token,
-                },
-              };
-              fetch('http://j7a201.p.ssafy.io/epari/v1/titles/', requestPost)
-                .then(response => {
-                  response.text();
-                })
-                .then(result => {
-                  console.log('1111111111', result);
-                  console.log(obtained);
-                });
-            }
-
-            return;
-          }
-        });
-
-        console.log('토큰zzzzz', token);
-        const requestOptions = {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: token,
-          },
-        };
-        fetch('http://j7a201.p.ssafy.io/epari/v1/titles', requestOptions)
-          .then(response => response.json())
-          .then(result => {
-            console.log(0, result);
-            // let tmpTitleArray = [];
-            // result.map(item => {
-            //   tmpTitleArray.push(item);
-            // });
-            // console.log(1, tmpTitleArray);
-            const resultSet = new Set(result);
-            const newResult = [...resultSet];
-            console.log('newResult', newResult);
-            setTitles(newResult);
-            console.log(2, titles);
-          });
+        console.log('칭호', result);
+        setTitles(result);
       });
   };
+  console.log('titles', titles);
 
   return (
     <View>
       <View style={styles.container}>
-        <Pressable>
-          <View>
-            <AppText
-              style={styles.button}
-              onPress={() => {
-                titleList();
-              }}>
-              칭호 불러오기
-            </AppText>
-          </View>
-        </Pressable>
-        {titles.length ? (
+        {/* {titles.length ? ( */}
           titles.map(title => (
-            <View key={title.titleId.titleId} style={styles.Item}>
+            <View key={title.titleId} style={styles.Item}>
               <Image
-                source={{uri: title.titleId.titlePictureUrl}}
+                source={{uri: title.titlePictureUrl}}
                 style={styles.ImageItem}
               />
               <View style={styles.Text}>
-                <AppText style={styles.TitleItem}>
-                  {title.titleId.titleName}
-                </AppText>
+                <AppText style={styles.TitleItem}>{title.titleName}</AppText>
                 <AppText style={styles.TextItem}>
-                  {title.titleId.titleDescription}
+                  {title.titleDescription}
                 </AppText>
               </View>
               <Pressable>
@@ -156,9 +87,9 @@ const TotalTitle: React.FC<TotalListScreenProps> = () => {
               </Pressable>
             </View>
           ))
-        ) : (
-          <AppText>아직 획득한 칭호가 없습니다.</AppText>
-        )}
+        // ) : (
+        //   <AppText>아직 획득한 칭호가 없습니다.</AppText>
+        // )}
       </View>
     </View>
   );
