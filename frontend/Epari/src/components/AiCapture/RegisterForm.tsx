@@ -22,6 +22,7 @@ import {
 import AppText from '../AppText';
 import LocationSelector from './LocationSelector';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import auth from '@react-native-firebase/auth';
 
 const RegisterForm: React.FC = ({}) => {
   const navigation = useNavigation();
@@ -53,10 +54,21 @@ const RegisterForm: React.FC = ({}) => {
       };
     });
   };
+  async function fetchToken() {
+    console.log('111', await AsyncStorage.getItem('GoogleAccessToken'));
+    const user = auth().currentUser;
+    await user
+      ?.getIdToken(true)
+      .then(idToken => {
+        AsyncStorage.removeItem('GoogleAccessToken');
+        AsyncStorage.setItem('GoogleAccessToken', idToken);
+      })
+      .catch(error => console.log(error));
+  }
 
   const getData = async () => {
     try {
-      const storedToken = await AsyncStorage.getItem('GoogleAccessToken');
+      let storedToken = await AsyncStorage.getItem('GoogleAccessToken');
       if (storedToken !== null) {
         console.log('storedToken : ', storedToken);
         setToken(storedToken);
@@ -65,9 +77,11 @@ const RegisterForm: React.FC = ({}) => {
       console.log(e);
     }
   };
-  console.log('token', token);
+  console.log('token!', token);
 
   const saveImage = async () => {
+    await fetchToken();
+    console.log('222222', await AsyncStorage.getItem('GoogleAccessToken'));
     const image = {
       uri: '',
       type: '',
