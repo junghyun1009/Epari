@@ -38,9 +38,21 @@ const RegisterForm: React.FC = ({}) => {
 
   const [token, setToken] = useState('');
 
+  // 칭호 1 조건: 전체 획득 개수 파악 => 글을 하나도 안 썼을 때 글을 쓰면 얻게 하기
+  const [collections, setCollections] = useState(0);
+  // 칭호 2 조건: 도라지 획득 개수 파악 => 도라지 글이 두개인데 새로 쓰는 글도 도라지일 경우 얻게 하기
+  const [dolargeCnt, setDolargeCnt] = useState(0);
+  // 칭호 3 조건: 산삼 획득 개수 파악 => 산삼 글이 0개인데 새로 쓰는 글이 산삼 글일 경우 얻게 하기
+  const [sansamCnt, setSansamCnt] = useState(0);
+
+  const [obtained, setObtained] = useState({});
+
   useEffect(() => {
     getData();
   }, []);
+  // useEffect(() => {
+  //   getCollection();
+  // }, [token]);
 
   const inputChangedHandler = (
     inputIdentifier: string,
@@ -64,8 +76,39 @@ const RegisterForm: React.FC = ({}) => {
     } catch (e) {
       console.log(e);
     }
+    const storedToken = await AsyncStorage.getItem('GoogleAccessToken');
+    if (storedToken) {
+      const requestOptions = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: storedToken,
+        },
+      };
+      fetch('http://j7a201.p.ssafy.io/epari/v1/collection/', requestOptions)
+        .then(response => response.json())
+        .then(result => {
+          console.log(result);
+          // console.log(collections);
+          let cnt = 0;
+          result.forEach(each => {
+            console.log(each.plantId, cnt + each.collectionCnt);
+            cnt += each.collectionCnt;
+          });
+          setCollections(cnt);
+
+          let dolarge = result[13].collectionCnt;
+          setDolargeCnt(dolarge);
+
+          let sansam = result[66].collectionCnt;
+          setSansamCnt(sansam);
+        });
+    }
   };
   console.log('token', token);
+  console.log('cnt', collections);
+  console.log('dolarge', dolargeCnt);
+  console.log('sansam', sansamCnt);
 
   const saveImage = async () => {
     const image = {
@@ -114,6 +157,69 @@ const RegisterForm: React.FC = ({}) => {
       });
       return;
     }
+
+    // 칭호
+    // 1번
+    if (collections === 0) {
+      const obtained = new FormData();
+      obtained.append('titleId', 1);
+      const requestPost = {
+        method: 'POST',
+        body: obtained,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: token,
+        },
+      };
+      fetch('http://j7a201.p.ssafy.io/epari/v1/titles/', requestPost)
+        .then(response => {
+          response.json();
+        })
+        .then(result => {
+          console.log('1111111111', result);
+          console.log(obtained);
+        });
+    } else if (dolargeCnt === 2 && resultPlantState.plantId === 14) {
+      const obtained = new FormData();
+      obtained.append('titleId', 2);
+      const requestPost = {
+        method: 'POST',
+        body: obtained,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: token,
+        },
+      };
+      fetch('http://j7a201.p.ssafy.io/epari/v1/titles/', requestPost)
+        .then(response => {
+          response.json();
+        })
+        .then(result => {
+          console.log('1111111111', result);
+          console.log(obtained);
+        })
+        .catch(err => console.log(err));
+    } else if (sansamCnt === 0 && resultPlantState.plantId === 67) {
+      const obtained = new FormData();
+      obtained.append('titleId', 3);
+      const requestPost = {
+        method: 'POST',
+        body: obtained,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: token,
+        },
+      };
+      fetch('http://j7a201.p.ssafy.io/epari/v1/titles/', requestPost)
+        .then(response => {
+          response.json();
+        })
+        .then(result => {
+          console.log('1111111111', result);
+          console.log(obtained);
+        });
+    }
+
     navigation.navigate('HerbDetail', {id: resultPlantState.plantId});
   };
 
