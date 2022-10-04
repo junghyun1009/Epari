@@ -3,10 +3,7 @@ import {View, StyleSheet, ScrollView} from 'react-native';
 import {AppStackParamList} from '../../../types';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import ListItem from './ListItem';
-import {useQuery} from '@tanstack/react-query';
-import {QueryKeys, restFetcher} from '../../../queryClient';
-import {useRecoilValue} from 'recoil';
-import {userTokenState} from '../../../store/user';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export type TotalListScreenProps = NativeStackScreenProps<
   AppStackParamList,
@@ -14,36 +11,63 @@ export type TotalListScreenProps = NativeStackScreenProps<
 >;
 
 const TotalList: React.FC<TotalListScreenProps> = ({navigation}) => {
-  const userToken = useRecoilValue(userTokenState);
-  const data = useQuery([QueryKeys.HERBLIST], async () => {
-    return await restFetcher({
-      method: 'GET',
-      path: 'https://dummyjson.com/products',
-      Token: userToken,
-    });
-  });
-  console.log(userToken);
-  console.log(data);
-  const temp_array: any = [];
-  API_Response.map((item, i) =>
-    temp_array.push({
-      id: item.plantId,
-      imageSrc: imageList[i],
-      plantName: item.plantName,
-      collectionCnt: item.collectionCnt,
-    }),
-  );
-  console.log(temp_array);
+  const [bookList, setBookList] = React.useState([]);
+
+  React.useEffect(() => {
+    const getData = async () => {
+      try {
+        const storedToken = await AsyncStorage.getItem('GoogleAccessToken');
+        if (storedToken !== null) {
+          const requestOptions = {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: storedToken,
+            },
+          };
+
+          await fetch(
+            'http://j7a201.p.ssafy.io/epari/v1/collection/',
+            requestOptions,
+          )
+            .then(response => response.json())
+            .then(result => {
+              let temp_List: any = [];
+              result.map((item: any, i: number) => {
+                temp_List.push({
+                  id: item.plantId,
+                  plantName: item.plantName,
+                  imageSrc: imageList[i],
+                  season: item.season,
+                  isCollected: item.isCollected,
+                  plantDescription: item.plantDescription,
+                  detailPictureUrl: item.detailPictureUrl,
+                });
+              });
+              console.log(temp_List);
+              setBookList(temp_List);
+            })
+            .catch(error => console.log('error', error));
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    getData();
+  }, []);
+
   return (
     <ScrollView style={styles.background}>
       <View style={styles.container}>
-        {temp_array.map((item: any) => (
+        {bookList.map((item: any) => (
           <ListItem
             id={item.imageSrc}
             navigation={navigation}
             key={item.id}
-            count={item.collectionCnt}
+            description={item.plantDescription}
+            detailPictureUrl={item.detailPictureUrl}
             plantName={item.plantName}
+            isCollected={item.isCollected}
           />
         ))}
       </View>
@@ -63,6 +87,9 @@ const styles = StyleSheet.create({
     overflow: 'scroll',
     justifyContent: 'center',
     backgroundColor: '#FFF7F2',
+  },
+  loadingText: {
+    fontFamily: 'NeoDGM-Regular',
   },
 });
 export default TotalList;
@@ -135,342 +162,4 @@ const imageList = [
   require('Epari/src/asset/activeIcons/active_0650.png'),
   require('Epari/src/asset/activeIcons/active_0660.png'),
   require('Epari/src/asset/activeIcons/active_0670.png'),
-];
-
-const API_Response = [
-  {
-    plantId: 1,
-    plantName: '분홍 달맞이꽃',
-    collectionCnt: 1,
-  },
-  {
-    plantId: 2,
-    plantName: '슬리퍼 난초',
-    collectionCnt: 1,
-  },
-  {
-    plantId: 3,
-    plantName: '스위트피',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 4,
-    plantName: '금잔화',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 5,
-    plantName: '참나리',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 6,
-    plantName: '흰색 호접란',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 7,
-    plantName: '극락조화',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 8,
-    plantName: '절굿대',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 9,
-    plantName: '관동화',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 10,
-    plantName: '용왕꽃',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 11,
-    plantName: '노랑꽃창포',
-    collectionCnt: 1,
-  },
-  {
-    plantId: 12,
-    plantName: '보라 에키네시아',
-    collectionCnt: 1,
-  },
-  {
-    plantId: 13,
-    plantName: '알스트로메리아',
-    collectionCnt: 2,
-  },
-  {
-    plantId: 14,
-    plantName: '도라지',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 15,
-    plantName: '글로리오사',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 16,
-    plantName: '체꽃',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 17,
-    plantName: '붉은꽃생강',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 18,
-    plantName: '무스카리',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 19,
-    plantName: '개양귀비',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 20,
-    plantName: '수염패랭이꽃',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 21,
-    plantName: '카네이션',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 22,
-    plantName: '풀협죽도',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 23,
-    plantName: '니겔라',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 24,
-    plantName: '코스모스',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 25,
-    plantName: '아스트란티아',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 26,
-    plantName: '렌텐로즈',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 27,
-    plantName: '포인세티아',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 28,
-    plantName: '천수국',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 29,
-    plantName: '버터컵',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 30,
-    plantName: '불란서국화',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 31,
-    plantName: '민들레',
-    collectionCnt: 1,
-  },
-  {
-    plantId: 32,
-    plantName: '해바라기',
-    collectionCnt: 1,
-  },
-  {
-    plantId: 33,
-    plantName: '나비꽃',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 34,
-    plantName: '대상화',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 35,
-    plantName: '블랙 아이드 수잔',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 36,
-    plantName: '샤프란',
-    collectionCnt: 1,
-  },
-  {
-    plantId: 37,
-    plantName: '바람꽃',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 38,
-    plantName: '가자니아',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 39,
-    plantName: '수련',
-    collectionCnt: 1,
-  },
-  {
-    plantId: 40,
-    plantName: '장미',
-    collectionCnt: 1,
-  },
-  {
-    plantId: 41,
-    plantName: '나팔꽃',
-    collectionCnt: 1,
-  },
-  {
-    plantId: 42,
-    plantName: '시계초',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 43,
-    plantName: '연꽃',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 44,
-    plantName: '뻐꾹나리',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 45,
-    plantName: '안수리움',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 46,
-    plantName: '플루메리아',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 47,
-    plantName: '무궁화',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 48,
-    plantName: '아데니움',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 49,
-    plantName: '모나르다',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 50,
-    plantName: '부겐빌레아',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 51,
-    plantName: '동백',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 52,
-    plantName: '목나팔',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 53,
-    plantName: '천인국',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 54,
-    plantName: '범부채',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 55,
-    plantName: '칡',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 56,
-    plantName: '더덕',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 57,
-    plantName: '참당귀',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 58,
-    plantName: '엉겅퀴',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 59,
-    plantName: '독활',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 60,
-    plantName: '하수오',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 61,
-    plantName: '창포',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 62,
-    plantName: '우엉',
-    collectionCnt: 1,
-  },
-  {
-    plantId: 63,
-    plantName: '익모초',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 64,
-    plantName: '인동덩굴',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 65,
-    plantName: '천궁',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 66,
-    plantName: '꽃향유',
-    collectionCnt: 0,
-  },
-  {
-    plantId: 67,
-    plantName: '인삼',
-    collectionCnt: 1,
-  },
 ];

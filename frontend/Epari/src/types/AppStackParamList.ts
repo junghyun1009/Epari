@@ -13,7 +13,10 @@ export type AppStackParamList = {
     id: string;
   };
   HerbDetail: {
-    id: string;
+    id: number;
+    plantName: string;
+    description: string;
+    detailPictureUrl: string;
   };
   Login: undefined;
   UserPage: {

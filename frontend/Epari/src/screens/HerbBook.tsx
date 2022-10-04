@@ -6,8 +6,6 @@ import AcheivePoint from '../components/HerbBook/AchievePoint';
 import HerbBookStack from '../navigation/HerbBookStack';
 import {AppStackParamList} from '../types';
 import {StackScreenProps} from '@react-navigation/stack';
-// import {useQuery} from '@tanstack/react-query';
-// import {QueryKeys, restFetcher} from '../queryClient';
 
 export type HerbBookScreenProps = StackScreenProps<
   AppStackParamList,
@@ -15,15 +13,6 @@ export type HerbBookScreenProps = StackScreenProps<
 >;
 
 const HerbBook: React.FC<HerbBookScreenProps> = ({navigation}) => {
-  const id = '123';
-  // const {data} = useQuery([QueryKeys.HERBLIST], () =>
-  //   restFetcher({
-  //     method: 'GET',
-  //     path: 'collection',
-  //   }),
-  // );
-  console.log(id);
-  // console.log('2' + data);
   return (
     <ScrollView style={styles.background}>
       <HerbBookHeader navigation={navigation} />

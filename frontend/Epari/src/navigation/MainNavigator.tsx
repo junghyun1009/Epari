@@ -10,7 +10,7 @@ const MainNav: React.FC = () => {
   console.log(isLogin);
   return (
     <NavigationContainer>
-      {!isLogin ? <AppStack /> : <AuthStack />}
+      {isLogin ? <AppStack /> : <AuthStack />}
     </NavigationContainer>
   );
 };

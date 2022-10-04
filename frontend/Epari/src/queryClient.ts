@@ -24,8 +24,8 @@ export const getClient = (() => {
 })();
 
 // const BASE_URL = 'http://localhost:8000/epari/v1/';
-// const BASE_URL = 'http://j7a201.p.ssafy.io/epari/v1';
-const BASE_URL = '';
+const BASE_URL = 'http://j7a201.p.ssafy.io/epari/v1';
+// const BASE_URL = '';
 export const restFetcher = async ({
   method,
   path,
@@ -45,8 +45,7 @@ export const restFetcher = async ({
       method,
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': BASE_URL,
-        AccessToken: Token,
+        Authorization: Token,
       },
     };
 
