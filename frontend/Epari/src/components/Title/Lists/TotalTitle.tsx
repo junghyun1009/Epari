@@ -4,6 +4,9 @@ import {AppStackParamList} from '../../../types';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import TitleItem from './TitleItem';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import auth from '@react-native-firebase/auth';
+
 export type TotalListScreenProps = NativeStackScreenProps<
   AppStackParamList,
   'TotalTitle'
@@ -16,8 +19,24 @@ const TotalTitle: React.FC<TotalListScreenProps> = () => {
     titleList();
   }, []);
 
-  const titleList = () => {
-    fetch('http://127.0.0.1:8000/epari/v1/titles')
+  async function fetchToken() {
+    const user = auth().currentUser;
+    await user
+      ?.getIdToken(true)
+      .then(idToken => {
+        AsyncStorage.removeItem('GoogleAccessToken');
+        AsyncStorage.setItem('GoogleAccessToken', idToken);
+      })
+      .catch(error => console.log(error));
+  }
+
+  const titleList = async () => {
+    await fetchToken();
+    fetch('http://j7a201.p.ssafy.io/epari/v1/titles', {
+      headers: {
+        Authorization: AsyncStorage.getItem('GoogleAccessToken'),
+      }
+    })
       .then(response => response.json())
       .then(result => {
         let tmpTitleArray = [];
