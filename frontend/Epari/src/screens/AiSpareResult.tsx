@@ -21,7 +21,6 @@ const AiSpareResult: React.FC = () => {
   const picturedImageState = useRecoilValue(picturedImage);
   const capturedSubImageState = useRecoilValue(capturedSubImage);
   const setResultPlantState = useSetRecoilState(resultPlant);
-  const plant = useRecoilValue(resultPlant);
 
   const picturedImageUrl = picturedImageState.uri;
   console.log('capture', capturedSubImageState);
@@ -150,7 +149,7 @@ const styles = StyleSheet.create({
     height: ScreenWidth * 0.35,
     borderWidth: 3,
     borderRadius: 12,
-    borderColor: '#000',
+    borderColor: '#687798',
     margin: ScreenWidth * 0.03,
     resizeMode: 'cover',
   },
@@ -174,7 +173,7 @@ const styles = StyleSheet.create({
     width: ScreenWidth * 0.01,
     height: ScreenHeight * 0.07,
     borderRadius: 8,
-    backgroundColor: '#00845E',
+    backgroundColor: '#687798',
     position: 'absolute',
   },
   buttonContainer: {
@@ -187,15 +186,14 @@ const styles = StyleSheet.create({
     paddingVertical: ScreenHeight * 0.01,
     borderWidth: 5,
     borderRadius: 11,
-    borderColor: '#00845E',
+    borderColor: '#687798',
     margin: ScreenWidth * 0.03,
-    backgroundColor: '#00845E',
+    backgroundColor: '#687798',
   },
   buttonText: {
     textAlign: 'center',
     color: '#fff',
     fontSize: ScreenHeight * 0.025,
-    // textShadowColor: '#99AEBB',
     textShadowColor: '#3A4A40',
     textShadowRadius: 2,
     textShadowOffset: {
