@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, ScrollView} from 'react-native';
 import {AppStackParamList} from '../../../types';
+import {useIsFocused} from '@react-navigation/native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import ListItem from './ListItem';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -18,6 +19,7 @@ export type GetListScreenProps = NativeStackScreenProps<
 
 const GetList: React.FC<GetListScreenProps> = ({navigation}) => {
   const [bookList, setBookList] = React.useState([]);
+  const isFocused = useIsFocused();
   const setFlowerCnt = useSetRecoilState(flowerCntState);
   const setHerbCnt = useSetRecoilState(herbCntState);
   const setTotalCnt = useSetRecoilState(totalCntState);
@@ -62,7 +64,6 @@ const GetList: React.FC<GetListScreenProps> = ({navigation}) => {
                   detailPictureUrl: item.detailPictureUrl,
                 });
               });
-              console.log(temp_List);
               setBookList(temp_List);
               setFlowerCnt(flowerCnt);
               setHerbCnt(herbCnt);
@@ -75,7 +76,15 @@ const GetList: React.FC<GetListScreenProps> = ({navigation}) => {
       }
     };
     getData();
-  }, [flowerCnt, herbCnt, totalCnt, setFlowerCnt, setHerbCnt, setTotalCnt]);
+  }, [
+    flowerCnt,
+    herbCnt,
+    totalCnt,
+    setFlowerCnt,
+    setHerbCnt,
+    setTotalCnt,
+    isFocused,
+  ]);
 
   return (
     <ScrollView style={styles.background}>

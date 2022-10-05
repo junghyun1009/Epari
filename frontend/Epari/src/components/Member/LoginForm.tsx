@@ -24,7 +24,7 @@ const GoogleSignIn: React.FC<GoogleSignInProps> = ({navigation}) => {
     console.log(user);
   }
 
-  const storeData = async (token: string | number | boolean) => {
+  const storeData = async (token: string | number | boolean | undefined) => {
     try {
       await AsyncStorage.setItem('GoogleAccessToken', token);
       console.log('token', token);

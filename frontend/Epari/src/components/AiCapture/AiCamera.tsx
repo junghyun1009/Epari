@@ -16,7 +16,7 @@ const AiCamera: React.FC = ({buttonStyle, textStyle, name}) => {
   const setCapturedMainImage = useSetRecoilState(capturedMainImage);
   const setCapturedSubImage = useSetRecoilState(capturedSubImage);
   const uploadImage = async () => {
-    const image = {
+    const image: imageType = {
       uri: '',
       type: '',
       name: '',
