@@ -44,17 +44,16 @@ const AiResult: React.FC = () => {
         <Image source={{uri: capturedMainImageUrl}} style={styles.image} />
       </View>
       <View style={styles.textContainer}>
-        <AppText style={styles.font}>
-          촬영한 사진이
-          <AppText style={styles.plantName}> {capturedMainPlantName}</AppText>가
-          맞나요?
+        <AppText style={styles.text}>
+          <AppText style={styles.plantName}> {capturedMainPlantName}</AppText>
+          (이)가 맞나요?
         </AppText>
       </View>
       <View style={styles.buttonContainer}>
         <Pressable
           style={[styles.button, styles.cancelButton]}
           onPress={() => navigation.navigate('AiSpareResult')}>
-          <AppText>아니오</AppText>
+          <AppText style={styles.buttonText}>아니오</AppText>
         </Pressable>
         <Pressable
           style={[styles.button, styles.rightButton]}
@@ -62,7 +61,7 @@ const AiResult: React.FC = () => {
             setPlantState();
             navigation.navigate('AiRegister');
           }}>
-          <AppText style={styles.rightText}>네</AppText>
+          <AppText style={styles.buttonText}>네</AppText>
         </Pressable>
       </View>
     </View>
@@ -79,6 +78,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#FFF7F2',
   },
   imageContainer: {
     flex: 2,
@@ -89,7 +89,9 @@ const styles = StyleSheet.create({
   image: {
     width: ScreenWidth * 0.35,
     height: ScreenWidth * 0.35,
+    borderWidth: 3,
     borderRadius: 12,
+    borderColor: '#000',
     margin: ScreenWidth * 0.03,
   },
   textContainer: {
@@ -97,11 +99,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  font: {
-    fontSize: ScreenHeight * 0.02,
+  text: {
+    textAlign: 'center',
+    fontSize: ScreenHeight * 0.03,
   },
   plantName: {
-    fontSize: ScreenHeight * 0.02,
     color: '#00845E',
   },
   buttonContainer: {
@@ -113,19 +115,29 @@ const styles = StyleSheet.create({
   button: {
     flexDirection: 'row',
     justifyContent: 'center',
-    width: ScreenWidth * 0.3,
-    paddingVertical: ScreenHeight * 0.02,
-    borderRadius: 8,
+    width: ScreenWidth * 0.33,
+    paddingVertical: ScreenHeight * 0.01,
+    borderWidth: 5,
+    borderRadius: 11,
     margin: ScreenWidth * 0.03,
-    elevation: 1,
   },
   cancelButton: {
-    backgroundColor: '#F6EDD9',
+    backgroundColor: '#D9D9D9',
+    borderColor: '#D9D9D9',
   },
   rightButton: {
     backgroundColor: '#00845E',
+    borderColor: '#00845E',
   },
-  rightText: {
+  buttonText: {
+    fontSize: ScreenHeight * 0.025,
     color: '#fff',
+    // textShadowColor: '#99AEBB',
+    textShadowColor: '#3A4A40',
+    textShadowRadius: 2,
+    textShadowOffset: {
+      width: 1.8,
+      height: 1.8,
+    },
   },
 });
