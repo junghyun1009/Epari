@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {StackScreenProps} from '@react-navigation/stack';
 import {AppStackParamList} from '../types';
 import {
   HerbCollectionList,
@@ -8,8 +7,9 @@ import {
   HerbInfo,
 } from '../components/HerbDetail';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
-export type DetailScreenProps = StackScreenProps<
+export type DetailScreenProps = NativeStackScreenProps<
   AppStackParamList,
   'HerbDetail'
 >;

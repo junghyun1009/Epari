@@ -3,7 +3,12 @@ import {View, StyleSheet} from 'react-native';
 // import AiCapture from './AiCapture';
 import {AppStackParamList} from '../types';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {Bottom, Header, SampleCollection} from '../components/Home';
+import {
+  BackgroundImageList,
+  Bottom,
+  Header,
+  SampleCollection,
+} from '../components/Home';
 
 export type HomeScreenProps = NativeStackScreenProps<AppStackParamList, 'Home'>;
 
@@ -11,6 +16,7 @@ export type HomeScreenProps = NativeStackScreenProps<AppStackParamList, 'Home'>;
 const Home: React.FC<HomeScreenProps> = ({navigation}) => {
   return (
     <View style={styles.container}>
+      <BackgroundImageList />
       <Header />
       <SampleCollection />
       <Bottom navigation={navigation} />
@@ -25,9 +31,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    // backgroundColor: '#110105',
     backgroundColor: '#687798',
-    // backgroundColor: 'rgb(184, 230, 225)',
   },
 });
 

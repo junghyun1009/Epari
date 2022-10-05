@@ -56,6 +56,7 @@ const ScreenWidth = Dimensions.get('window').width;
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
+    justifyContent: 'center',
   },
   modalContainer: {
     width: ScreenWidth * 0.8,

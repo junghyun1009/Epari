@@ -1,4 +1,3 @@
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
 import {
   View,
@@ -7,12 +6,10 @@ import {
   TouchableOpacity,
   Dimensions,
 } from 'react-native';
-import {AppStackParamList} from '../../types';
 
-export type HerbDetailHeaderProps = NativeStackScreenProps<
-  AppStackParamList,
-  'HerbDetail'
->;
+export type HerbDetailHeaderProps = {
+  navigation: any;
+};
 
 const HerbDetailHeader: React.FC<HerbDetailHeaderProps> = ({navigation}) => {
   return (

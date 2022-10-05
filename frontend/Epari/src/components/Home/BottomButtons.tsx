@@ -18,20 +18,39 @@ const Bottom: React.FC<BottomProps> = ({navigation}) => {
   async function movePageBook() {
     navigation.navigate('HerbBook');
   }
+  async function movePageTitle() {
+    navigation.navigate('TitleList');
+  }
   return (
-    <View style={styles.bottomBox}>
-      <TouchableOpacity onPress={() => movePageAI()}>
-        <View style={styles.leftButton}>
-          <Text style={styles.font_3}>A I</Text>
-          <Text style={styles.font_2}>이 꽃이 무슨꽃인가?</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => movePageBook()}>
-        <View style={styles.rightButton}>
-          <Text style={styles.font_3}>Book</Text>
-          <Text style={styles.font_2}>내가 수집한 꽃 보여줘!</Text>
-        </View>
-      </TouchableOpacity>
+    <View style={styles.bottomContainer}>
+      <View style={styles.bottomBox}>
+        <TouchableOpacity onPress={() => movePageAI()}>
+          <View style={styles.leftButton1}>
+            <Text style={styles.font_3}>A I</Text>
+            <Text style={styles.font_2}>이 꽃이 무슨꽃인가?</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => movePageBook()}>
+          <View style={styles.rightButton1}>
+            <Text style={styles.font_3}>Book</Text>
+            <Text style={styles.font_2}>내가 수집한 꽃 보여줘!</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.bottomBox}>
+        <TouchableOpacity onPress={() => movePageTitle()}>
+          <View style={styles.leftButton2}>
+            <Text style={styles.font_3}>칭호</Text>
+            <Text style={styles.font_2}>내가 획득한 칭호는?</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <View style={styles.rightButton2}>
+            <Text style={styles.font_3}>앳햄</Text>
+            <Text style={styles.font_2}>추가기능 예정</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -66,36 +85,63 @@ const styles = StyleSheet.create({
       height: 1.8,
     },
   },
+  bottomContainer: {
+    position: 'relative',
+    top: ScreenHeight * 0.03,
+  },
   bottomBox: {
-    display: 'flex',
-    flexWrap: 'wrap',
     flexDirection: 'row',
-    marginTop: ScreenHeight * 0.1,
-    marginBottom: -50,
+    marginBottom: ScreenHeight * 0.02,
   },
-  leftButton: {
+  leftButton1: {
     width: ScreenWidth * 0.38,
-    height: ScreenWidth * 0.38,
-    backgroundColor: '#F7E600',
+    height: ScreenWidth * 0.28,
     textAlign: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 85,
+    backgroundColor: '#F89B00',
+    borderRadius: 15,
     borderWidth: 7,
-    borderColor: '#F89B00',
-    left: -ScreenWidth * 0.09,
+    borderColor: '#FFDCB8',
+    left: -ScreenWidth * 0.07,
   },
-  rightButton: {
+  rightButton1: {
     width: ScreenWidth * 0.38,
-    height: ScreenWidth * 0.38,
-    backgroundColor: '#00498C',
+    height: ScreenWidth * 0.28,
     textAlign: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 85,
+    backgroundColor: '#218200',
+    borderRadius: 15,
     borderWidth: 7,
-    borderColor: '#464964',
-    right: -ScreenWidth * 0.09,
+    borderColor: '#CEEAC0',
+
+    right: -ScreenWidth * 0.07,
+  },
+  leftButton2: {
+    width: ScreenWidth * 0.38,
+    height: ScreenWidth * 0.28,
+    textAlign: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+
+    backgroundColor: '#3561F1',
+    borderRadius: 15,
+    borderWidth: 7,
+    borderColor: '#99DBE9',
+    left: -ScreenWidth * 0.07,
+  },
+  rightButton2: {
+    width: ScreenWidth * 0.38,
+    height: ScreenWidth * 0.28,
+    textAlign: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#720000',
+    borderRadius: 15,
+    borderWidth: 7,
+    borderColor: '#FFAAAA',
+    right: -ScreenWidth * 0.07,
   },
 });
 export default Bottom;

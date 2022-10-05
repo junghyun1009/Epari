@@ -1,7 +1,13 @@
 import React from 'react';
 import {Text} from 'react-native';
 
-const AppText: React.FC = props => {
+type AppTextProps = {
+  children?: React.ReactNode;
+  props?: any;
+  style?: any;
+};
+
+const AppText: React.FC<AppTextProps> = ({props}) => {
   return (
     <Text {...props} style={{...props.style, fontFamily: 'NeoDGM-Regular'}}>
       {props.children}

@@ -33,12 +33,12 @@ const HerbCollectionList: React.FC<HerbCollectionListProps> = ({
   );
 };
 
-// const ScreenWidth = Dimensions.get('window').width;
+const ScreenWidth = Dimensions.get('window').width;
 const ScreenHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 10,
+    marginTop: ScreenWidth * 0.02,
     alignItems: 'center',
     height: ScreenHeight * 0.35,
     justifyContent: 'center',
