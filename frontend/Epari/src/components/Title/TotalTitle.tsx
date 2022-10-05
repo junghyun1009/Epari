@@ -133,9 +133,47 @@ const TotalTitle: React.FC<TotalListScreenProps> = () => {
           </View>
         ) : (
           <AppText style={styles.reptitle}>
-            {username}님, 칭호를 등록해보세요!
+            {username}님, 칭호를 획득해보세요!
           </AppText>
         )}
+      </View>
+      <View style={styles.fence}>
+        <Image
+          source={require('Epari/src/asset/icons/fence.png')}
+          style={styles.fenceImage}
+        />
+        <Image
+          source={require('Epari/src/asset/icons/fence.png')}
+          style={styles.fenceImage}
+        />
+        <Image
+          source={require('Epari/src/asset/icons/fence.png')}
+          style={styles.fenceImage}
+        />
+        <Image
+          source={require('Epari/src/asset/icons/fence.png')}
+          style={styles.fenceImage}
+        />
+        <Image
+          source={require('Epari/src/asset/icons/fence.png')}
+          style={styles.fenceImage}
+        />
+        <Image
+          source={require('Epari/src/asset/icons/fence.png')}
+          style={styles.fenceImage}
+        />
+        <Image
+          source={require('Epari/src/asset/icons/fence.png')}
+          style={styles.fenceImage}
+        />
+        <Image
+          source={require('Epari/src/asset/icons/fence.png')}
+          style={styles.fenceImage}
+        />
+        <Image
+          source={require('Epari/src/asset/icons/fence.png')}
+          style={styles.fenceImage}
+        />
       </View>
       <View style={styles.container}>
         {titles.length ? (
@@ -205,6 +243,7 @@ const styles = StyleSheet.create({
     // overflow: 'scroll',
     justifyContent: 'center',
     alignItems: 'center',
+    overflow: 'scroll',
   },
   profile: {
     display: 'flex',
@@ -221,8 +260,17 @@ const styles = StyleSheet.create({
     marginLeft: ScreenWidth * 0.025,
   },
   reptitle: {
-    marginVertical: ScreenHeight * 0.06,
+    marginVertical: ScreenHeight * 0.05,
     fontSize: 20,
+  },
+  fence: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  fenceImage: {
+    width: ScreenWidth * 0.1,
+    height: ScreenWidth * 0.1,
   },
   Item: {
     height: ScreenWidth * 0.23,
@@ -234,7 +282,7 @@ const styles = StyleSheet.create({
     marginHorizontal: ScreenWidth * 0.025,
     borderRadius: 12,
     borderWidth: 2.4,
-    backgroundColor: '#CFDE8B',
+    backgroundColor: '#E6F4F1',
   },
   ImageItem: {
     width: ScreenWidth * 0.16,
@@ -254,15 +302,15 @@ const styles = StyleSheet.create({
   TitleItem: {
     fontSize: 18,
     marginBottom: ScreenHeight * 0.005,
-    color: '#00845E',
+    color: '#687798',
   },
   TextItem: {
-    width: ScreenWidth * 0.5,
+    width: ScreenWidth * 0.49,
   },
   repButton: {
     padding: ScreenWidth * 0.02,
     width: ScreenWidth * 0.17,
-    backgroundColor: '#7567C3',
+    backgroundColor: '#FFAAAA',
     borderRadius: 10,
     borderWidth: 2,
     textAlign: 'center',
@@ -271,7 +319,7 @@ const styles = StyleSheet.create({
   activeButton: {
     padding: ScreenWidth * 0.02,
     width: ScreenWidth * 0.17,
-    backgroundColor: '#00845E',
+    backgroundColor: '#687798',
     borderRadius: 10,
     borderWidth: 2,
     textAlign: 'center',
@@ -284,7 +332,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 2,
     textAlign: 'center',
-    color: '#00845E',
+    color: '#687798',
   },
 });
 
