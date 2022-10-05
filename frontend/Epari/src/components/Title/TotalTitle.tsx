@@ -21,9 +21,9 @@ const TotalTitle: React.FC<TotalListScreenProps> = ({navigation}) => {
   useEffect(() => {
     getData();
   }, []);
-  // useEffect(() => {
-  //   getTitles();
-  // }, [token]);
+  useEffect(() => {
+    getData();
+  }, [titles]);
 
   async function fetchToken() {
     const user = auth().currentUser;
@@ -32,7 +32,7 @@ const TotalTitle: React.FC<TotalListScreenProps> = ({navigation}) => {
       .then(idToken => {
         AsyncStorage.removeItem('GoogleAccessToken');
         AsyncStorage.setItem('GoogleAccessToken', idToken);
-        console.log('idToken', idToken);
+        // console.log('idToken', idToken);
       })
       .catch(error => console.log(error));
   }
@@ -41,11 +41,11 @@ const TotalTitle: React.FC<TotalListScreenProps> = ({navigation}) => {
     try {
       const storedToken = await AsyncStorage.getItem('GoogleAccessToken');
       if (storedToken !== null) {
-        console.log('storedToken : ', storedToken);
+        // console.log('storedToken : ', storedToken);
         setToken(storedToken);
         getTitles(storedToken);
         const user = auth().currentUser;
-        console.log('user', user);
+        // console.log('user', user);
         setUsername(user.email.substring(0, user.email.indexOf('@')));
         setProfileimg(user.photoURL);
       }
@@ -68,7 +68,7 @@ const TotalTitle: React.FC<TotalListScreenProps> = ({navigation}) => {
     // await fetchToken();
     // const token = await AsyncStorage.getItem('GoogleAcessToken')
     // token.then(response => console.log(response))
-    console.log('제발', storedToken);
+    // console.log('제발', storedToken);
     const requestOptions = {
       method: 'GET',
       headers: {
@@ -80,7 +80,7 @@ const TotalTitle: React.FC<TotalListScreenProps> = ({navigation}) => {
       .then(response => response.json())
       .then(result => {
         // console.log('토큰토큰', token)
-        console.log('칭호', result);
+        // console.log('칭호', result);
         setTitles(result);
         result.map(each => {
           if (each.isRep) {
@@ -91,7 +91,7 @@ const TotalTitle: React.FC<TotalListScreenProps> = ({navigation}) => {
   };
 
   // getTitles();
-  console.log('titles', titles);
+  // console.log('titles', titles);
 
   const setRep = async titleId => {
     const rep = new FormData();
@@ -108,7 +108,7 @@ const TotalTitle: React.FC<TotalListScreenProps> = ({navigation}) => {
       .then(response => response.json())
       .then(result => {
         // console.log('토큰토큰', token)
-        console.log('칭호', result);
+        // console.log('칭호', result);
         setReptitle(titleId);
         getTitles(token);
       });
@@ -255,7 +255,7 @@ const styles = StyleSheet.create({
     marginLeft: ScreenWidth * 0.025,
   },
   reptitle: {
-    marginVertical: ScreenHeight * 0.06,
+    marginVertical: ScreenHeight * 0.05,
     fontSize: ScreenHeight * 0.025,
   },
   fencebox: {
