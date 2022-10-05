@@ -7,15 +7,14 @@ import {
   Dimensions,
 } from 'react-native';
 
-type HerbBookHeaderProps = {
+export type HerbBookHeaderProps = {
   navigation: any;
 };
-
 const HerbBookHeader: React.FC<HerbBookHeaderProps> = ({navigation}) => {
   return (
     <View style={styles.header}>
       <View style={styles.leftIconContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+        <TouchableOpacity onPress={() => navigation.goBack(null)}>
           <Image
             style={styles.lefticon}
             source={require('Epari/src/asset/icons/lefticon.png')}

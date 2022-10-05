@@ -11,7 +11,7 @@ export type TotalListScreenProps = NativeStackScreenProps<
   'TotalTitle'
 >;
 
-const TotalTitle: React.FC<TotalListScreenProps> = () => {
+const TotalTitle: React.FC<TotalListScreenProps> = ({navigation}) => {
   const [titles, setTitles] = useState([]);
   const [token, setToken] = useState('');
   const [username, setUsername] = useState('');
@@ -133,44 +133,6 @@ const TotalTitle: React.FC<TotalListScreenProps> = () => {
           </View>
         )}
       </View>
-      <View style={styles.fence}>
-        <Image
-          source={require('Epari/src/asset/icons/fence.png')}
-          style={styles.fenceImage}
-        />
-        <Image
-          source={require('Epari/src/asset/icons/fence.png')}
-          style={styles.fenceImage}
-        />
-        <Image
-          source={require('Epari/src/asset/icons/fence.png')}
-          style={styles.fenceImage}
-        />
-        <Image
-          source={require('Epari/src/asset/icons/fence.png')}
-          style={styles.fenceImage}
-        />
-        <Image
-          source={require('Epari/src/asset/icons/fence.png')}
-          style={styles.fenceImage}
-        />
-        <Image
-          source={require('Epari/src/asset/icons/fence.png')}
-          style={styles.fenceImage}
-        />
-        <Image
-          source={require('Epari/src/asset/icons/fence.png')}
-          style={styles.fenceImage}
-        />
-        <Image
-          source={require('Epari/src/asset/icons/fence.png')}
-          style={styles.fenceImage}
-        />
-        <Image
-          source={require('Epari/src/asset/icons/fence.png')}
-          style={styles.fenceImage}
-        />
-      </View>
       <View style={styles.container}>
         {titles.length ? (
           titles.map(title => (
@@ -239,7 +201,6 @@ const styles = StyleSheet.create({
     // overflow: 'scroll',
     justifyContent: 'center',
     alignItems: 'center',
-    overflow: 'scroll',
   },
   profile: {
     display: 'flex',
@@ -256,17 +217,8 @@ const styles = StyleSheet.create({
     marginLeft: ScreenWidth * 0.025,
   },
   reptitle: {
-    marginVertical: ScreenHeight * 0.05,
+    marginVertical: ScreenHeight * 0.06,
     fontSize: 20,
-  },
-  fence: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  fenceImage: {
-    width: ScreenWidth * 0.1,
-    height: ScreenWidth * 0.1,
   },
   Item: {
     height: ScreenWidth * 0.23,
@@ -278,7 +230,7 @@ const styles = StyleSheet.create({
     marginHorizontal: ScreenWidth * 0.025,
     borderRadius: 12,
     borderWidth: 2.4,
-    backgroundColor: '#E6F4F1',
+    backgroundColor: '#CFDE8B',
   },
   ImageItem: {
     width: ScreenWidth * 0.16,
@@ -298,15 +250,15 @@ const styles = StyleSheet.create({
   TitleItem: {
     fontSize: 18,
     marginBottom: ScreenHeight * 0.005,
-    color: '#687798',
+    color: '#00845E',
   },
   TextItem: {
-    width: ScreenWidth * 0.49,
+    width: ScreenWidth * 0.5,
   },
   repButton: {
     padding: ScreenWidth * 0.02,
     width: ScreenWidth * 0.17,
-    backgroundColor: '#FFAAAA',
+    backgroundColor: '#7567C3',
     borderRadius: 10,
     borderWidth: 2,
     textAlign: 'center',
@@ -315,7 +267,7 @@ const styles = StyleSheet.create({
   activeButton: {
     padding: ScreenWidth * 0.02,
     width: ScreenWidth * 0.17,
-    backgroundColor: '#687798',
+    backgroundColor: '#00845E',
     borderRadius: 10,
     borderWidth: 2,
     textAlign: 'center',
@@ -328,7 +280,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 2,
     textAlign: 'center',
-    color: '#687798',
+    color: '#00845E',
   },
 });
 

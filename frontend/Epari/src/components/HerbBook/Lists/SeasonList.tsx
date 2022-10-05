@@ -1,8 +1,8 @@
 import React from 'react';
 import {View} from 'react-native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
-import SeasonStack from '../../../../navigation/SeasonStack';
-import {SeasonStackParamList} from '../../../../types/SeasonStackParamList';
+import SeasonStack from '../../../navigation/SeasonStack';
+import {SeasonStackParamList} from '../../../types/SeasonStackParamList';
 
 export type GetListScreenProps = NativeStackScreenProps<
   SeasonStackParamList,

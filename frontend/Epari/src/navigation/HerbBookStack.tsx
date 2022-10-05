@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, View, Dimensions} from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {GetList, NoGetList, TotalList} from '../components/HerbBook/Lists';
-import {SeasonBlock} from '../components/HerbBook/Lists/Season';
+import {SeasonBlock} from '../components/HerbBook/Lists';
 import {HerbBookStackParamList} from '../types';
 const Tab = createMaterialTopTabNavigator<HerbBookStackParamList>();
 

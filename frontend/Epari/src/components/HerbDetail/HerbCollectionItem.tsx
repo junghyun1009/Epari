@@ -61,8 +61,8 @@ const styles = StyleSheet.create({
     width: ScreenWidth * 0.8,
   },
   collectionImage: {
-    width: ScreenWidth * 0.26,
-    height: ScreenWidth * 0.26,
+    width: ScreenWidth * 0.23,
+    height: ScreenWidth * 0.23,
     margin: ScreenWidth * 0.03,
     borderRadius: 15,
   },

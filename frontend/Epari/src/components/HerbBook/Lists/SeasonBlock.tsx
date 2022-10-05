@@ -1,9 +1,9 @@
 import React from 'react';
 import {View, StyleSheet, Dimensions, ScrollView, Text} from 'react-native';
-import {HerbBookStackParamList} from '../../../../types';
+import {HerbBookStackParamList} from '../../../types';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import ListItem from '../ListItem';
+import ListItem from './ListItem';
 
 export type GetListScreenProps = NativeStackScreenProps<
   HerbBookStackParamList,
