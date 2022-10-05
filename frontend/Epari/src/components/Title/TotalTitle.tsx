@@ -122,8 +122,8 @@ const TotalTitle: React.FC<TotalListScreenProps> = () => {
   };
 
   return (
-    <View>
-      <View style={styles.container}>
+    <View style={styles.background}>
+      <View style={styles.profilecontainer}>
         {reptitle ? (
           <View style={styles.profile}>
             <AppText style={styles.reptitle}>
@@ -132,8 +132,12 @@ const TotalTitle: React.FC<TotalListScreenProps> = () => {
             <Image source={{uri: profileimg}} style={styles.Profileimg} />
           </View>
         ) : (
-          <AppText></AppText>
+          <AppText style={styles.reptitle}>
+            {username}님, 칭호를 등록해보세요!
+          </AppText>
         )}
+      </View>
+      <View style={styles.container}>
         {titles.length ? (
           titles.map(title => (
             <View key={title.titleId} style={styles.Item}>
@@ -186,13 +190,21 @@ let ScreenWidth = Dimensions.get('window').width;
 let ScreenHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
+  background: {
+    backgroundColor: '#FFF7F2',
+    height: ScreenHeight,
+  },
+  profilecontainer: {
+    display: 'flex',
+    alignItems: 'flex-end',
+    marginRight: ScreenWidth * 0.05,
+  },
   container: {
     display: 'flex',
     // flexWrap: 'wrap',
     // overflow: 'scroll',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FFF7F2',
   },
   profile: {
     display: 'flex',
@@ -209,7 +221,7 @@ const styles = StyleSheet.create({
     marginLeft: ScreenWidth * 0.025,
   },
   reptitle: {
-    marginVertical: ScreenHeight * 0.07,
+    marginVertical: ScreenHeight * 0.06,
     fontSize: 20,
   },
   Item: {

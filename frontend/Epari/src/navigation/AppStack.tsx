@@ -73,7 +73,19 @@ const Tab: React.FC = () => {
           title: 'EPARI',
         }}
       />
-      <Screen name="TitleList" component={TitleList} />
+      <Screen
+        name="TitleList"
+        component={TitleList}
+        options={{
+          tabBarIcon: ({focused}) =>
+            focused ? (
+              <Ionicons name="medal" size={30} color="#007C2B" />
+            ) : (
+              <Ionicons name="medal-outline" size={30} color="#110105" />
+            ),
+          title: '칭호',
+        }}
+      />
       <Screen
         name="HerbBook"
         component={HerbBook}
