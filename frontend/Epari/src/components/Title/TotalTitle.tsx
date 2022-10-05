@@ -133,6 +133,44 @@ const TotalTitle: React.FC<TotalListScreenProps> = ({navigation}) => {
           </View>
         )}
       </View>
+      <View style={styles.fencebox}>
+        <Image
+          source={require('Epari/src/asset/icons/fence.png')}
+          style={styles.fence}
+        />
+        <Image
+          source={require('Epari/src/asset/icons/fence.png')}
+          style={styles.fence}
+        />
+        <Image
+          source={require('Epari/src/asset/icons/fence.png')}
+          style={styles.fence}
+        />
+        <Image
+          source={require('Epari/src/asset/icons/fence.png')}
+          style={styles.fence}
+        />
+        <Image
+          source={require('Epari/src/asset/icons/fence.png')}
+          style={styles.fence}
+        />
+        <Image
+          source={require('Epari/src/asset/icons/fence.png')}
+          style={styles.fence}
+        />
+        <Image
+          source={require('Epari/src/asset/icons/fence.png')}
+          style={styles.fence}
+        />
+        <Image
+          source={require('Epari/src/asset/icons/fence.png')}
+          style={styles.fence}
+        />
+        <Image
+          source={require('Epari/src/asset/icons/fence.png')}
+          style={styles.fence}
+        />
+      </View>
       <View style={styles.container}>
         {titles.length ? (
           titles.map(title => (
@@ -156,7 +194,7 @@ const TotalTitle: React.FC<TotalListScreenProps> = ({navigation}) => {
                         onPress={() => {
                           setRep(title.titleId);
                         }}>
-                        등록 중
+                        대표
                       </AppText>
                     ) : (
                       <AppText
@@ -164,7 +202,7 @@ const TotalTitle: React.FC<TotalListScreenProps> = ({navigation}) => {
                         onPress={() => {
                           setRep(title.titleId);
                         }}>
-                        등록하기
+                        획득
                       </AppText>
                     )
                   ) : (
@@ -218,7 +256,16 @@ const styles = StyleSheet.create({
   },
   reptitle: {
     marginVertical: ScreenHeight * 0.06,
-    fontSize: 20,
+    fontSize: ScreenHeight * 0.025,
+  },
+  fencebox: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  fence: {
+    width: ScreenWidth * 0.1,
+    height: ScreenWidth * 0.1,
   },
   Item: {
     height: ScreenWidth * 0.23,
@@ -230,7 +277,7 @@ const styles = StyleSheet.create({
     marginHorizontal: ScreenWidth * 0.025,
     borderRadius: 12,
     borderWidth: 2.4,
-    backgroundColor: '#CFDE8B',
+    backgroundColor: '#E6F4F1',
   },
   ImageItem: {
     width: ScreenWidth * 0.16,
@@ -248,17 +295,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   TitleItem: {
-    fontSize: 18,
+    fontSize: ScreenHeight * 0.025,
     marginBottom: ScreenHeight * 0.005,
-    color: '#00845E',
+    color: '#687798',
   },
   TextItem: {
-    width: ScreenWidth * 0.5,
+    width: ScreenWidth * 0.48,
   },
   repButton: {
     padding: ScreenWidth * 0.02,
     width: ScreenWidth * 0.17,
-    backgroundColor: '#7567C3',
+    backgroundColor: '#FFAAAA',
     borderRadius: 10,
     borderWidth: 2,
     textAlign: 'center',
@@ -267,7 +314,7 @@ const styles = StyleSheet.create({
   activeButton: {
     padding: ScreenWidth * 0.02,
     width: ScreenWidth * 0.17,
-    backgroundColor: '#00845E',
+    backgroundColor: '#687798',
     borderRadius: 10,
     borderWidth: 2,
     textAlign: 'center',
@@ -280,7 +327,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 2,
     textAlign: 'center',
-    color: '#00845E',
+    color: '#687798',
   },
 });
 
