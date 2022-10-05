@@ -36,7 +36,7 @@ const Tab: React.FC = () => {
         options={{
           tabBarIcon: ({focused}) =>
             focused ? (
-              <Ionicons name="medal" size={30} color="#007C2B" />
+              <Ionicons name="medal" size={30} color="#FFAAAA" />
             ) : (
               <Ionicons name="medal-outline" size={30} color="#110105" />
             ),
