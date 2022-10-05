@@ -35,28 +35,31 @@ const HerbInfo: React.FC<HerbInfoProps> = ({
     </View>
   );
 };
-const ScreenWidth = Dimensions.get('window').width;
-const ScreenHeight = Dimensions.get('window').height;
+let ScreenWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 30,
-
+    marginTop: ScreenWidth * 0.04,
     alignItems: 'center',
     backgroundColor: '#FFF7F2',
   },
   ImageContainer: {
-    marginTop: 1,
+    marginTop: ScreenWidth * 0.01,
   },
   nameContatiner: {
-    marginTop: 10,
+    marginTop: ScreenWidth * 0.02,
+    padding: ScreenWidth * 0.01,
+    backgroundColor: '#687798',
+    borderRadius: 5,
   },
   DesContainer: {
-    marginTop: 10,
-    height: ScreenHeight * 0.2,
+    marginTop: ScreenWidth * 0.02,
+    padding: ScreenWidth * 0.02,
     justifyContent: 'center',
     alignItems: 'center',
-    width: ScreenWidth * 0.88,
+    width: ScreenWidth * 0.9,
+    backgroundColor: '#F6EDD9',
+    borderRadius: 5,
   },
   DetailImage: {
     width: ScreenWidth * 0.5,
@@ -65,11 +68,12 @@ const styles = StyleSheet.create({
   },
   nameFont: {
     fontFamily: 'NeoDGM-Regular',
-    fontSize: 25,
+    fontSize: ScreenWidth * 0.05,
+    color: '#FFF7F2',
   },
   desFont: {
     fontFamily: 'NeoDGM-Regular',
-    fontSize: 15,
+    fontSize: ScreenWidth * 0.033,
   },
 });
 export default HerbInfo;
