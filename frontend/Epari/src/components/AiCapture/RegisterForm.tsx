@@ -1,10 +1,8 @@
-import {useNavigation} from '@react-navigation/native';
 import React, {useState, useEffect} from 'react';
 import {
   KeyboardAvoidingView,
   ScrollView,
   View,
-  Image,
   TextInput,
   StyleSheet,
   Pressable,
@@ -25,8 +23,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import auth from '@react-native-firebase/auth';
 import ImageChanger from './ImageChanger';
 
-const RegisterForm: React.FC = ({}) => {
-  const navigation = useNavigation();
+export type RegisterScreenProps = {
+  navigation: any;
+};
+
+const RegisterForm: React.FC<RegisterScreenProps> = ({navigation}) => {
   const picturedImageState = useRecoilValue(picturedImage);
   const resultPlantState = useRecoilValue(resultPlant);
   const areaCodeState = useRecoilValue(areaCode);
@@ -147,7 +148,11 @@ const RegisterForm: React.FC = ({}) => {
 
     await fetch('http://j7a201.p.ssafy.io/epari/v1/collection/', requestOptions)
       .then(response => response.json())
-      .then(result => {})
+      .then(result => {
+        console.log('result-', result);
+        console.log('formdata-', formdata);
+        navigation.navigate('HerbBook');
+      })
       .catch(error => console.log('error', error));
 
     const titleIsValid = inputs.title.value.trim().length > 0;
@@ -302,7 +307,6 @@ const RegisterForm: React.FC = ({}) => {
           onPress={() => {
             saveImage();
             Keyboard.dismiss();
-            navigation.navigate('HerbBook');
           }}>
           등록하기
         </AppText>

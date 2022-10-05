@@ -21,4 +21,5 @@ export type AppStackParamList = {
   };
   TitleList: undefined;
   GetTitle: undefined;
+  TotalTitle: undefined;
 };

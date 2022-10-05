@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, ScrollView} from 'react-native';
 import {AppStackParamList} from '../../../types';
+import {useIsFocused} from '@react-navigation/native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import ListItem from './ListItem';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -12,6 +13,7 @@ export type GetListScreenProps = NativeStackScreenProps<
 
 const NoGetList: React.FC<GetListScreenProps> = ({navigation}) => {
   const [bookList, setBookList] = React.useState([]);
+  const isFocused = useIsFocused();
   React.useEffect(() => {
     const getData = async () => {
       try {
@@ -43,7 +45,6 @@ const NoGetList: React.FC<GetListScreenProps> = ({navigation}) => {
                   detailPictureUrl: item.detailPictureUrl,
                 });
               });
-              console.log(temp_List);
               setBookList(temp_List);
             })
             .catch(error => console.log('error', error));
@@ -53,7 +54,7 @@ const NoGetList: React.FC<GetListScreenProps> = ({navigation}) => {
       }
     };
     getData();
-  }, []);
+  }, [isFocused]);
 
   return (
     <ScrollView style={styles.background}>

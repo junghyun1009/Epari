@@ -30,36 +30,6 @@ const Tab: React.FC = () => {
         tabBarActiveTintColor: '#FFAAAA',
         tabBarInactiveTintColor: '#110105',
       }}>
-      {/* <Screen
-        name="Login"
-        component={Login}
-        options={{
-          tabBarIcon: ({focused}) =>
-            focused ? (
-              <Ionicons name="person" size={30} color="#FFAAAA" />
-            ) : (
-              <Ionicons name="person-outline" size={30} color="#110105" />
-            ),
-          title: '로그인',
-        }}
-      /> */}
-      {/* <Screen
-        name="UserPage"
-        component={UserPage}
-        options={{
-          tabBarIcon: ({focused}) =>
-            focused ? (
-              <Ionicons name="person-circle" size={30} color="#FFAAAA" />
-            ) : (
-              <Ionicons
-                name="person-circle-outline"
-                size={30}
-                color="#110105"
-              />
-            ),
-          title: '내 정보',
-        }}
-      /> */}
       <Screen
         name="TitleList"
         component={TitleList}
@@ -111,7 +81,6 @@ const AppStack: React.FC = () => {
       <Stack.Screen name="AiResult" component={AiResult} />
       <Stack.Screen name="AiRegister" component={AiRegister} />
       <Stack.Screen name="AiSpareResult" component={AiSpareResult} />
-      <Stack.Screen name="HerbBook" component={HerbBook} />
       <Stack.Screen name="HerbDetail" component={HerbDetail} />
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="UserPage" component={UserPage} />
