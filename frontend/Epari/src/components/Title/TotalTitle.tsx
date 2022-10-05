@@ -12,7 +12,6 @@ import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import AppText from '../AppText';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import auth from '@react-native-firebase/auth';
-import {separateOperations} from 'graphql';
 
 export type TotalListScreenProps = NativeStackScreenProps<
   AppStackParamList,
@@ -23,6 +22,7 @@ const TotalTitle: React.FC<TotalListScreenProps> = () => {
   const [titles, setTitles] = useState([]);
   const [token, setToken] = useState('');
   const [username, setUsername] = useState('');
+  const [profileimg, setProfileimg] = useState('');
   const [reptitle, setReptitle] = useState(0);
 
   useEffect(() => {
@@ -54,6 +54,7 @@ const TotalTitle: React.FC<TotalListScreenProps> = () => {
         const user = auth().currentUser;
         console.log('user', user);
         setUsername(user.email.substring(0, user.email.indexOf('@')));
+        setProfileimg(user.photoURL);
       }
     } catch (e) {
       console.log(e);
@@ -124,9 +125,12 @@ const TotalTitle: React.FC<TotalListScreenProps> = () => {
     <View>
       <View style={styles.container}>
         {reptitle ? (
-          <AppText style={styles.reptitle}>
-            {titles[reptitle - 1].titleName}, {username}님!
-          </AppText>
+          <View style={styles.profile}>
+            <AppText style={styles.reptitle}>
+              {titles[reptitle - 1].titleName}, {username}님!
+            </AppText>
+            <Image source={{uri: profileimg}} style={styles.Profileimg} />
+          </View>
         ) : (
           <AppText></AppText>
         )}
@@ -189,6 +193,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#FFF7F2',
+  },
+  profile: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  Profileimg: {
+    width: ScreenWidth * 0.16,
+    height: ScreenWidth * 0.16,
+    borderRadius: 50,
+    borderWidth: 2.4,
+    borderColor: 'black',
+    backgroundColor: '#FFFFFF',
+    marginLeft: ScreenWidth * 0.025,
   },
   reptitle: {
     marginVertical: ScreenHeight * 0.07,
