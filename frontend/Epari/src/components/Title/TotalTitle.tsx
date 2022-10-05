@@ -5,7 +5,6 @@ import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import AppText from '../AppText';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import auth from '@react-native-firebase/auth';
-import {separateOperations} from 'graphql';
 
 export type TotalListScreenProps = NativeStackScreenProps<
   AppStackParamList,
@@ -16,6 +15,7 @@ const TotalTitle: React.FC<TotalListScreenProps> = () => {
   const [titles, setTitles] = useState([]);
   const [token, setToken] = useState('');
   const [username, setUsername] = useState('');
+  const [profileimg, setProfileimg] = useState('');
   const [reptitle, setReptitle] = useState(0);
 
   useEffect(() => {
@@ -47,6 +47,7 @@ const TotalTitle: React.FC<TotalListScreenProps> = () => {
         const user = auth().currentUser;
         console.log('user', user);
         setUsername(user.email.substring(0, user.email.indexOf('@')));
+        setProfileimg(user.photoURL);
       }
     } catch (e) {
       console.log(e);
@@ -114,15 +115,22 @@ const TotalTitle: React.FC<TotalListScreenProps> = () => {
   };
 
   return (
-    <View>
-      <View style={styles.container}>
+    <View style={styles.background}>
+      <View style={styles.profilecontainer}>
         {reptitle ? (
-          <AppText style={styles.reptitle}>
-            {titles[reptitle - 1].titleName}, {username}님!
-          </AppText>
+          <View style={styles.profile}>
+            <AppText style={styles.reptitle}>
+              {titles[reptitle - 1].titleName}, {username}님!
+            </AppText>
+            <Image source={{uri: profileimg}} style={styles.Profileimg} />
+          </View>
         ) : (
-          <AppText></AppText>
+          <AppText style={styles.reptitle}>
+            {username}님, 칭호를 등록해보세요!
+          </AppText>
         )}
+      </View>
+      <View style={styles.container}>
         {titles.length ? (
           titles.map(title => (
             <View key={title.titleId} style={styles.Item}>
@@ -175,16 +183,38 @@ let ScreenWidth = Dimensions.get('window').width;
 let ScreenHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
+  background: {
+    backgroundColor: '#FFF7F2',
+    height: ScreenHeight,
+  },
+  profilecontainer: {
+    display: 'flex',
+    alignItems: 'flex-end',
+    marginRight: ScreenWidth * 0.05,
+  },
   container: {
     display: 'flex',
     // flexWrap: 'wrap',
     // overflow: 'scroll',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FFF7F2',
+  },
+  profile: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  Profileimg: {
+    width: ScreenWidth * 0.16,
+    height: ScreenWidth * 0.16,
+    borderRadius: 50,
+    borderWidth: 2.4,
+    borderColor: 'black',
+    backgroundColor: '#FFFFFF',
+    marginLeft: ScreenWidth * 0.025,
   },
   reptitle: {
-    marginVertical: ScreenHeight * 0.07,
+    marginVertical: ScreenHeight * 0.06,
     fontSize: 20,
   },
   Item: {
