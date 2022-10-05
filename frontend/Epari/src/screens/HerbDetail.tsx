@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {AppStackParamList} from '../types';
 import {
   HerbCollectionList,
@@ -61,26 +61,15 @@ const HerbDetail: React.FC<DetailScreenProps> = ({
         detailPictureUrl={detailPictureUrl}
       />
       <HerbCollectionList collection={collectionList} />
-      <View style={styles.container}>
-        <Text style={styles.fontTest}>Epari Herb Detail Screenn</Text>
-        {id === undefined ? null : <Text>id:{id}</Text>}
-      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   background: {
-    backgroundColor: '#FFF7F2',
-  },
-  container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
-  },
-  fontTest: {
-    fontFamily: 'NeoDGM-Regular',
+    backgroundColor: '#FFF7F2',
+    justifyContent: 'flex-start',
   },
 });
 export default HerbDetail;

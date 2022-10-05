@@ -38,6 +38,7 @@ const ScreenHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: '#FFF7F2',
     marginTop: ScreenWidth * 0.02,
     alignItems: 'center',
     height: ScreenHeight * 0.35,
