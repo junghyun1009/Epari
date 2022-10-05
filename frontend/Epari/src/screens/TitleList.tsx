@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View} from 'react-native';
 import TitleListHeader from '../components/Title/Header';
 // import TitleListStack from '../navigation/TitleListStack';
 import TotalTitle from '../components/Title/TotalTitle';

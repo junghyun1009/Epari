@@ -22,12 +22,17 @@ def titles(request):
     userEmail = get_userEmail(isLogin)
     user = User.objects.get(userEmail=userEmail)
 
-    titles = Obtained.objects.filter(userId=user)
-
     # 사용자 전체 칭호 확인
     def title_list():
-        serializer = ObtainedSerializer(titles, many=True)
-        print(serializer.data)
+        titles = Title.objects.all()
+        for title in titles:
+            obtained = Obtained.objects.filter(titleId=title.titleId, userId=user)
+            if obtained.exists():
+                title.isObtained = True
+                title.isRep = obtained[0].isRep
+            else:
+                title.isObtained = False
+        serializer = TitleListSerializer(titles, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def obtain_title():

@@ -23,6 +23,7 @@ import AppText from '../AppText';
 import LocationSelector from './LocationSelector';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import auth from '@react-native-firebase/auth';
+import ImageChanger from './ImageChanger';
 
 const RegisterForm: React.FC = ({}) => {
   const navigation = useNavigation();
@@ -123,10 +124,10 @@ const RegisterForm: React.FC = ({}) => {
         });
     }
   };
-  console.log('token', token);
-  console.log('cnt', collections);
-  console.log('dolarge', dolargeCnt);
-  console.log('sansam', sansamCnt);
+  // console.log('token', token);
+  // console.log('cnt', collections);
+  // console.log('dolarge', dolargeCnt);
+  // console.log('sansam', sansamCnt);
 
   const saveImage = async () => {
     await fetchToken();
@@ -195,8 +196,8 @@ const RegisterForm: React.FC = ({}) => {
           response.json();
         })
         .then(result => {
-          console.log('1111111111', result);
-          console.log(obtained);
+          // console.log('1111111111', result);
+          // console.log(obtained);
         });
     } else if (dolargeCnt === 2 && resultPlantState.plantId === 14) {
       const obtained = new FormData();
@@ -214,8 +215,8 @@ const RegisterForm: React.FC = ({}) => {
           response.json();
         })
         .then(result => {
-          console.log('1111111111', result);
-          console.log(obtained);
+          // console.log('1111111111', result);
+          // console.log(obtained);
         })
         .catch(err => console.log(err));
     } else if (sansamCnt === 0 && resultPlantState.plantId === 67) {
@@ -234,8 +235,8 @@ const RegisterForm: React.FC = ({}) => {
           response.json();
         })
         .then(result => {
-          console.log('1111111111', result);
-          console.log(obtained);
+          // console.log('1111111111', result);
+          // console.log(obtained);
         });
     } else if (
       plantcnt.length === 9 &&
@@ -283,7 +284,8 @@ const RegisterForm: React.FC = ({}) => {
         });
     }
 
-    navigation.navigate('HerbDetail', {id: resultPlantState.plantId});
+    // navigation.navigate('HerbDetail', {id: resultPlantState.plantId});
+    // ;
   };
 
   const plantName = (resultPlantState.plantName || '').split('_', 1);
@@ -297,10 +299,19 @@ const RegisterForm: React.FC = ({}) => {
       style={styles.container}>
       <ScrollView>
         <View style={styles.plantInfo}>
-          <Image
+          {/* <Image
             source={{uri: picturedImageState.uri}}
             style={styles.plantImage}
-          />
+          /> */}
+          <View style={styles.imageContainer}>
+            <ImageChanger
+              imageStyle={styles.plantImage}
+              imageUrl={{uri: picturedImageState.uri}}
+            />
+            <AppText style={styles.imgaeText}>
+              등록할 사진을 바꾸려면 클릭!
+            </AppText>
+          </View>
           <AppText style={styles.plantName}>{plantName}</AppText>
         </View>
         <LocationSelector />
@@ -341,6 +352,7 @@ const RegisterForm: React.FC = ({}) => {
           onPress={() => {
             saveImage();
             Keyboard.dismiss();
+            navigation.navigate('HerbBook');
           }}>
           등록하기
         </AppText>
@@ -367,13 +379,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: ScreenWidth * 0.03,
   },
+  imageContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  imgaeText: {
+    position: 'absolute',
+    color: '#fff',
+  },
   plantImage: {
     width: ScreenWidth * 0.65,
     height: ScreenWidth * 0.65,
     borderWidth: 3,
     borderRadius: 12,
     borderColor: '#000',
-
+    backgroundColor: '#000',
+    opacity: 0.5,
     margin: ScreenWidth * 0.06,
   },
   plantName: {

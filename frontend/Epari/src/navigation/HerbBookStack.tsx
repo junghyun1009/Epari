@@ -1,13 +1,8 @@
 import React from 'react';
 import {StyleSheet, View, Dimensions} from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import {
-  GetList,
-  NoGetList,
-  TotalList,
-  SeasonList,
-  SeasonBlock,
-} from '../components/HerbBook/Lists';
+import {GetList, NoGetList, TotalList} from '../components/HerbBook/Lists';
+import {SeasonBlock} from '../components/HerbBook/Lists/Season';
 import {HerbBookStackParamList} from '../types';
 const Tab = createMaterialTopTabNavigator<HerbBookStackParamList>();
 
@@ -21,7 +16,7 @@ const HerbBookStack = () => {
           tabBarLabelStyle: styles.TabBarLabel,
           tabBarItemStyle: styles.TabBarItem,
           tabBarIndicatorStyle: styles.TabBarIndicator,
-          tabBarActiveTintColor: '#FFFFFF',
+          tabBarActiveTintColor: '#FFF7F2',
           tabBarInactiveTintColor: '#110105',
         }}>
         <Tab.Screen
@@ -39,11 +34,6 @@ const HerbBookStack = () => {
           component={NoGetList}
           options={{title: '미수집'}}
         />
-        {/* <Tab.Screen
-          name="Main"
-          component={SeasonList}
-          options={{title: '계절'}}
-        /> */}
         <Tab.Screen
           name="Season"
           component={SeasonBlock}
@@ -54,16 +44,17 @@ const HerbBookStack = () => {
   );
 };
 
+let ScreenWidth = Dimensions.get('window').width;
 let ScreenHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   HerbBookStackContatiner: {
-    height: ScreenHeight * 0.77,
+    height: ScreenHeight * 0.76,
     justifyContent: 'center',
     backgroundColor: '#FFF7F2',
   },
   TabBar: {
-    width: '80%',
+    width: '82%',
     borderRadius: 90,
     backgroundColor: '#FFFFFF',
     alignSelf: 'center',
@@ -73,12 +64,12 @@ const styles = StyleSheet.create({
   },
   TabBarLabel: {
     fontFamily: 'NeoDGM-Regular',
-    fontSize: 16,
+    fontSize: ScreenWidth * 0.031,
     textAlign: 'center',
   },
   TabBarItem: {},
   TabBarIndicator: {
-    backgroundColor: '#007C2B',
+    backgroundColor: '#FFAAAA',
     height: '100%',
     width: '23.7%',
     borderRadius: 90,

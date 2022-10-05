@@ -1,12 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {
-  View,
-  StyleSheet,
-  Text,
-  Image,
-  Dimensions,
-  Pressable,
-} from 'react-native';
+import {View, StyleSheet, Image, Dimensions, Pressable} from 'react-native';
 import {AppStackParamList} from '../../types';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import AppText from '../AppText';
