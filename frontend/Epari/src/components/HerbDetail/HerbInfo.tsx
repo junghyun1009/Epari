@@ -9,39 +9,27 @@ import {
 } from 'react-native';
 
 type HerbInfoProps = {
-  DetailInfo: {
-    plantName: string;
-    detailPictureUrl: any;
-    plantDescription: string;
-    collection: {
-      collectId: number;
-      collectPictureUrl: string;
-      collectDate: string;
-      collectTitle: string;
-      collectContent: string;
-      collectPlace: string;
-      plantId: number;
-      userId: string;
-      locationId: string;
-    }[];
-  };
+  description: string;
+  detailPictureUrl: string;
+  plantName: string;
 };
 
-const HerbInfo: React.FC<HerbInfoProps> = ({DetailInfo}) => {
+const HerbInfo: React.FC<HerbInfoProps> = ({
+  plantName,
+  description,
+  detailPictureUrl,
+}) => {
   return (
     <View style={styles.container}>
       <View style={styles.ImageContainer}>
-        <Image
-          style={styles.DetailImage}
-          source={DetailInfo.detailPictureUrl}
-        />
+        <Image style={styles.DetailImage} source={{uri: detailPictureUrl}} />
       </View>
       <View style={styles.nameContatiner}>
-        <Text style={styles.nameFont}>{DetailInfo.plantName}</Text>
+        <Text style={styles.nameFont}>{plantName}</Text>
       </View>
       <View style={styles.DesContainer}>
         <ScrollView>
-          <Text style={styles.desFont}>{DetailInfo.plantDescription}</Text>
+          <Text style={styles.desFont}>{description}</Text>
         </ScrollView>
       </View>
     </View>

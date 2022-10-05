@@ -33,6 +33,7 @@ const HerbCollectionModal: React.FC<HerbCollectionModalProps> = ({
   modalVisible,
   setModalVisible,
 }) => {
+  console.log(collectionItem);
   return (
     <Modal
       isVisible={modalVisible}
@@ -67,7 +68,7 @@ const HerbCollectionModal: React.FC<HerbCollectionModalProps> = ({
           </View>
           <View style={styles.ImageContainer}>
             <Image
-              source={require('Epari/src/asset/temp/image7.png')}
+              source={{uri: collectionItem.collectPictureUrl}}
               style={styles.ModalImage}
             />
           </View>

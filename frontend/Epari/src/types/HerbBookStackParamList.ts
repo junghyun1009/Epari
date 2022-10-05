@@ -4,6 +4,8 @@ export type HerbBookStackParamList = {
   NoGetList: undefined;
   HerbDetail: {
     id: number;
+    description: string;
+    detailPictureUrl: string;
   };
   ListItem: {
     id: number;

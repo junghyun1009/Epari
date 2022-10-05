@@ -40,7 +40,7 @@ const HerbCollectionItem: React.FC<HerbCollectionItemProps> = ({
       <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
         <Image
           source={{
-            uri: 'https://dolarge.s3.ap-northeast-2.amazonaws.com/0010.jpg',
+            uri: collectionItem.collectPictureUrl,
           }}
           style={styles.collectionImage}
         />

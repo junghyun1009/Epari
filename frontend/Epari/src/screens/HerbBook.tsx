@@ -16,15 +16,6 @@ export type HerbBookScreenProps = StackScreenProps<
 >;
 
 const HerbBook: React.FC<HerbBookScreenProps> = ({navigation}) => {
-  const id = '123';
-  // const {data} = useQuery([QueryKeys.HERBLIST], () =>
-  //   restFetcher({
-  //     method: 'GET',
-  //     path: 'collection',
-  //   }),
-  // );
-  console.log(id);
-  // console.log('2' + data);
   return (
     <ScrollView style={styles.background}>
       <HerbBookHeader navigation={navigation} />
