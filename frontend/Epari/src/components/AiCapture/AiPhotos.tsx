@@ -1,6 +1,6 @@
 import React from 'react';
-import {Image, Pressable, StyleSheet, Dimensions} from 'react-native';
-import {launchCamera} from 'react-native-image-picker';
+import {Pressable} from 'react-native';
+import {launchImageLibrary} from 'react-native-image-picker';
 import {useSetRecoilState} from 'recoil';
 import {
   picturedImage,
@@ -10,7 +10,7 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import AppText from '../AppText';
 
-const AiCamera: React.FC = ({buttonStyle, textStyle, name}) => {
+const AiPhotos: React.FC = ({buttonStyle, textStyle, name}) => {
   const navigation = useNavigation();
   const setPicturedImage = useSetRecoilState(picturedImage);
   const setCapturedMainImage = useSetRecoilState(capturedMainImage);
@@ -21,7 +21,7 @@ const AiCamera: React.FC = ({buttonStyle, textStyle, name}) => {
       type: '',
       name: '',
     };
-    await launchCamera({}, res => {
+    await launchImageLibrary({}, res => {
       if (res.didCancel) {
         console.log('User Cancelled image picker');
       } else if (res.errorCode) {
@@ -57,26 +57,17 @@ const AiCamera: React.FC = ({buttonStyle, textStyle, name}) => {
   };
 
   return (
-    <Pressable
-      style={buttonStyle}
-      onPress={() => {
-        uploadImage();
-        navigation.navigate('AiResult');
-      }}>
-      <AppText style={textStyle}>{name}</AppText>
-      {/* <Image source={require('../../asset/camera.png')} style={styles.image} /> */}
+    <Pressable style={buttonStyle}>
+      <AppText
+        style={textStyle}
+        onPress={() => {
+          uploadImage();
+          navigation.navigate('AiResult');
+        }}>
+        {name}
+      </AppText>
     </Pressable>
   );
 };
 
-export default AiCamera;
-
-let ScreenWidth = Dimensions.get('window').width;
-let ScreenHeight = Dimensions.get('window').height;
-
-const styles = StyleSheet.create({
-  image: {
-    width: ScreenWidth * 0.3,
-    height: ScreenWidth * 0.3,
-  },
-});
+export default AiPhotos;
