@@ -14,7 +14,7 @@ const TitleListHeader: React.FC = () => {
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: '#007C2B',
+    backgroundColor: '#697798',
     height: 60,
     flexDirection: 'row',
   },

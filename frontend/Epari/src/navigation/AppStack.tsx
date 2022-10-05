@@ -60,7 +60,19 @@ const Tab: React.FC = () => {
           title: '내 정보',
         }}
       /> */}
-      <Screen name="TitleList" component={TitleList} />
+      <Screen
+        name="TitleList"
+        component={TitleList}
+        options={{
+          tabBarIcon: ({focused}) =>
+            focused ? (
+              <Ionicons name="medal" size={30} color="#FFAAAA" />
+            ) : (
+              <Ionicons name="medal-outline" size={30} color="#110105" />
+            ),
+          title: '칭호',
+        }}
+      />
       <Screen
         name="Home"
         component={Home}
@@ -72,19 +84,6 @@ const Tab: React.FC = () => {
               <Ionicons name="home-outline" size={30} color="#110105" />
             ),
           title: 'EPARI',
-        }}
-      />
-      <Screen
-        name="TitleList"
-        component={TitleList}
-        options={{
-          tabBarIcon: ({focused}) =>
-            focused ? (
-              <Ionicons name="medal" size={30} color="#007C2B" />
-            ) : (
-              <Ionicons name="medal-outline" size={30} color="#110105" />
-            ),
-          title: '칭호',
         }}
       />
       <Screen
