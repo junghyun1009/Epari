@@ -6,6 +6,7 @@ import AcheivePoint from '../components/HerbBook/AchievePoint';
 import HerbBookStack from '../navigation/HerbBookStack';
 import {AppStackParamList} from '../types';
 import {StackScreenProps} from '@react-navigation/stack';
+import SeasonStack from '../navigation/SeasonStack';
 // import {useQuery} from '@tanstack/react-query';
 // import {QueryKeys, restFetcher} from '../queryClient';
 
@@ -29,6 +30,7 @@ const HerbBook: React.FC<HerbBookScreenProps> = ({navigation}) => {
       <HerbBookHeader navigation={navigation} />
       <AcheivePoint />
       <HerbBookStack />
+      {/* <SeasonStack /> */}
     </ScrollView>
   );
 };
