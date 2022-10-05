@@ -34,7 +34,6 @@ const RegisterForm: React.FC<RegisterScreenProps> = ({navigation}) => {
   const sigunguCodeState = useRecoilValue(sigunguCode);
 
   const [inputs, setInputs] = useState({
-    // place: '',
     title: {value: '', isValid: true},
     content: {value: '', isValid: true},
   });
@@ -55,9 +54,6 @@ const RegisterForm: React.FC<RegisterScreenProps> = ({navigation}) => {
   useEffect(() => {
     getData();
   }, []);
-  // useEffect(() => {
-  //   getCollection();
-  // }, [token]);
 
   const inputChangedHandler = (
     inputIdentifier: string,
@@ -85,7 +81,6 @@ const RegisterForm: React.FC<RegisterScreenProps> = ({navigation}) => {
     try {
       let storedToken = await AsyncStorage.getItem('GoogleAccessToken');
       if (storedToken !== null) {
-        console.log('storedToken : ', storedToken);
         setToken(storedToken);
       }
     } catch (e) {
@@ -103,12 +98,9 @@ const RegisterForm: React.FC<RegisterScreenProps> = ({navigation}) => {
       fetch('http://j7a201.p.ssafy.io/epari/v1/collection/', requestOptions)
         .then(response => response.json())
         .then(result => {
-          console.log(result);
-          // console.log(collections);
           let cnt = 0;
           let plant = [];
           result.forEach(each => {
-            console.log(each.plantId, cnt + each.collectionCnt);
             cnt += each.collectionCnt;
             if (each.isCollected) {
               plant.push(each.plantId);
@@ -125,10 +117,6 @@ const RegisterForm: React.FC<RegisterScreenProps> = ({navigation}) => {
         });
     }
   };
-  // console.log('token', token);
-  // console.log('cnt', collections);
-  // console.log('dolarge', dolargeCnt);
-  // console.log('sansam', sansamCnt);
 
   const saveImage = async () => {
     await fetchToken();
@@ -146,7 +134,6 @@ const RegisterForm: React.FC<RegisterScreenProps> = ({navigation}) => {
     formdata.append('collectPictureUrl', image);
     formdata.append('areaId', areaCodeState);
     formdata.append('sigunguId', sigunguCodeState);
-    formdata.append('collectPlace', '1');
     formdata.append('collectTitle', inputs.title.value);
     formdata.append('collectContent', inputs.content.value);
 
@@ -158,7 +145,7 @@ const RegisterForm: React.FC<RegisterScreenProps> = ({navigation}) => {
         Authorization: token,
       },
     };
-    // await fetch('http://127.0.0.1:8000/epari/v1/collection/', requestOptions)
+
     await fetch('http://j7a201.p.ssafy.io/epari/v1/collection/', requestOptions)
       .then(response => response.json())
       .then(result => {
@@ -197,10 +184,7 @@ const RegisterForm: React.FC<RegisterScreenProps> = ({navigation}) => {
         .then(response => {
           response.json();
         })
-        .then(result => {
-          // console.log('1111111111', result);
-          // console.log(obtained);
-        });
+        .then(result => {});
     } else if (dolargeCnt === 2 && resultPlantState.plantId === 14) {
       const obtained = new FormData();
       obtained.append('titleId', 2);
@@ -216,10 +200,7 @@ const RegisterForm: React.FC<RegisterScreenProps> = ({navigation}) => {
         .then(response => {
           response.json();
         })
-        .then(result => {
-          // console.log('1111111111', result);
-          // console.log(obtained);
-        })
+        .then(result => {})
         .catch(err => console.log(err));
     } else if (sansamCnt === 0 && resultPlantState.plantId === 67) {
       const obtained = new FormData();
@@ -236,10 +217,7 @@ const RegisterForm: React.FC<RegisterScreenProps> = ({navigation}) => {
         .then(response => {
           response.json();
         })
-        .then(result => {
-          // console.log('1111111111', result);
-          // console.log(obtained);
-        });
+        .then(result => {});
     } else if (
       plantcnt.length === 9 &&
       !plantcnt.includes(resultPlantState.plantId)
@@ -258,10 +236,7 @@ const RegisterForm: React.FC<RegisterScreenProps> = ({navigation}) => {
         .then(response => {
           response.json();
         })
-        .then(result => {
-          console.log('1111111111', result);
-          console.log(obtained);
-        });
+        .then(result => {});
     } else if (
       plantcnt.length === 66 &&
       !plantcnt.includes(resultPlantState.plantId)
@@ -280,14 +255,8 @@ const RegisterForm: React.FC<RegisterScreenProps> = ({navigation}) => {
         .then(response => {
           response.json();
         })
-        .then(result => {
-          console.log('1111111111', result);
-          console.log(obtained);
-        });
+        .then(result => {});
     }
-
-    // navigation.navigate('HerbDetail', {id: resultPlantState.plantId});
-    // ;
   };
 
   const plantName = (resultPlantState.plantName || '').split('_', 1);
@@ -295,16 +264,9 @@ const RegisterForm: React.FC<RegisterScreenProps> = ({navigation}) => {
   const formIsInvalid = !inputs.title.isValid || !inputs.content.isValid;
 
   return (
-    <KeyboardAvoidingView
-      // behavior="padding"
-      // keyboardVerticalOffset={-170}
-      style={styles.container}>
+    <KeyboardAvoidingView style={styles.container}>
       <ScrollView>
         <View style={styles.plantInfo}>
-          {/* <Image
-            source={{uri: picturedImageState.uri}}
-            style={styles.plantImage}
-          /> */}
           <View style={styles.imageContainer}>
             <ImageChanger
               imageStyle={styles.plantImage}
@@ -317,15 +279,6 @@ const RegisterForm: React.FC<RegisterScreenProps> = ({navigation}) => {
           <AppText style={styles.plantName}>{plantName}</AppText>
         </View>
         <LocationSelector />
-        {/* <View style={styles.inputConatiner}>
-          <Text style={styles.inputLabel}>상세 지역: </Text>
-          <TextInput
-            style={styles.inputBox}
-            onChangeText={inputChangedHandler.bind(this, 'place')}
-            value={inputs.place}
-            maxLength={50}
-          />
-        </View> */}
         <View style={styles.inputConatiner}>
           <AppText style={styles.inputLabel}>제목: </AppText>
           <TextInput
@@ -389,11 +342,11 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   plantImage: {
-    width: ScreenWidth * 0.65,
-    height: ScreenWidth * 0.65,
+    width: ScreenWidth * 0.55,
+    height: ScreenWidth * 0.55,
     borderWidth: 3,
     borderRadius: 12,
-    borderColor: '#000',
+    borderColor: '#687798',
     backgroundColor: '#000',
     opacity: 0.5,
     margin: ScreenWidth * 0.06,
@@ -437,10 +390,10 @@ const styles = StyleSheet.create({
   button: {
     width: ScreenWidth * 0.33,
     paddingVertical: ScreenHeight * 0.01,
-    backgroundColor: '#00845E',
+    backgroundColor: '#687798',
     borderWidth: 5,
     borderRadius: 11,
-    borderColor: '#00845E',
+    borderColor: '#687798',
     margin: ScreenWidth * 0.03,
   },
   buttonText: {
