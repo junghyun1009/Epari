@@ -203,6 +203,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: ScreenWidth * 0.05,
+    backgroundColor: '#FFF7F2',
   },
   plantInfo: {
     justifyContent: 'center',
@@ -212,11 +213,20 @@ const styles = StyleSheet.create({
   plantImage: {
     width: ScreenWidth * 0.65,
     height: ScreenWidth * 0.65,
+    borderWidth: 3,
     borderRadius: 12,
+    borderColor: '#000',
+
     margin: ScreenWidth * 0.06,
   },
   plantName: {
-    fontSize: ScreenHeight * 0.03,
+    fontSize: ScreenHeight * 0.035,
+    textShadowColor: '#99AEBB',
+    textShadowRadius: 2,
+    textShadowOffset: {
+      width: 1.8,
+      height: 1.8,
+    },
   },
   inputConatiner: {
     marginTop: ScreenHeight * 0.01,
@@ -224,12 +234,14 @@ const styles = StyleSheet.create({
   inputLabel: {
     justifyContent: 'center',
     alignItems: 'center',
+    fontSize: ScreenHeight * 0.02,
     marginVertical: ScreenHeight * 0.01,
   },
   inputBox: {
     alignItems: 'center',
-    borderWidth: 1,
+    borderWidth: 3,
     borderRadius: 12,
+    borderColor: '#3A4A40',
     backgroundColor: '#F6EDD9',
     fontFamily: 'NeoDGM-Regular',
   },
@@ -244,15 +256,23 @@ const styles = StyleSheet.create({
     fontSize: ScreenHeight * 0.018,
   },
   button: {
-    width: ScreenWidth * 0.3,
-    paddingVertical: ScreenHeight * 0.02,
+    width: ScreenWidth * 0.33,
+    paddingVertical: ScreenHeight * 0.01,
     backgroundColor: '#00845E',
-    borderRadius: 8,
+    borderWidth: 5,
+    borderRadius: 11,
+    borderColor: '#00845E',
     margin: ScreenWidth * 0.03,
-    elevation: 1,
   },
   buttonText: {
     textAlign: 'center',
     color: '#fff',
+    fontSize: ScreenHeight * 0.025,
+    textShadowColor: '#3A4A40',
+    textShadowRadius: 2,
+    textShadowOffset: {
+      width: 1.8,
+      height: 1.8,
+    },
   },
 });
