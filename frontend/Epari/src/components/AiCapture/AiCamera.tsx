@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, Pressable, StyleSheet, Dimensions} from 'react-native';
+import {Pressable} from 'react-native';
 import {launchCamera} from 'react-native-image-picker';
 import {useSetRecoilState} from 'recoil';
 import {
@@ -23,11 +23,10 @@ const AiCamera: React.FC = ({buttonStyle, textStyle, name}) => {
     };
     await launchCamera({}, res => {
       if (res.didCancel) {
-        console.log('User Cancelled image picker');
+        navigation.navigate('AiCapture');
       } else if (res.errorCode) {
         console.log('ImagePicker Error', res.errorCode);
       } else if (res.assets) {
-        console.log('ImagePicker data', res.assets);
         image.type = res.assets[0].type;
         image.uri = res.assets[0].uri;
         image.name = res.assets[0].fileName;
@@ -40,11 +39,8 @@ const AiCamera: React.FC = ({buttonStyle, textStyle, name}) => {
     const requestOptions = {
       method: 'POST',
       body: formdata,
-      headers: {
-        // 'Content-Type': 'multipart/form-data; ',
-      },
+      headers: {},
     };
-    // await fetch('http://127.0.0.1:8001/ai/plantAi', requestOptions)
     await fetch('http://j7a201.p.ssafy.io/ai/plantAi', requestOptions)
       .then(response => response.json())
       .then(result => {
@@ -64,19 +60,8 @@ const AiCamera: React.FC = ({buttonStyle, textStyle, name}) => {
         navigation.navigate('AiResult');
       }}>
       <AppText style={textStyle}>{name}</AppText>
-      {/* <Image source={require('../../asset/camera.png')} style={styles.image} /> */}
     </Pressable>
   );
 };
 
 export default AiCamera;
-
-let ScreenWidth = Dimensions.get('window').width;
-let ScreenHeight = Dimensions.get('window').height;
-
-const styles = StyleSheet.create({
-  image: {
-    width: ScreenWidth * 0.3,
-    height: ScreenWidth * 0.3,
-  },
-});

@@ -2,13 +2,10 @@ import React from 'react';
 import {StyleSheet, Dimensions, View} from 'react-native';
 import AiCamera from '../components/AiCapture/AiCamera';
 import AiPhotos from '../components/AiCapture/AiPhotos';
-import AppText from '../components/AppText';
 
 const AiCapture: React.FC = ({}) => {
   return (
     <View style={styles.container}>
-      {/* <AppText style={styles.text}>탐색할 꽃은?</AppText> */}
-
       <View style={styles.buttonContainer}>
         <AiCamera
           name={'카메라'}
@@ -37,7 +34,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#687798',
   },
   text: {
-    // justifyContent: 'flex-end',
     textAlign: 'center',
     color: '#FFF7F2',
     fontSize: ScreenHeight * 0.025,
@@ -49,7 +45,6 @@ const styles = StyleSheet.create({
     },
   },
   buttonContainer: {
-    // flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'center',
@@ -58,7 +53,7 @@ const styles = StyleSheet.create({
   button: {
     padding: ScreenWidth * 0.01,
     width: ScreenWidth * 0.4,
-    // height: ScreenWidth * 0.38,
+
     borderWidth: 5,
     borderRadius: 11,
     borderColor: '#8AEE93',
@@ -66,7 +61,6 @@ const styles = StyleSheet.create({
   buttonText: {
     textAlign: 'center',
     color: '#FFF7F2',
-    // textShadowColor: 'rgb(244, 182, 255)',
     textShadowColor: '#D9F9D9',
     textShadowRadius: 2,
     textShadowOffset: {
