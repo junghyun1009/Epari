@@ -112,6 +112,7 @@ const AppStack: React.FC = () => {
       <Stack.Screen name="AiResult" component={AiResult} />
       <Stack.Screen name="AiRegister" component={AiRegister} />
       <Stack.Screen name="AiSpareResult" component={AiSpareResult} />
+      <Stack.Screen name="HerbBook" component={HerbBook} />
       <Stack.Screen name="HerbDetail" component={HerbDetail} />
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="UserPage" component={UserPage} />
