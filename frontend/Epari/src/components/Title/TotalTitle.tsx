@@ -185,31 +185,34 @@ const TotalTitle: React.FC<TotalListScreenProps> = ({navigation}) => {
                   {title.titleDescription}
                 </AppText>
               </View>
-              <Pressable>
-                <View style={styles.button}>
-                  {title.isObtained ? (
-                    title.isRep ? (
+
+              <View>
+                {title.isObtained ? (
+                  title.isRep ? (
+                    <Pressable style={[styles.button, styles.repButton]}>
                       <AppText
-                        style={styles.repButton}
                         onPress={() => {
                           setRep(title.titleId);
                         }}>
                         대표
                       </AppText>
-                    ) : (
+                    </Pressable>
+                  ) : (
+                    <Pressable style={[styles.button, styles.activeButton]}>
                       <AppText
-                        style={styles.activeButton}
                         onPress={() => {
                           setRep(title.titleId);
                         }}>
                         획득
                       </AppText>
-                    )
-                  ) : (
-                    <AppText style={styles.passiveButton}>미획득</AppText>
-                  )}
-                </View>
-              </Pressable>
+                    </Pressable>
+                  )
+                ) : (
+                  <Pressable style={[styles.button, styles.passiveButton]}>
+                    <AppText>미획득</AppText>
+                  </Pressable>
+                )}
+              </View>
             </View>
           ))
         ) : (
@@ -272,12 +275,14 @@ const styles = StyleSheet.create({
     width: ScreenWidth * 0.95,
     display: 'flex',
     flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
     marginTop: ScreenHeight * 0.015,
     marginHorizontal: ScreenWidth * 0.025,
     borderRadius: 12,
     borderWidth: 2.4,
     backgroundColor: '#E6F4F1',
+    padding: ScreenWidth * 0.025,
   },
   ImageItem: {
     width: ScreenWidth * 0.16,
@@ -286,12 +291,10 @@ const styles = StyleSheet.create({
     borderWidth: 2.4,
     borderColor: 'black',
     backgroundColor: '#FFFFFF',
-    marginLeft: ScreenWidth * 0.025,
   },
   Text: {
     display: 'flex',
     flexDirection: 'column',
-    marginLeft: ScreenWidth * 0.025,
     justifyContent: 'center',
   },
   TitleItem: {
@@ -300,33 +303,27 @@ const styles = StyleSheet.create({
     color: '#687798',
   },
   TextItem: {
-    width: ScreenWidth * 0.48,
+    width: ScreenWidth * 0.5,
   },
-  repButton: {
-    padding: ScreenWidth * 0.02,
+  button: {
+    alignItems: 'center',
     width: ScreenWidth * 0.17,
-    backgroundColor: '#FFAAAA',
+    padding: ScreenWidth * 0.02,
     borderRadius: 10,
     borderWidth: 2,
-    textAlign: 'center',
+  },
+  repButton: {
+    backgroundColor: '#FFAAAA',
     color: '#FFF7F2',
   },
   activeButton: {
-    padding: ScreenWidth * 0.02,
-    width: ScreenWidth * 0.17,
     backgroundColor: '#687798',
     borderRadius: 10,
     borderWidth: 2,
-    textAlign: 'center',
     color: '#FFF7F2',
   },
   passiveButton: {
-    padding: ScreenWidth * 0.02,
-    width: ScreenWidth * 0.17,
     backgroundColor: '#FFF7F2',
-    borderRadius: 10,
-    borderWidth: 2,
-    textAlign: 'center',
     color: '#687798',
   },
 });

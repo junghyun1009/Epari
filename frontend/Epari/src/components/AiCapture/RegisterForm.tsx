@@ -265,18 +265,19 @@ const RegisterForm: React.FC<RegisterScreenProps> = ({navigation}) => {
 
   return (
     <KeyboardAvoidingView style={styles.container}>
-      <ScrollView>
+      <ScrollView
+        contentContainerStyle={{flexGrow: 1, justifyContent: 'center'}}>
         <View style={styles.plantInfo}>
           <View style={styles.imageContainer}>
             <ImageChanger
               imageStyle={styles.plantImage}
               imageUrl={{uri: picturedImageState.uri}}
             />
-            <AppText style={styles.imgaeText}>
-              등록할 사진을 바꾸려면 클릭!
-            </AppText>
+            <AppText style={styles.imgaeText}>사진 변경을 원하면 클릭!</AppText>
           </View>
-          <AppText style={styles.plantName}>{plantName}</AppText>
+          <View style={styles.nameContainer}>
+            <AppText style={styles.plantName}>{plantName}</AppText>
+          </View>
         </View>
         <LocationSelector />
         <View style={styles.inputConatiner}>
@@ -286,6 +287,7 @@ const RegisterForm: React.FC<RegisterScreenProps> = ({navigation}) => {
             onChangeText={inputChangedHandler.bind(this, 'title')}
             value={inputs.title.value}
             maxLength={100}
+            selectionColor={'#687798'}
           />
         </View>
         <View style={styles.inputConatiner}>
@@ -295,6 +297,7 @@ const RegisterForm: React.FC<RegisterScreenProps> = ({navigation}) => {
             onChangeText={inputChangedHandler.bind(this, 'content')}
             value={inputs.content.value}
             multiline
+            selectionColor={'#687798'}
           />
           {formIsInvalid && (
             <AppText style={styles.errorText}>빠짐없이 입력해주세요</AppText>
@@ -331,6 +334,7 @@ const styles = StyleSheet.create({
   plantInfo: {
     justifyContent: 'center',
     alignItems: 'center',
+    width: ScreenWidth * 0.8,
     marginBottom: ScreenWidth * 0.03,
   },
   imageContainer: {
@@ -339,28 +343,35 @@ const styles = StyleSheet.create({
   },
   imgaeText: {
     position: 'absolute',
-    color: '#fff',
-  },
-  plantImage: {
-    width: ScreenWidth * 0.55,
-    height: ScreenWidth * 0.55,
-    borderWidth: 3,
-    borderRadius: 12,
-    borderColor: '#687798',
-    backgroundColor: '#000',
-    opacity: 0.5,
-    margin: ScreenWidth * 0.06,
-  },
-  plantName: {
-    fontSize: ScreenHeight * 0.035,
-    textShadowColor: '#99AEBB',
+    color: '#FFF7F2',
+    textShadowColor: '#FFAAAA',
     textShadowRadius: 2,
     textShadowOffset: {
       width: 1.8,
       height: 1.8,
     },
+    opacity: 0.9,
+  },
+  plantImage: {
+    width: ScreenWidth * 0.5,
+    height: ScreenWidth * 0.5,
+    borderRadius: 12,
+    backgroundColor: '#687798',
+    opacity: 0.7,
+    margin: ScreenWidth * 0.06,
+  },
+  nameContainer: {
+    marginTop: ScreenWidth * 0.02,
+    padding: ScreenWidth * 0.01,
+    backgroundColor: '#687798',
+    borderRadius: 5,
+  },
+  plantName: {
+    color: '#FFF7F2',
+    fontSize: ScreenHeight * 0.025,
   },
   inputConatiner: {
+    width: ScreenWidth * 0.8,
     marginTop: ScreenHeight * 0.01,
   },
   inputLabel: {
@@ -376,9 +387,11 @@ const styles = StyleSheet.create({
     borderColor: '#3A4A40',
     backgroundColor: '#F6EDD9',
     fontFamily: 'NeoDGM-Regular',
+    fontSize: ScreenHeight * 0.02,
+    paddingHorizontal: ScreenWidth * 0.02,
   },
   multilineInputBox: {
-    minHeight: ScreenHeight * 0.12,
+    minHeight: ScreenHeight * 0.13,
     textAlignVertical: 'top',
   },
   errorText: {
