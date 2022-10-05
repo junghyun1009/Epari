@@ -1,9 +1,14 @@
 import React from 'react';
 import {StyleSheet, View, Dimensions} from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import {GetList, NoGetList, TotalList} from '../components/HerbBook/Lists';
+import {
+  GetList,
+  NoGetList,
+  TotalList,
+  SeasonList,
+  SeasonBlock,
+} from '../components/HerbBook/Lists';
 import {HerbBookStackParamList} from '../types';
-
 const Tab = createMaterialTopTabNavigator<HerbBookStackParamList>();
 
 const HerbBookStack = () => {
@@ -34,6 +39,16 @@ const HerbBookStack = () => {
           component={NoGetList}
           options={{title: '미수집'}}
         />
+        {/* <Tab.Screen
+          name="Main"
+          component={SeasonList}
+          options={{title: '계절'}}
+        /> */}
+        <Tab.Screen
+          name="Season"
+          component={SeasonBlock}
+          options={{title: '계절'}}
+        />
       </Tab.Navigator>
     </View>
   );
@@ -43,12 +58,12 @@ let ScreenHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   HerbBookStackContatiner: {
-    height: ScreenHeight * 0.7,
+    height: ScreenHeight * 0.77,
     justifyContent: 'center',
     backgroundColor: '#FFF7F2',
   },
   TabBar: {
-    width: '72%',
+    width: '80%',
     borderRadius: 90,
     backgroundColor: '#FFFFFF',
     alignSelf: 'center',
@@ -65,6 +80,7 @@ const styles = StyleSheet.create({
   TabBarIndicator: {
     backgroundColor: '#007C2B',
     height: '100%',
+    width: '23.7%',
     borderRadius: 90,
   },
 });
