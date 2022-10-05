@@ -104,7 +104,7 @@ const AiSpareResult: React.FC = () => {
         <AppText style={styles.text}>일치하는 식물이 없나요?</AppText>
         <Pressable onPress={() => navigation.navigate('AiCapture')}>
           <View style={styles.button}>
-            <AppText style={styles.buttonText}>다시 선택</AppText>
+            <AppText style={styles.buttonText}>다시 하기</AppText>
           </View>
         </Pressable>
       </View>
@@ -124,7 +124,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#FFF7F2',
   },
-
   textContainer: {
     flex: 1,
     justifyContent: 'flex-end',
@@ -132,7 +131,7 @@ const styles = StyleSheet.create({
   },
   text: {
     textAlign: 'center',
-    fontSize: ScreenHeight * 0.03,
+    fontSize: ScreenHeight * 0.025,
     padding: ScreenHeight * 0.02,
   },
   imageContainer: {
@@ -154,9 +153,16 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
   },
   plantName: {
+    color: '#687798',
     fontSize: ScreenHeight * 0.018,
     margin: ScreenWidth * 0.01,
     textAlign: 'center',
+    textShadowColor: '#99AEBB',
+    textShadowRadius: 2,
+    textShadowOffset: {
+      width: 1.8,
+      height: 1.8,
+    },
   },
   pagination: {
     position: 'absolute',

@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     height: ScreenWidth * 0.35,
     borderWidth: 3,
     borderRadius: 12,
-    borderColor: '#000',
+    borderColor: '#687798',
     margin: ScreenWidth * 0.03,
   },
   textContainer: {
@@ -104,7 +104,13 @@ const styles = StyleSheet.create({
     fontSize: ScreenHeight * 0.03,
   },
   plantName: {
-    color: '#00845E',
+    color: '#687798',
+    textShadowColor: '#99AEBB',
+    textShadowRadius: 2,
+    textShadowOffset: {
+      width: 1.8,
+      height: 1.8,
+    },
   },
   buttonContainer: {
     flex: 1,
@@ -126,13 +132,12 @@ const styles = StyleSheet.create({
     borderColor: '#D9D9D9',
   },
   rightButton: {
-    backgroundColor: '#00845E',
-    borderColor: '#00845E',
+    backgroundColor: '#687798',
+    borderColor: '#687798',
   },
   buttonText: {
     fontSize: ScreenHeight * 0.025,
     color: '#fff',
-    // textShadowColor: '#99AEBB',
     textShadowColor: '#3A4A40',
     textShadowRadius: 2,
     textShadowOffset: {
