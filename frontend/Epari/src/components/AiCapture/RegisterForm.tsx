@@ -45,6 +45,8 @@ const RegisterForm: React.FC = ({}) => {
   const [dolargeCnt, setDolargeCnt] = useState(0);
   // 칭호 3 조건: 산삼 획득 개수 파악 => 산삼 글이 0개인데 새로 쓰는 글이 산삼 글일 경우 얻게 하기
   const [sansamCnt, setSansamCnt] = useState(0);
+  // 칭호 4, 5 조건: 획득 종류 개수 파악
+  const [plantcnt, setPlantcnt] = useState([]);
 
   const [obtained, setObtained] = useState({});
 
@@ -102,11 +104,16 @@ const RegisterForm: React.FC = ({}) => {
           console.log(result);
           // console.log(collections);
           let cnt = 0;
+          let plant = [];
           result.forEach(each => {
             console.log(each.plantId, cnt + each.collectionCnt);
             cnt += each.collectionCnt;
+            if (each.isCollected) {
+              plant.push(each.plantId);
+            }
           });
           setCollections(cnt);
+          setPlantcnt(plant);
 
           let dolarge = result[13].collectionCnt;
           setDolargeCnt(dolarge);
@@ -214,6 +221,50 @@ const RegisterForm: React.FC = ({}) => {
     } else if (sansamCnt === 0 && resultPlantState.plantId === 67) {
       const obtained = new FormData();
       obtained.append('titleId', 3);
+      const requestPost = {
+        method: 'POST',
+        body: obtained,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: token,
+        },
+      };
+      fetch('http://j7a201.p.ssafy.io/epari/v1/titles/', requestPost)
+        .then(response => {
+          response.json();
+        })
+        .then(result => {
+          console.log('1111111111', result);
+          console.log(obtained);
+        });
+    } else if (
+      plantcnt.length === 9 &&
+      !plantcnt.includes(resultPlantState.plantId)
+    ) {
+      const obtained = new FormData();
+      obtained.append('titleId', 4);
+      const requestPost = {
+        method: 'POST',
+        body: obtained,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: token,
+        },
+      };
+      fetch('http://j7a201.p.ssafy.io/epari/v1/titles/', requestPost)
+        .then(response => {
+          response.json();
+        })
+        .then(result => {
+          console.log('1111111111', result);
+          console.log(obtained);
+        });
+    } else if (
+      plantcnt.length === 66 &&
+      !plantcnt.includes(resultPlantState.plantId)
+    ) {
+      const obtained = new FormData();
+      obtained.append('titleId', 5);
       const requestPost = {
         method: 'POST',
         body: obtained,
