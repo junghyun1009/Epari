@@ -43,10 +43,12 @@ def titles(request):
                 'userId': user.userId,
                 'titleId': titleId
             }
-            serializer = ObtainedSerializer(data=data)
-            if serializer.is_valid(raise_exception=True):
-                serializer.save()
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            # serializer = ObtainedSerializer(data=data)
+            # if serializer.is_valid(raise_exception=True):
+            #     serializer.save()
+            #     return Response(serializer.data, status=status.HTTP_201_CREATED)
+            Obtained.objects.create(userId=user, titleId=title, isRep=False)
+            return Response(data, status=status.HTTP_201_CREATED)
         else:
             data = {
                 'message': '이미 획득한 칭호입니다.'
