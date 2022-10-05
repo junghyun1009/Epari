@@ -27,7 +27,7 @@ const Tab: React.FC = () => {
       screenOptions={{
         headerShown: false,
         tabBarLabelStyle: styles.TabBarLabel,
-        tabBarActiveTintColor: '#007C2B',
+        tabBarActiveTintColor: '#FFAAAA',
         tabBarInactiveTintColor: '#110105',
       }}>
       {/* <Screen
@@ -36,20 +36,20 @@ const Tab: React.FC = () => {
         options={{
           tabBarIcon: ({focused}) =>
             focused ? (
-              <Ionicons name="person" size={30} color="#007C2B" />
+              <Ionicons name="person" size={30} color="#FFAAAA" />
             ) : (
               <Ionicons name="person-outline" size={30} color="#110105" />
             ),
           title: '로그인',
         }}
       /> */}
-      <Screen
+      {/* <Screen
         name="UserPage"
         component={UserPage}
         options={{
           tabBarIcon: ({focused}) =>
             focused ? (
-              <Ionicons name="person-circle" size={30} color="#007C2B" />
+              <Ionicons name="person-circle" size={30} color="#FFAAAA" />
             ) : (
               <Ionicons
                 name="person-circle-outline"
@@ -59,28 +59,28 @@ const Tab: React.FC = () => {
             ),
           title: '내 정보',
         }}
-      />
+      /> */}
+      <Screen name="TitleList" component={TitleList} />
       <Screen
         name="Home"
         component={Home}
         options={{
           tabBarIcon: ({focused}) =>
             focused ? (
-              <Ionicons name="home" size={30} color="#007C2B" />
+              <Ionicons name="home" size={30} color="#FFAAAA" />
             ) : (
               <Ionicons name="home-outline" size={30} color="#110105" />
             ),
           title: 'EPARI',
         }}
       />
-      <Screen name="TitleList" component={TitleList} />
       <Screen
         name="HerbBook"
         component={HerbBook}
         options={{
           tabBarIcon: ({focused}) =>
             focused ? (
-              <Ionicons name="leaf" size={30} color="#007C2B" />
+              <Ionicons name="leaf" size={30} color="#FFAAAA" />
             ) : (
               <Ionicons name="leaf-outline" size={30} color="#110105" />
             ),
@@ -102,7 +102,6 @@ const AppStack: React.FC = () => {
       <Stack.Screen name="HerbDetail" component={HerbDetail} />
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="UserPage" component={UserPage} />
-      <Stack.Screen name="TitleList" component={TitleList} />
     </Stack.Navigator>
   );
 };
