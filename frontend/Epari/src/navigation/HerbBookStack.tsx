@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
   TabBarIndicator: {
     backgroundColor: '#007C2B',
     height: '100%',
+    width: '23.7%',
     borderRadius: 90,
   },
 });
