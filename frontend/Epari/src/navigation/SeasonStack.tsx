@@ -7,15 +7,15 @@ import {
   SummerList,
   FallList,
   WinterList,
-} from '../components/HerbBook/Lists';
-import {HerbBookStackParamList} from '../types';
-const Tab = createMaterialTopTabNavigator<HerbBookStackParamList>();
+} from '../components/HerbBook/Lists/Season';
+import {SeasonStackParamList} from '../types';
+const Tab = createMaterialTopTabNavigator<SeasonStackParamList>();
 
 const SeasonStack = () => {
   return (
     <View style={styles.SeasonStackContatiner}>
       <Tab.Navigator
-        initialRouteName="TotalList"
+        initialRouteName="SpringList"
         screenOptions={{
           tabBarStyle: styles.TabBar,
           tabBarLabelStyle: styles.TabBarLabel,

@@ -9,9 +9,6 @@ export type AppStackParamList = {
   GetList: undefined;
   NoGetList: undefined;
   HerbBook: undefined;
-  ListItem: {
-    id: string;
-  };
   HerbDetail: {
     id: number;
     plantName: string;
@@ -22,14 +19,7 @@ export type AppStackParamList = {
   UserPage: {
     id: number;
   };
-  // TitleList: undefined;
-  TotalTitle: undefined;
+  TitleList: undefined;
   GetTitle: undefined;
-  NoGetTitle: undefined;
-  SpringList: undefined;
-  SummerList: undefined;
-  FallList: undefined;
-  WinterList: undefined;
-  SeasonList: undefined;
-  SeasonBlock: undefined;
+  TotalTitle: undefined;
 };
