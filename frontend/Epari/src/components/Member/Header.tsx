@@ -53,14 +53,33 @@ const Header: React.FC = () => {
         style={styles.flowerImage12}
       />
       <Image
-        source={require('Epari/src/asset/loginpageicons/active_0410.png')}
-        style={styles.flowerImage13}
-      />
-      <Image
         source={require('Epari/src/asset/loginpageicons/active_0670.png')}
         style={styles.flowerImage14}
       />
-
+      <Image
+        source={require('Epari/src/asset/icons/question_mark.png')}
+        style={styles.question1}
+      />
+      <Image
+        source={require('Epari/src/asset/icons/question_mark.png')}
+        style={styles.question2}
+      />
+      <Image
+        source={require('Epari/src/asset/icons/question_mark.png')}
+        style={styles.question3}
+      />
+      <Image
+        source={require('Epari/src/asset/icons/question_mark.png')}
+        style={styles.question4}
+      />
+      <Image
+        source={require('Epari/src/asset/icons/question_mark.png')}
+        style={styles.question5}
+      />
+      <Image
+        source={require('Epari/src/asset/icons/question_mark.png')}
+        style={styles.question6}
+      />
       <Text style={styles.Header}>EPARI</Text>
       <View>
         <Text style={styles.font_2}>
@@ -101,7 +120,7 @@ const styles = StyleSheet.create({
   },
   font_2: {
     fontFamily: 'NeoDGM-Regular',
-    color: '#FFFFFF',
+    color: '#FFF7F2',
     fontSize: ScreenWidth * 0.035,
     textShadowColor: 'rgb(244, 182, 255)',
     textShadowRadius: 2,
@@ -128,21 +147,21 @@ const styles = StyleSheet.create({
     width: ScreenWidth * 0.1,
     height: ScreenWidth * 0.1,
     position: 'absolute',
-    top: ScreenHeight * 0.6,
+    top: ScreenHeight * 0.75,
     left: ScreenWidth * 0.03,
   },
   flowerImage4: {
     width: ScreenWidth * 0.1,
     height: ScreenWidth * 0.1,
     position: 'absolute',
-    left: ScreenWidth * 0.45,
-    top: ScreenWidth * 1.3,
+    left: ScreenWidth * 0.35,
+    top: ScreenHeight * 0.7,
   },
   flowerImage5: {
     width: ScreenWidth * 0.1,
     height: ScreenWidth * 0.1,
     position: 'absolute',
-    left: ScreenWidth * 0.55,
+    left: ScreenWidth * 0.78,
     top: -ScreenHeight * 0.05,
   },
   flowerImage6: {
@@ -150,63 +169,98 @@ const styles = StyleSheet.create({
     height: ScreenWidth * 0.1,
     position: 'absolute',
     left: ScreenWidth * 0.45,
-    top: ScreenWidth * 0.16,
+    top: ScreenHeight * 0.44,
   },
   flowerImage7: {
     width: ScreenWidth * 0.1,
     height: ScreenWidth * 0.1,
     position: 'absolute',
-    left: ScreenWidth * 0.45,
-    top: ScreenWidth * 0.16,
+    left: ScreenWidth * 0.01,
+    top: ScreenHeight * 0.26,
   },
   flowerImage8: {
     width: ScreenWidth * 0.1,
     height: ScreenWidth * 0.1,
     position: 'absolute',
-    left: ScreenWidth * 0.45,
-    top: ScreenWidth * 0.16,
+    left: ScreenWidth * 0.65,
+    top: -ScreenHeight * 0.12,
   },
   flowerImage9: {
     width: ScreenWidth * 0.1,
     height: ScreenWidth * 0.1,
     position: 'absolute',
-    left: ScreenWidth * 0.45,
-    top: ScreenWidth * 0.16,
+    left: ScreenWidth * 0.08,
+    top: ScreenHeight * 0.61,
   },
   flowerImage10: {
     width: ScreenWidth * 0.1,
     height: ScreenWidth * 0.1,
     position: 'absolute',
-    left: ScreenWidth * 0.45,
-    top: ScreenWidth * 0.16,
+    left: ScreenWidth * 0.81,
+    top: ScreenHeight * 0.12,
   },
   flowerImage11: {
     width: ScreenWidth * 0.1,
     height: ScreenWidth * 0.1,
     position: 'absolute',
-    left: ScreenWidth * 0.45,
-    top: ScreenWidth * 0.16,
+    left: ScreenWidth * 0.73,
+    top: ScreenHeight * 0.63,
   },
   flowerImage12: {
     width: ScreenWidth * 0.1,
     height: ScreenWidth * 0.1,
     position: 'absolute',
-    left: ScreenWidth * 0.45,
-    top: ScreenWidth * 0.16,
-  },
-  flowerImage13: {
-    width: ScreenWidth * 0.1,
-    height: ScreenWidth * 0.1,
-    position: 'absolute',
-    left: ScreenWidth * 0.45,
-    top: ScreenWidth * 0.16,
+    left: -ScreenWidth * 0.03,
+    top: -ScreenHeight * 0.014,
   },
   flowerImage14: {
-    width: ScreenWidth * 0.1,
-    height: ScreenWidth * 0.1,
+    width: ScreenWidth * 0.2,
+    height: ScreenWidth * 0.2,
     position: 'absolute',
-    left: ScreenWidth * 0.45,
-    top: ScreenWidth * 0.16,
+    left: ScreenWidth * 0.66,
+    top: ScreenHeight * 0.46,
+  },
+  question1: {
+    width: ScreenWidth * 0.15,
+    height: ScreenWidth * 0.15,
+    position: 'absolute',
+    left: ScreenWidth * 0.46,
+    top: -ScreenHeight * 0.04,
+  },
+  question2: {
+    width: ScreenWidth * 0.15,
+    height: ScreenWidth * 0.15,
+    position: 'absolute',
+    left: ScreenWidth * 0.16,
+    top: ScreenHeight * 0.1,
+  },
+  question3: {
+    width: ScreenWidth * 0.15,
+    height: ScreenWidth * 0.15,
+    position: 'absolute',
+    left: ScreenWidth * 0.56,
+    top: ScreenHeight * 0.22,
+  },
+  question4: {
+    width: ScreenWidth * 0.15,
+    height: ScreenWidth * 0.15,
+    position: 'absolute',
+    left: ScreenWidth * 0.36,
+    top: ScreenHeight * 0.32,
+  },
+  question5: {
+    width: ScreenWidth * 0.15,
+    height: ScreenWidth * 0.15,
+    position: 'absolute',
+    left: ScreenWidth * 0.02,
+    top: ScreenHeight * 0.42,
+  },
+  question6: {
+    width: ScreenWidth * 0.15,
+    height: ScreenWidth * 0.15,
+    position: 'absolute',
+    left: ScreenWidth * 0.66,
+    top: ScreenHeight * 0.72,
   },
 });
 export default Header;
