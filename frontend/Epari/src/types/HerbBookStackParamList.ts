@@ -10,4 +10,10 @@ export type HerbBookStackParamList = {
   ListItem: {
     id: number;
   };
+  SpringList: undefined;
+  SummerList: undefined;
+  FallList: undefined;
+  WinterList: undefined;
+  SeasonList: undefined;
+  SeasonBlock: undefined;
 };
