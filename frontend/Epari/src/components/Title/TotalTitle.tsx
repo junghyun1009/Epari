@@ -125,9 +125,12 @@ const TotalTitle: React.FC<TotalListScreenProps> = ({navigation}) => {
             <Image source={{uri: profileimg}} style={styles.Profileimg} />
           </View>
         ) : (
-          <AppText style={styles.reptitle}>
-            {username}님, 칭호를 등록해보세요!
-          </AppText>
+          <View style={styles.profile}>
+            <AppText style={styles.reptitle}>
+              {username}님, 칭호를 획득해보세요!
+            </AppText>
+            <Image source={{uri: profileimg}} style={styles.Profileimg} />
+          </View>
         )}
       </View>
       <View style={styles.container}>
@@ -145,7 +148,7 @@ const TotalTitle: React.FC<TotalListScreenProps> = ({navigation}) => {
                 </AppText>
               </View>
               <Pressable>
-                <View>
+                <View style={styles.button}>
                   {title.isObtained ? (
                     title.isRep ? (
                       <AppText
