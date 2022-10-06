@@ -7,7 +7,6 @@ import {loginState} from '../store/user';
 
 const MainNav: React.FC = () => {
   const isLogin = useRecoilValue(loginState);
-  console.log(isLogin);
   return (
     <NavigationContainer>
       {isLogin ? <AppStack /> : <AuthStack />}

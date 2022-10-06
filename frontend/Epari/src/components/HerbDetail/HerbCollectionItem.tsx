@@ -28,6 +28,13 @@ const HerbCollectionItem: React.FC<HerbCollectionItemProps> = ({
   collectionItem,
 }) => {
   const [modalVisible, setModalVisible] = React.useState(false);
+  let showTitle: string = '';
+  if (collectionItem.collectTitle.length > 6) {
+    showTitle = collectionItem.collectTitle.substring(0, 6);
+    showTitle += '...';
+  } else {
+    showTitle = collectionItem.collectTitle;
+  }
   return (
     <View style={styles.container}>
       <View>
@@ -46,7 +53,7 @@ const HerbCollectionItem: React.FC<HerbCollectionItemProps> = ({
         />
       </TouchableOpacity>
       <TouchableOpacity onPress={() => console.log('clickTitle')}>
-        <Text style={styles.TitleFont}>{collectionItem.collectTitle}</Text>
+        <Text style={styles.TitleFont}>{showTitle}</Text>
       </TouchableOpacity>
     </View>
   );

@@ -36,7 +36,7 @@ const SampleCollection: React.FC = () => {
       </View>
       <View style={styles.Dolarge}>
         <Image
-          source={require('Epari/src/asset/activeIcons/active_0410.png')}
+          source={require('Epari/src/asset/loginpageicons/active_0410.png')}
           style={styles.DolargeImage}
         />
       </View>
@@ -60,7 +60,7 @@ const SampleCollection: React.FC = () => {
       </View>
       <View style={styles.Dolarge}>
         <Image
-          source={require('Epari/src/asset/activeIcons/active_0400.png')}
+          source={require('Epari/src/asset/loginpageicons/active_0400.png')}
           style={styles.DolargeImage}
         />
       </View>
@@ -72,7 +72,7 @@ const SampleCollection: React.FC = () => {
       </View>
       <View style={styles.Dolarge}>
         <Image
-          source={require('Epari/src/asset/activeIcons/active_0670.png')}
+          source={require('Epari/src/asset/loginpageicons/active_0670.png')}
           style={styles.DolargeImage}
         />
       </View>
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     height: ScreenWidth * 0.16,
     margin: ScreenWidth * 0.02,
     marginHorizontal: ScreenWidth * 0.025,
-    borderWidth: 3,
+    borderWidth: ScreenWidth * 0.007,
     borderRadius: 15,
     alignItems: 'center',
     justifyContent: 'center',

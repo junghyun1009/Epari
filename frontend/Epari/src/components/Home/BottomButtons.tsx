@@ -7,12 +7,15 @@ import {
   TouchableOpacity,
   Dimensions,
 } from 'react-native';
+import {useRecoilState} from 'recoil';
+import {loginState} from '../../store/user';
 
 type BottomProps = {
   navigation: any;
 };
 
 const Bottom: React.FC<BottomProps> = ({navigation}) => {
+  const [isLogin, setIsLogin] = useRecoilState(loginState);
   async function movePageAI() {
     navigation.navigate('AiCapture');
   }
@@ -23,9 +26,14 @@ const Bottom: React.FC<BottomProps> = ({navigation}) => {
     navigation.navigate('TitleList');
   }
   async function movePageLogin() {
-    auth()
+    await auth()
       .signOut()
-      .then(() => navigation.navigate('Login'));
+      .then(result => {
+        console.log('로그아웃 결과' + result);
+        setIsLogin(!isLogin);
+      })
+      .then(() => navigation.navigate('Login'))
+      .catch(e => console.log('error' + e));
   }
   return (
     <View style={styles.bottomContainer}>
