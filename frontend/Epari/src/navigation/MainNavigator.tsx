@@ -3,10 +3,11 @@ import {NavigationContainer} from '@react-navigation/native';
 import AppStack from './AppStack';
 import AuthStack from './AuthStack';
 import {useRecoilValue} from 'recoil';
-import {loginState} from '../store/user';
+import {getLoginState} from '../store/user';
 
 const MainNav: React.FC = () => {
-  const isLogin = useRecoilValue(loginState);
+  const isLogin = useRecoilValue(getLoginState);
+
   return (
     <NavigationContainer>
       {isLogin ? <AppStack /> : <AuthStack />}

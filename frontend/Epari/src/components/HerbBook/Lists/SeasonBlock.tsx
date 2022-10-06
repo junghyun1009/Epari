@@ -4,6 +4,7 @@ import {HerbBookStackParamList} from '../../../types';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ListItem from './ListItem';
+import {useIsFocused} from '@react-navigation/native';
 
 export type GetListScreenProps = NativeStackScreenProps<
   HerbBookStackParamList,
@@ -12,6 +13,7 @@ export type GetListScreenProps = NativeStackScreenProps<
 
 const SeasonBlock: React.FC<GetListScreenProps> = ({navigation}) => {
   const [bookList, setBookList] = React.useState([]);
+  const isFocused = useIsFocused();
   React.useEffect(() => {
     const getData = async () => {
       try {
@@ -53,7 +55,7 @@ const SeasonBlock: React.FC<GetListScreenProps> = ({navigation}) => {
       }
     };
     getData();
-  }, []);
+  }, [isFocused]);
   return (
     <ScrollView style={styles.background}>
       <View style={styles.spring}>

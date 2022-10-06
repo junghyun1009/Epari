@@ -53,9 +53,8 @@ const GoogleSignIn: React.FC<GoogleSignInProps> = ({navigation}) => {
       )
       .then(function (response) {
         console.log('456:', response);
-        storeData(response.config.headers.Authorization);
         setIsLogin(!isLogin);
-        console.log(response.config.headers.Authorization);
+        storeData(response.config.headers.Authorization);
       })
       .catch(error => {
         console.log('error : ', error.message);
@@ -93,9 +92,7 @@ const GoogleSignIn: React.FC<GoogleSignInProps> = ({navigation}) => {
               console.log('Signed in with Google!');
               fetchToken();
             })
-            .then(() => {
-              // navigation.navigate('Home');
-            })
+            .then(() => {})
         }
       />
       {/* <Modal

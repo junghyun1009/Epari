@@ -6,7 +6,6 @@ import {
   AiResult,
   HerbBook,
   HerbDetail,
-  Login,
   UserPage,
   TitleList,
 } from '../screens';
@@ -82,7 +81,6 @@ const AppStack: React.FC = () => {
       <Stack.Screen name="AiRegister" component={AiRegister} />
       <Stack.Screen name="AiSpareResult" component={AiSpareResult} />
       <Stack.Screen name="HerbDetail" component={HerbDetail} />
-      <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="UserPage" component={UserPage} />
     </Stack.Navigator>
   );

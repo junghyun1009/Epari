@@ -26,15 +26,13 @@ const Bottom: React.FC<BottomProps> = ({navigation}) => {
     navigation.navigate('TitleList');
   }
   async function movePageLogin() {
-    await auth()
+    auth()
       .signOut()
-      .then(result => {
-        console.log('로그아웃 결과' + result);
+      .then(() => {
         setIsLogin(!isLogin);
-      })
-      .then(() => navigation.navigate('Login'))
-      .catch(e => console.log('error' + e));
+      });
   }
+
   return (
     <View style={styles.bottomContainer}>
       <View style={styles.bottomBox}>
