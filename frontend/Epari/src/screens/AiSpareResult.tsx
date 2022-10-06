@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
     paddingVertical: ScreenHeight * 0.01,
     borderWidth: 5,
     borderRadius: 11,
-    borderColor: '#687798',
+    borderColor: '#D9D9D9',
     margin: ScreenWidth * 0.03,
     backgroundColor: '#687798',
   },
