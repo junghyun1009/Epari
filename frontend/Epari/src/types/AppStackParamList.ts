@@ -9,18 +9,17 @@ export type AppStackParamList = {
   GetList: undefined;
   NoGetList: undefined;
   HerbBook: undefined;
-  ListItem: {
-    id: string;
-  };
   HerbDetail: {
-    id: string;
+    id: number;
+    plantName: string;
+    description: string;
+    detailPictureUrl: string;
   };
   Login: undefined;
   UserPage: {
     id: number;
   };
   TitleList: undefined;
-  TotalTitle: undefined;
   GetTitle: undefined;
-  NoGetTitle: undefined;
+  TotalTitle: undefined;
 };

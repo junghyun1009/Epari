@@ -7,7 +7,6 @@ import {
   Pressable,
   Dimensions,
 } from 'react-native';
-import AiCamera from '../components/AiCapture/AiCamera';
 import {useRecoilValue, useSetRecoilState} from 'recoil';
 import {
   capturedSubImage,
@@ -16,14 +15,12 @@ import {
 } from '../store/classification';
 import AppText from '../components/AppText';
 import {useNavigation} from '@react-navigation/native';
-import PlantCarousel from '../components/AiCapture/PlantCarousel';
 
 const AiSpareResult: React.FC = () => {
   const navigation = useNavigation();
   const picturedImageState = useRecoilValue(picturedImage);
   const capturedSubImageState = useRecoilValue(capturedSubImage);
   const setResultPlantState = useSetRecoilState(resultPlant);
-  const plant = useRecoilValue(resultPlant);
 
   const picturedImageUrl = picturedImageState.uri;
   console.log('capture', capturedSubImageState);
@@ -105,11 +102,11 @@ const AiSpareResult: React.FC = () => {
       </View>
       <View style={styles.buttonContainer}>
         <AppText style={styles.text}>일치하는 식물이 없나요?</AppText>
-        <AiCamera
-          buttonStyle={styles.button}
-          textStyle={styles.buttonText}
-          name={'다시 찍기'}
-        />
+        <Pressable onPress={() => navigation.navigate('AiCapture')}>
+          <View style={styles.button}>
+            <AppText style={styles.buttonText}>다시 하기</AppText>
+          </View>
+        </Pressable>
       </View>
     </View>
   );
@@ -125,15 +122,16 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#FFF7F2',
   },
-
   textContainer: {
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
   },
   text: {
-    fontSize: ScreenHeight * 0.02,
+    textAlign: 'center',
+    fontSize: ScreenHeight * 0.025,
     padding: ScreenHeight * 0.02,
   },
   imageContainer: {
@@ -148,14 +146,23 @@ const styles = StyleSheet.create({
   image: {
     width: ScreenWidth * 0.35,
     height: ScreenWidth * 0.35,
+    borderWidth: 3,
     borderRadius: 12,
+    borderColor: '#687798',
     margin: ScreenWidth * 0.03,
     resizeMode: 'cover',
   },
   plantName: {
+    color: '#687798',
     fontSize: ScreenHeight * 0.018,
     margin: ScreenWidth * 0.01,
     textAlign: 'center',
+    textShadowColor: '#99AEBB',
+    textShadowRadius: 2,
+    textShadowOffset: {
+      width: 1.8,
+      height: 1.8,
+    },
   },
   pagination: {
     position: 'absolute',
@@ -172,7 +179,7 @@ const styles = StyleSheet.create({
     width: ScreenWidth * 0.01,
     height: ScreenHeight * 0.07,
     borderRadius: 8,
-    backgroundColor: '#00845E',
+    backgroundColor: '#687798',
     position: 'absolute',
   },
   buttonContainer: {
@@ -181,15 +188,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   button: {
-    width: ScreenWidth * 0.3,
-    paddingVertical: ScreenHeight * 0.02,
-    borderRadius: 8,
+    width: ScreenWidth * 0.35,
+    paddingVertical: ScreenHeight * 0.01,
+    borderWidth: 5,
+    borderRadius: 11,
+    borderColor: '#D9D9D9',
     margin: ScreenWidth * 0.03,
-    backgroundColor: '#00845E',
-    elevation: 1,
+    backgroundColor: '#687798',
   },
   buttonText: {
     textAlign: 'center',
     color: '#fff',
+    fontSize: ScreenHeight * 0.025,
+    textShadowColor: '#3A4A40',
+    textShadowRadius: 2,
+    textShadowOffset: {
+      width: 1.8,
+      height: 1.8,
+    },
   },
 });

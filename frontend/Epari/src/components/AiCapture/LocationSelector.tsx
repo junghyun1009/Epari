@@ -72,16 +72,22 @@ const LocationSelector: React.FC = () => {
             backgroundColor: '#F6EDD9',
             width: ScreenWidth / 3,
             // marginHorizontal: 10,
-            borderWidth: 1,
-            borderColor: 'black',
+            borderWidth: 3,
+            borderColor: '#3A4A40',
           }}
           dropdownStyles={{
             backgroundColor: '#F6EDD9',
-            borderWidth: 1,
-            borderColor: 'black',
+            borderWidth: 3,
+            borderColor: '#3A4A40',
           }}
-          inputStyles={{fontFamily: 'NeoDGM-Regular'}}
-          dropdownTextStyles={{fontFamily: 'NeoDGM-Regular'}}
+          inputStyles={{
+            fontFamily: 'NeoDGM-Regular',
+            fontSize: ScreenHeight * 0.02,
+          }}
+          dropdownTextStyles={{
+            fontFamily: 'NeoDGM-Regular',
+            fontSize: ScreenHeight * 0.02,
+          }}
         />
         <SelectList
           onSelect={setSigungu}
@@ -89,20 +95,25 @@ const LocationSelector: React.FC = () => {
           data={subCategories[category]}
           search={false}
           placeholder={'시/군/구'}
-          // dafaultOption={subCategories[categories][0]}
           boxStyles={{
             backgroundColor: '#F6EDD9',
             width: ScreenWidth / 3,
-            borderWidth: 1,
-            borderColor: 'black',
+            borderWidth: 3,
+            borderColor: '#3A4A40',
           }}
           dropdownStyles={{
             backgroundColor: '#F6EDD9',
-            borderWidth: 1,
-            borderColor: 'black',
+            borderWidth: 3,
+            borderColor: '#3A4A40',
           }}
-          inputStyles={{fontFamily: 'NeoDGM-Regular'}}
-          dropdownTextStyles={{fontFamily: 'NeoDGM-Regular'}}
+          inputStyles={{
+            fontFamily: 'NeoDGM-Regular',
+            fontSize: ScreenHeight * 0.02,
+          }}
+          dropdownTextStyles={{
+            fontFamily: 'NeoDGM-Regular',
+            fontSize: ScreenHeight * 0.02,
+          }}
         />
       </View>
     </View>
@@ -120,6 +131,7 @@ const styles = StyleSheet.create({
     // justifyContent: 'center',
   },
   selectLabel: {
+    fontSize: ScreenHeight * 0.02,
     marginVertical: ScreenHeight * 0.02,
   },
   selectContainer: {

@@ -1,4 +1,4 @@
-import {atom} from 'recoil';
+import {atom, selector} from 'recoil';
 
 export type GoogleUserInform = {
   displayName: string;
@@ -16,4 +16,9 @@ export const loginState = atom({
 export const userTokenState = atom({
   key: 'userTokenState',
   default: '123',
+});
+
+export const getLoginState = selector({
+  key: 'getLoginState',
+  get: ({get}) => get(loginState),
 });

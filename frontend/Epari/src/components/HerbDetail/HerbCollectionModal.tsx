@@ -33,6 +33,7 @@ const HerbCollectionModal: React.FC<HerbCollectionModalProps> = ({
   modalVisible,
   setModalVisible,
 }) => {
+  console.log(collectionItem);
   return (
     <Modal
       isVisible={modalVisible}
@@ -67,7 +68,7 @@ const HerbCollectionModal: React.FC<HerbCollectionModalProps> = ({
           </View>
           <View style={styles.ImageContainer}>
             <Image
-              source={require('Epari/src/asset/temp/image7.png')}
+              source={{uri: collectionItem.collectPictureUrl}}
               style={styles.ModalImage}
             />
           </View>
@@ -115,15 +116,15 @@ const styles = StyleSheet.create({
   },
   TitleContainer: {
     width: ScreenWidth * 0.6,
-    height: 30,
+    height: ScreenHeight * 0.06,
     justifyContent: 'center',
     borderRadius: 8,
-    marginTop: 20,
-    marginLeft: 15,
+    marginTop: ScreenHeight * 0.02,
+    marginLeft: ScreenWidth * 0.02,
   },
   TitleFont: {
     fontFamily: 'NeoDGM-Regular',
-    fontSize: 21,
+    fontSize: ScreenWidth * 0.04,
     color: '#110105',
   },
   DateContainer: {
@@ -132,13 +133,14 @@ const styles = StyleSheet.create({
   },
   DateFont: {
     fontFamily: 'NeoDGM-Regular',
+    fontSize: ScreenWidth * 0.03,
   },
   CenterContainer: {},
   PlaceContainer: {
     flexDirection: 'row',
-    margin: 10,
-    marginLeft: 30,
-    marginBottom: 5,
+    margin: ScreenWidth * 0.01,
+    marginLeft: ScreenWidth * 0.03,
+    marginBottom: ScreenHeight * 0.005,
   },
   PlaceFont: {
     fontFamily: 'NeoDGM-Regular',
@@ -158,18 +160,19 @@ const styles = StyleSheet.create({
   ContentContainer: {
     alignItems: 'center',
     height: ScreenHeight * 0.14,
-    padding: 7,
+    padding: ScreenWidth * 0.017,
     borderRadius: 8,
-    margin: 7,
+    margin: ScreenWidth * 0.01,
     marginBottom: 0,
   },
   ContentFont: {
     fontFamily: 'NeoDGM-Regular',
     color: '#110105',
-    fontSize: 15,
+    fontSize: ScreenWidth * 0.031,
   },
   closeButton: {
     alignSelf: 'center',
+    bottom: ScreenHeight * 0.01,
   },
 });
 export default HerbCollectionModal;

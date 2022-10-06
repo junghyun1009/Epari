@@ -1,6 +1,6 @@
 import React from 'react';
 import {Pressable} from 'react-native';
-import {launchImageLibrary} from 'react-native-image-picker';
+import {launchCamera} from 'react-native-image-picker';
 import {useSetRecoilState} from 'recoil';
 import {
   picturedImage,
@@ -16,18 +16,17 @@ const AiCamera: React.FC = ({buttonStyle, textStyle, name}) => {
   const setCapturedMainImage = useSetRecoilState(capturedMainImage);
   const setCapturedSubImage = useSetRecoilState(capturedSubImage);
   const uploadImage = async () => {
-    const image = {
+    const image: imageType = {
       uri: '',
       type: '',
       name: '',
     };
-    await launchImageLibrary({}, res => {
+    await launchCamera({}, res => {
       if (res.didCancel) {
-        console.log('User Cancelled image picker');
+        navigation.navigate('AiCapture');
       } else if (res.errorCode) {
         console.log('ImagePicker Error', res.errorCode);
       } else if (res.assets) {
-        console.log('ImagePicker data', res.assets);
         image.type = res.assets[0].type;
         image.uri = res.assets[0].uri;
         image.name = res.assets[0].fileName;
@@ -40,11 +39,8 @@ const AiCamera: React.FC = ({buttonStyle, textStyle, name}) => {
     const requestOptions = {
       method: 'POST',
       body: formdata,
-      headers: {
-        // 'Content-Type': 'multipart/form-data; ',
-      },
+      headers: {},
     };
-    // await fetch('http://127.0.0.1:8001/ai/plantAi', requestOptions)
     await fetch('http://j7a201.p.ssafy.io/ai/plantAi', requestOptions)
       .then(response => response.json())
       .then(result => {
@@ -57,15 +53,13 @@ const AiCamera: React.FC = ({buttonStyle, textStyle, name}) => {
   };
 
   return (
-    <Pressable style={buttonStyle}>
-      <AppText
-        style={textStyle}
-        onPress={() => {
-          uploadImage();
-          navigation.navigate('AiResult');
-        }}>
-        {name}
-      </AppText>
+    <Pressable
+      style={buttonStyle}
+      onPress={() => {
+        uploadImage();
+        navigation.navigate('AiResult');
+      }}>
+      <AppText style={textStyle}>{name}</AppText>
     </Pressable>
   );
 };

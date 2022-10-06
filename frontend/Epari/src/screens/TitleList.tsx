@@ -1,13 +1,21 @@
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View} from 'react-native';
 import TitleListHeader from '../components/Title/Header';
-import TitleListStack from '../navigation/TitleListStack';
+// import TitleListStack from '../navigation/TitleListStack';
+import TotalTitle from '../components/Title/TotalTitle';
+import {AppStackParamList} from '../types';
 
-const TitleList: React.FC = () => {
+export type TitleListScreenProps = NativeStackScreenProps<
+  AppStackParamList,
+  'TitleList'
+>;
+
+const TitleList: React.FC<TitleListScreenProps> = ({navigation}) => {
   return (
     <View>
-      <TitleListHeader />
-      <TitleListStack />
+      <TitleListHeader navigation={navigation} />
+      <TotalTitle navigation={navigation} />
     </View>
   );
 };
