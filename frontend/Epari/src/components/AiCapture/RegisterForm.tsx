@@ -406,7 +406,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#687798',
     borderWidth: 5,
     borderRadius: 11,
-    borderColor: '#687798',
+    borderColor: '#D9D9D9',
     margin: ScreenWidth * 0.03,
   },
   buttonText: {

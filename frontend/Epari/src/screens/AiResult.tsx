@@ -129,11 +129,11 @@ const styles = StyleSheet.create({
   },
   cancelButton: {
     backgroundColor: '#D9D9D9',
-    borderColor: '#D9D9D9',
+    borderColor: '#A7B3CC',
   },
   rightButton: {
     backgroundColor: '#687798',
-    borderColor: '#687798',
+    borderColor: '#D9D9D9',
   },
   buttonText: {
     fontSize: ScreenHeight * 0.025,
