@@ -67,11 +67,14 @@ const styles = StyleSheet.create({
     fontFamily: 'NeoDGM-Regular',
     fontSize: ScreenWidth * 0.05,
     color: '#FFAAAA',
+    backgroundColor: '#43262D',
+    borderRadius: 6,
+    padding: 3,
   },
   name: {
     fontFamily: 'NeoDGM-Regular',
     fontSize: ScreenWidth * 0.05,
-    color: '#110105',
+    color: '#FFF7F2',
   },
 });
 export default HerbBookHeader;

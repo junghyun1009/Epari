@@ -101,16 +101,22 @@ const styles = StyleSheet.create({
   },
   topContainer: {
     flexDirection: 'row',
+    alignItems: 'center',
   },
   ProfileContainer: {
+    width: ScreenWidth * 0.12,
+    height: ScreenWidth * 0.12,
     justifyContent: 'center',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     marginLeft: ScreenWidth * 0.03,
-    marginTop: ScreenWidth * 0.03,
+    marginTop: ScreenWidth * 0.01,
+    backgroundColor: '#FFFFFF',
+    borderWidth: 2,
+    borderRadius: 15,
   },
   userProfile: {
-    width: ScreenWidth * 0.1,
-    height: ScreenWidth * 0.1,
+    width: ScreenWidth * 0.09,
+    height: ScreenWidth * 0.09,
   },
   TitleContainer: {
     width: ScreenWidth * 0.6,
