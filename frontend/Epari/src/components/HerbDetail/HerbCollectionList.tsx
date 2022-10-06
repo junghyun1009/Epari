@@ -4,6 +4,7 @@ import HerbCollectionItem from './HerbCollectionItem';
 
 type HerbCollectionListProps = {
   children?: React.ReactNode;
+  id: any;
   collection: {
     collectId: number;
     collectPictureUrl: string;
@@ -18,6 +19,7 @@ type HerbCollectionListProps = {
 };
 
 const HerbCollectionList: React.FC<HerbCollectionListProps> = ({
+  id,
   collection,
 }) => {
   return (
@@ -30,7 +32,11 @@ const HerbCollectionList: React.FC<HerbCollectionListProps> = ({
       <ScrollView>
         <Text>
           {collection.map(item => (
-            <HerbCollectionItem collectionItem={item} key={item.collectId} />
+            <HerbCollectionItem
+              id={id}
+              collectionItem={item}
+              key={item.collectId}
+            />
           ))}
         </Text>
       </ScrollView>

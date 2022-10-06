@@ -13,6 +13,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 type HerbCollectionModalProps = {
   children?: React.ReactNode;
+  id: any;
   collectionItem: {
     collectId: number;
     collectPictureUrl: string;
@@ -29,11 +30,11 @@ type HerbCollectionModalProps = {
 };
 
 const HerbCollectionModal: React.FC<HerbCollectionModalProps> = ({
+  id,
   collectionItem,
   modalVisible,
   setModalVisible,
 }) => {
-  console.log(collectionItem);
   return (
     <Modal
       isVisible={modalVisible}
@@ -43,10 +44,7 @@ const HerbCollectionModal: React.FC<HerbCollectionModalProps> = ({
       <View style={styles.ModalContainer}>
         <View style={styles.topContainer}>
           <View style={styles.ProfileContainer}>
-            <Image
-              source={require('Epari/src/asset/temp/avatar-1.png')}
-              style={styles.userProfile}
-            />
+            <Image source={id} style={styles.userProfile} />
           </View>
           <View style={styles.TitleContainer}>
             <Text style={styles.TitleFont}>{collectionItem.collectTitle}</Text>

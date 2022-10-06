@@ -52,7 +52,7 @@ const Bottom: React.FC<BottomProps> = ({navigation}) => {
       <View style={styles.bottomBox}>
         <TouchableOpacity onPress={() => movePageTitle()}>
           <View style={styles.leftButton2}>
-            <Text style={styles.font_3}>칭호</Text>
+            <Text style={styles.font_3}>Title</Text>
             <Text style={styles.font_2}>내가 획득한 칭호는?</Text>
           </View>
         </TouchableOpacity>

@@ -25,7 +25,7 @@ const AiCamera: React.FC = ({buttonStyle, textStyle, name}) => {
       if (res.didCancel) {
         navigation.navigate('AiCapture');
       } else if (res.errorCode) {
-        console.log('ImagePicker Error', res.errorCode);
+        // console.log('ImagePicker Error', res.errorCode);
       } else if (res.assets) {
         image.type = res.assets[0].type;
         image.uri = res.assets[0].uri;
