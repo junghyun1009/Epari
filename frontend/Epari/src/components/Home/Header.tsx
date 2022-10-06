@@ -23,12 +23,11 @@ const styles = StyleSheet.create({
   HeaderContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '474747',
   },
   Header: {
     fontFamily: 'NeoDGM-Regular',
     color: '#FFF7F2',
-    textShadowColor: 'rgb(151, 141, 255)',
+    textShadowColor: '#FFAAAA',
     textShadowRadius: 2,
     textShadowOffset: {
       width: ScreenWidth * 0.015,
@@ -38,7 +37,7 @@ const styles = StyleSheet.create({
   },
   capital: {
     fontSize: ScreenWidth * 0.07,
-    color: 'rgb(101,141,219)',
+    color: 'rgb(151, 141, 255)',
   },
   font_2: {
     fontFamily: 'NeoDGM-Regular',

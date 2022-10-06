@@ -6,7 +6,7 @@ const SampleCollection: React.FC = () => {
     <View style={styles.sample_collection}>
       <View style={styles.Dolarge}>
         <Image
-          source={require('Epari/src/asset/activeIcons/active_0300.png')}
+          source={require('Epari/src/asset/loginpageicons/active_0200.png')}
           style={styles.DolargeImage}
         />
       </View>
@@ -18,7 +18,31 @@ const SampleCollection: React.FC = () => {
       </View>
       <View style={styles.Dolarge}>
         <Image
-          source={require('Epari/src/asset/activeIcons/active_0320.png')}
+          source={require('Epari/src/asset/loginpageicons/active_0320.png')}
+          style={styles.DolargeImage}
+        />
+      </View>
+      <View style={styles.Dolarge}>
+        <Image
+          source={require('Epari/src/asset/icons/question_mark.png')}
+          style={styles.DolargeImage}
+        />
+      </View>
+      <View style={styles.Dolarge}>
+        <Image
+          source={require('Epari/src/asset/loginpageicons/active_0300.png')}
+          style={styles.DolargeImage}
+        />
+      </View>
+      <View style={styles.Dolarge}>
+        <Image
+          source={require('Epari/src/asset/loginpageicons/active_0410.png')}
+          style={styles.DolargeImage}
+        />
+      </View>
+      <View style={styles.Dolarge}>
+        <Image
+          source={require('Epari/src/asset/loginpageicons/active_0470.png')}
           style={styles.DolargeImage}
         />
       </View>
@@ -36,7 +60,7 @@ const SampleCollection: React.FC = () => {
       </View>
       <View style={styles.Dolarge}>
         <Image
-          source={require('Epari/src/asset/activeIcons/active_0410.png')}
+          source={require('Epari/src/asset/loginpageicons/active_0400.png')}
           style={styles.DolargeImage}
         />
       </View>
@@ -48,31 +72,7 @@ const SampleCollection: React.FC = () => {
       </View>
       <View style={styles.Dolarge}>
         <Image
-          source={require('Epari/src/asset/icons/question_mark.png')}
-          style={styles.DolargeImage}
-        />
-      </View>
-      <View style={styles.Dolarge}>
-        <Image
-          source={require('Epari/src/asset/icons/question_mark.png')}
-          style={styles.DolargeImage}
-        />
-      </View>
-      <View style={styles.Dolarge}>
-        <Image
-          source={require('Epari/src/asset/activeIcons/active_0400.png')}
-          style={styles.DolargeImage}
-        />
-      </View>
-      <View style={styles.Dolarge}>
-        <Image
-          source={require('Epari/src/asset/icons/question_mark.png')}
-          style={styles.DolargeImage}
-        />
-      </View>
-      <View style={styles.Dolarge}>
-        <Image
-          source={require('Epari/src/asset/activeIcons/active_0670.png')}
+          source={require('Epari/src/asset/loginpageicons/active_0670.png')}
           style={styles.DolargeImage}
         />
       </View>
@@ -86,7 +86,8 @@ const styles = StyleSheet.create({
     width: ScreenWidth * 0.16,
     height: ScreenWidth * 0.16,
     margin: ScreenWidth * 0.02,
-    borderWidth: 3,
+    marginHorizontal: ScreenWidth * 0.025,
+    borderWidth: ScreenWidth * 0.007,
     borderRadius: 15,
     alignItems: 'center',
     justifyContent: 'center',
@@ -106,7 +107,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFAAAA',
     width: ScreenWidth * 0.9,
     borderRadius: 15,
-    borderWidth: 3,
+    borderWidth: 4,
     marginTop: ScreenHeight * 0.02,
   },
 });

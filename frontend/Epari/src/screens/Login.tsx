@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import {Header, GoogleSignIn, MiddleIcons} from '../components/Member';
+import {BackgroundImageList, Header, GoogleSignIn} from '../components/Login';
 import {AppStackParamList} from '../types';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
@@ -11,8 +11,8 @@ export type LoginScreenProps = NativeStackScreenProps<
 const Login: React.FC<LoginScreenProps> = ({navigation}) => {
   return (
     <View style={styles.container}>
+      <BackgroundImageList />
       <Header />
-      <MiddleIcons />
       <GoogleSignIn navigation={navigation} />
     </View>
   );
@@ -21,7 +21,7 @@ const Login: React.FC<LoginScreenProps> = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#110105',
+    backgroundColor: '#687798',
     justifyContent: 'center',
     alignItems: 'center',
   },

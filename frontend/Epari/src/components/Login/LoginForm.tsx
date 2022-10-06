@@ -8,10 +8,77 @@ import {
 import axios from 'axios';
 // import LogoutButton from './LogoutButton';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {userTokenState, loginState} from '../../store/user';
+import {useRecoilState} from 'recoil';
 
 type GoogleSignInProps = {navigation: any};
 const GoogleSignIn: React.FC<GoogleSignInProps> = ({navigation}) => {
   // const [modalVisible, setModalVisible] = useState(false);
+  const [userIdToken, setUserIdToken] = useRecoilState(userTokenState);
+  const [isLogin, setIsLogin] = useRecoilState(loginState);
+
+  async function fetchToken() {
+    const user = auth().currentUser;
+    console.log('fetch Token');
+    await user?.getIdToken(true).then(idToken => postToken(idToken));
+    console.log(user);
+  }
+
+  const storeData = async (token: string | number | boolean | undefined) => {
+    try {
+      await AsyncStorage.setItem('GoogleAccessToken', token);
+      console.log('token', token);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  async function postToken(idToken: any) {
+    axios
+      // .post('http://10.0.2.2:8000/epari/v1/accounts/login', {}, {
+      // .post(
+      //   'http://127.0.0.1:8000/epari/v1/accounts/login',
+      //   {},
+      //   {
+      .post(
+        'http://j7a201.p.ssafy.io/epari/v1/accounts/login',
+        {},
+        {
+          // userId: header,
+          // userPassword: user.password,
+          headers: {
+            Authorization: idToken,
+          },
+        },
+      )
+      .then(function (response) {
+        console.log('456:', response);
+        setIsLogin(!isLogin);
+        storeData(response.config.headers.Authorization);
+      })
+      .catch(error => {
+        console.log('error : ', error.message);
+      });
+  }
+
+  // 구글 로그인 과정
+  async function onGoogleButtonPress() {
+    console.log('로그인한다');
+    const {idToken} = await GoogleSignin.signIn();
+    // const userInfo = await GoogleSignin.signIn();
+    const accessToken = (await GoogleSignin.getTokens()).accessToken;
+    // storeData(idToken);
+    // storeData(accessToken);
+    // console.log('idToken', idToken);
+    setUserIdToken(accessToken);
+    // console.log(userInfo);
+    // console.log('accessToken', accessToken);
+    // Create a Google credential with the token
+    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+    // console.log('googleCredential');
+    // Sign-in the user with the credential
+    return auth().signInWithCredential(googleCredential);
+  }
   return (
     <View style={styles.header}>
       <GoogleSigninButton
@@ -25,9 +92,7 @@ const GoogleSignIn: React.FC<GoogleSignInProps> = ({navigation}) => {
               console.log('Signed in with Google!');
               fetchToken();
             })
-            .then(() => {
-              navigation.navigate('Home');
-            })
+            .then(() => {})
         }
       />
       {/* <Modal
@@ -69,69 +134,6 @@ const GoogleSignIn: React.FC<GoogleSignInProps> = ({navigation}) => {
     </View>
   );
 };
-
-async function fetchToken() {
-  const user = auth().currentUser;
-  console.log('fetch Token');
-  await user?.getIdToken(true).then(idToken => postToken(idToken));
-  console.log(user);
-}
-
-const storeData = async (token: string) => {
-  try {
-    await AsyncStorage.setItem('GoogleAccessToken', token);
-    console.log('token', token);
-  } catch (e) {
-    console.log(e);
-  }
-};
-
-async function postToken(idToken: any) {
-  console.log('123:', idToken);
-  axios
-    // .post('http://10.0.2.2:8000/epari/v1/accounts/login', {}, {
-    // .post(
-    //   'http://127.0.0.1:8000/epari/v1/accounts/login',
-    //   {},
-    //   {
-    .post(
-      'http://j7a201.p.ssafy.io/epari/v1/accounts/login',
-      {},
-      {
-        // userId: header,
-        // userPassword: user.password,
-        headers: {
-          Authorization: idToken,
-        },
-      },
-    )
-    .then(function (response) {
-      console.log('456:', response);
-      storeData(response.config.headers.Authorization);
-      console.log(response.config.headers.Authorization);
-    })
-    .catch(error => {
-      console.log('error : ', error.message);
-    });
-}
-
-// 구글 로그인 과정
-async function onGoogleButtonPress() {
-  console.log('로그인한다');
-  const {idToken} = await GoogleSignin.signIn();
-  // const userInfo = await GoogleSignin.signIn();
-  const accessToken = (await GoogleSignin.getTokens()).accessToken;
-  // storeData(idToken);
-  // storeData(accessToken);
-  console.log('idToken', idToken);
-  // console.log(userInfo);
-  console.log('accessToken', accessToken);
-  // Create a Google credential with the token
-  const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-  console.log('googleCredential');
-  // Sign-in the user with the credential
-  return auth().signInWithCredential(googleCredential);
-}
 
 const styles = StyleSheet.create({
   header: {

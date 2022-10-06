@@ -28,6 +28,13 @@ const HerbCollectionItem: React.FC<HerbCollectionItemProps> = ({
   collectionItem,
 }) => {
   const [modalVisible, setModalVisible] = React.useState(false);
+  let showTitle: string = '';
+  if (collectionItem.collectTitle.length > 6) {
+    showTitle = collectionItem.collectTitle.substring(0, 6);
+    showTitle += '...';
+  } else {
+    showTitle = collectionItem.collectTitle;
+  }
   return (
     <View style={styles.container}>
       <View>
@@ -40,13 +47,13 @@ const HerbCollectionItem: React.FC<HerbCollectionItemProps> = ({
       <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
         <Image
           source={{
-            uri: 'https://dolarge.s3.ap-northeast-2.amazonaws.com/0010.jpg',
+            uri: collectionItem.collectPictureUrl,
           }}
           style={styles.collectionImage}
         />
       </TouchableOpacity>
       <TouchableOpacity onPress={() => console.log('clickTitle')}>
-        <Text style={styles.TitleFont}>{collectionItem.collectTitle}</Text>
+        <Text style={styles.TitleFont}>{showTitle}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -56,13 +63,14 @@ const ScreenWidth = Dimensions.get('window').width;
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
+    justifyContent: 'center',
   },
   modalContainer: {
     width: ScreenWidth * 0.8,
   },
   collectionImage: {
-    width: ScreenWidth * 0.26,
-    height: ScreenWidth * 0.26,
+    width: ScreenWidth * 0.23,
+    height: ScreenWidth * 0.23,
     margin: ScreenWidth * 0.03,
     borderRadius: 15,
   },

@@ -7,10 +7,9 @@ import {
   Dimensions,
 } from 'react-native';
 
-type HerbBookHeaderProps = {
+export type HerbBookHeaderProps = {
   navigation: any;
 };
-
 const HerbBookHeader: React.FC<HerbBookHeaderProps> = ({navigation}) => {
   return (
     <View style={styles.header}>
@@ -31,7 +30,7 @@ let ScreenHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: '#007C2B',
+    backgroundColor: '#687798',
     height: ScreenHeight * 0.07,
     flexDirection: 'row',
   },

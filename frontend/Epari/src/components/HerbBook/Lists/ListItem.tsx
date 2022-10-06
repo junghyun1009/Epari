@@ -24,24 +24,40 @@ export type ListItemProps = CompositeScreenProps<
 >;
 
 export type ListItem = {
-  id?: any;
+  id: number;
   plantName: string;
-  count: number;
+  description: string;
+  detailPictureUrl: string;
+  isCollected: boolean;
   navigation: any;
 };
 
-const ListItem: React.FC<ListItem> = ({id, plantName, count, navigation}) => {
-  if (count > 0) {
+const ListItem: React.FC<ListItem> = ({
+  id,
+  plantName,
+  description,
+  detailPictureUrl,
+  isCollected,
+  navigation,
+}) => {
+  if (isCollected) {
     return (
       <View>
         <View style={styles.ListItem}>
           <TouchableOpacity
-            onPress={() => navigation.navigate('HerbDetail', {id: id})}>
+            onPress={() =>
+              navigation.navigate('HerbDetail', {
+                id: id,
+                plantName: plantName,
+                description: description,
+                detailPictureUrl: detailPictureUrl,
+              })
+            }>
             <Image style={styles.ImageItem} source={id} />
           </TouchableOpacity>
         </View>
-        <View style={styles.plantNameContainer}>
-          <Text style={styles.fontName}>{plantName}</Text>
+        <View style={styles.plantNameContainerCollect}>
+          <Text style={styles.fontNameCollect}>{plantName}</Text>
         </View>
       </View>
     );
@@ -50,7 +66,14 @@ const ListItem: React.FC<ListItem> = ({id, plantName, count, navigation}) => {
       <View>
         <View style={styles.ListItem}>
           <TouchableOpacity
-            onPress={() => navigation.navigate('HerbDetail', {id: id})}>
+            onPress={() =>
+              navigation.navigate('HerbDetail', {
+                id: id,
+                plantName: plantName,
+                description: description,
+                detailPictureUrl: detailPictureUrl,
+              })
+            }>
             <Image
               style={styles.ImageItem}
               source={require('Epari/src/asset/icons/question_mark.png')}
@@ -66,6 +89,7 @@ const ListItem: React.FC<ListItem> = ({id, plantName, count, navigation}) => {
 };
 
 let ScreenWidth = Dimensions.get('window').width;
+let ScreenHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   ListItem: {
@@ -76,7 +100,7 @@ const styles = StyleSheet.create({
     fontFamily: 'NeoDGM-Regular',
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 2.4,
+    borderWidth: ScreenWidth * 0.006,
     backgroundColor: '#FFFFFF',
   },
   ImageItem: {
@@ -88,18 +112,34 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   plantNameContainer: {
-    marginTop: -ScreenWidth * 0.027,
+    marginTop: -ScreenWidth * 0.023,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgb(152,180,234)',
+    backgroundColor: '#687798',
     borderRadius: 30,
-    width: ScreenWidth * 0.18,
+    width: ScreenWidth * 0.2,
+    height: ScreenHeight * 0.014,
+    alignSelf: 'center',
+  },
+  plantNameContainerCollect: {
+    marginTop: -ScreenWidth * 0.023,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#FFAAAA',
+    borderRadius: 30,
+    width: ScreenWidth * 0.2,
+    height: ScreenHeight * 0.0146,
     alignSelf: 'center',
   },
   fontName: {
     fontFamily: 'NeoDGM-Regular',
-    fontSize: 11,
+    fontSize: ScreenWidth * 0.023,
     color: '#FFFFFF',
+  },
+  fontNameCollect: {
+    fontFamily: 'NeoDGM-Regular',
+    fontSize: ScreenWidth * 0.023,
+    color: '#110105',
   },
 });
 
