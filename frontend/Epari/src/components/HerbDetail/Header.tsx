@@ -2,16 +2,22 @@ import React from 'react';
 import {
   View,
   Image,
+  Text,
   StyleSheet,
   TouchableOpacity,
   Dimensions,
 } from 'react-native';
+import auth from '@react-native-firebase/auth';
+import {useRecoilValue} from 'recoil';
+import {titleState} from '../../store/user';
 
 export type HerbDetailHeaderProps = {
   navigation: any;
 };
 
 const HerbDetailHeader: React.FC<HerbDetailHeaderProps> = ({navigation}) => {
+  const user = auth().currentUser;
+  const titleValue = useRecoilValue(titleState);
   return (
     <View style={styles.header}>
       <View style={styles.leftIconContainer}>
@@ -21,6 +27,10 @@ const HerbDetailHeader: React.FC<HerbDetailHeaderProps> = ({navigation}) => {
             source={require('Epari/src/asset/icons/lefticon.png')}
           />
         </TouchableOpacity>
+      </View>
+      <View style={styles.userInfo}>
+        <Text style={styles.title}>{titleValue}</Text>
+        <Text style={styles.name}>{user?.displayName}</Text>
       </View>
     </View>
   );
@@ -47,6 +57,25 @@ const styles = StyleSheet.create({
   lefticon: {
     width: ScreenWidth * 0.09,
     height: ScreenWidth * 0.09,
+  },
+  userInfo: {
+    wrap: 'wrap',
+    alignItems: 'center',
+    flexDirection: 'row',
+    left: ScreenWidth * 0.35,
+  },
+  title: {
+    fontFamily: 'NeoDGM-Regular',
+    fontSize: ScreenWidth * 0.05,
+    color: '#FFAAAA',
+    backgroundColor: '#43262D',
+    borderRadius: 6,
+    padding: 3,
+  },
+  name: {
+    fontFamily: 'NeoDGM-Regular',
+    fontSize: ScreenWidth * 0.05,
+    color: '#FFF7F2',
   },
 });
 export default HerbDetailHeader;

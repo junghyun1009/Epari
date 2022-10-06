@@ -11,6 +11,7 @@ import HerbCollectionModal from './HerbCollectionModal';
 
 type HerbCollectionItemProps = {
   children?: React.ReactNode;
+  id: any;
   collectionItem: {
     collectId: number;
     collectPictureUrl: string;
@@ -25,10 +26,12 @@ type HerbCollectionItemProps = {
 };
 
 const HerbCollectionItem: React.FC<HerbCollectionItemProps> = ({
+  id,
   collectionItem,
 }) => {
   const [modalVisible, setModalVisible] = React.useState(false);
   let showTitle: string = '';
+
   if (collectionItem.collectTitle.length > 6) {
     showTitle = collectionItem.collectTitle.substring(0, 6);
     showTitle += '...';
@@ -39,6 +42,7 @@ const HerbCollectionItem: React.FC<HerbCollectionItemProps> = ({
     <View style={styles.container}>
       <View>
         <HerbCollectionModal
+          id={id}
           collectionItem={collectionItem}
           modalVisible={modalVisible}
           setModalVisible={setModalVisible}
@@ -52,7 +56,7 @@ const HerbCollectionItem: React.FC<HerbCollectionItemProps> = ({
           style={styles.collectionImage}
         />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => console.log('clickTitle')}>
+      <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
         <Text style={styles.TitleFont}>{showTitle}</Text>
       </TouchableOpacity>
     </View>

@@ -19,15 +19,15 @@ const GoogleSignIn: React.FC<GoogleSignInProps> = ({navigation}) => {
 
   async function fetchToken() {
     const user = auth().currentUser;
-    console.log('fetch Token');
+    // console.log('fetch Token');
     await user?.getIdToken(true).then(idToken => postToken(idToken));
-    console.log(user);
+    // console.log(user);
   }
 
   const storeData = async (token: string | number | boolean | undefined) => {
     try {
       await AsyncStorage.setItem('GoogleAccessToken', token);
-      console.log('token', token);
+      // console.log('token', token);
     } catch (e) {
       console.log(e);
     }
@@ -52,7 +52,7 @@ const GoogleSignIn: React.FC<GoogleSignInProps> = ({navigation}) => {
         },
       )
       .then(function (response) {
-        console.log('456:', response);
+        // console.log('456:', response);
         setIsLogin(!isLogin);
         storeData(response.config.headers.Authorization);
       })
@@ -63,7 +63,7 @@ const GoogleSignIn: React.FC<GoogleSignInProps> = ({navigation}) => {
 
   // 구글 로그인 과정
   async function onGoogleButtonPress() {
-    console.log('로그인한다');
+    // console.log('로그인한다');
     const {idToken} = await GoogleSignin.signIn();
     // const userInfo = await GoogleSignin.signIn();
     const accessToken = (await GoogleSignin.getTokens()).accessToken;
@@ -89,7 +89,7 @@ const GoogleSignIn: React.FC<GoogleSignInProps> = ({navigation}) => {
         onPress={() =>
           onGoogleButtonPress()
             .then(() => {
-              console.log('Signed in with Google!');
+              // console.log('Signed in with Google!');
               fetchToken();
             })
             .then(() => {})

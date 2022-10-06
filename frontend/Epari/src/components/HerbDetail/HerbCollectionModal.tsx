@@ -13,6 +13,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 type HerbCollectionModalProps = {
   children?: React.ReactNode;
+  id: any;
   collectionItem: {
     collectId: number;
     collectPictureUrl: string;
@@ -29,11 +30,11 @@ type HerbCollectionModalProps = {
 };
 
 const HerbCollectionModal: React.FC<HerbCollectionModalProps> = ({
+  id,
   collectionItem,
   modalVisible,
   setModalVisible,
 }) => {
-  console.log(collectionItem);
   return (
     <Modal
       isVisible={modalVisible}
@@ -43,10 +44,7 @@ const HerbCollectionModal: React.FC<HerbCollectionModalProps> = ({
       <View style={styles.ModalContainer}>
         <View style={styles.topContainer}>
           <View style={styles.ProfileContainer}>
-            <Image
-              source={require('Epari/src/asset/temp/avatar-1.png')}
-              style={styles.userProfile}
-            />
+            <Image source={id} style={styles.userProfile} />
           </View>
           <View style={styles.TitleContainer}>
             <Text style={styles.TitleFont}>{collectionItem.collectTitle}</Text>
@@ -103,16 +101,22 @@ const styles = StyleSheet.create({
   },
   topContainer: {
     flexDirection: 'row',
+    alignItems: 'center',
   },
   ProfileContainer: {
+    width: ScreenWidth * 0.12,
+    height: ScreenWidth * 0.12,
     justifyContent: 'center',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     marginLeft: ScreenWidth * 0.03,
-    marginTop: ScreenWidth * 0.03,
+    marginTop: ScreenWidth * 0.01,
+    backgroundColor: '#FFFFFF',
+    borderWidth: 2,
+    borderRadius: 15,
   },
   userProfile: {
-    width: ScreenWidth * 0.1,
-    height: ScreenWidth * 0.1,
+    width: ScreenWidth * 0.09,
+    height: ScreenWidth * 0.09,
   },
   TitleContainer: {
     width: ScreenWidth * 0.6,

@@ -14,11 +14,11 @@ const ImageChanger: React.FC = ({buttonStyle, imageUrl, imageStyle}) => {
     };
     await launchImageLibrary({}, res => {
       if (res.didCancel) {
-        console.log('User Cancelled image picker');
+        // console.log('User Cancelled image picker');
       } else if (res.errorCode) {
-        console.log('ImagePicker Error', res.errorCode);
+        // console.log('ImagePicker Error', res.errorCode);
       } else if (res.assets) {
-        console.log('ImagePicker data', res.assets);
+        // console.log('ImagePicker data', res.assets);
         image.type = res.assets[0].type;
         image.uri = res.assets[0].uri;
         image.name = res.assets[0].fileName;
