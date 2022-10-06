@@ -44,7 +44,7 @@ const SpringList: React.FC<GetListScreenProps> = ({navigation}) => {
                   detailPictureUrl: item.detailPictureUrl,
                 });
               });
-              console.log(temp_List);
+
               setBookList(temp_List);
             })
             .catch(error => console.log('error', error));

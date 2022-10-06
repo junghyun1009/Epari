@@ -5,6 +5,8 @@ import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import AppText from '../AppText';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import auth from '@react-native-firebase/auth';
+import {useSetRecoilState} from 'recoil';
+import {titleState} from '../../store/user';
 
 export type TotalListScreenProps = NativeStackScreenProps<
   AppStackParamList,
@@ -17,7 +19,7 @@ const TotalTitle: React.FC<TotalListScreenProps> = ({navigation}) => {
   const [username, setUsername] = useState('');
   const [profileimg, setProfileimg] = useState('');
   const [reptitle, setReptitle] = useState(0);
-
+  const setTitleState = useSetRecoilState(titleState);
   useEffect(() => {
     getData();
   }, []);
@@ -85,6 +87,7 @@ const TotalTitle: React.FC<TotalListScreenProps> = ({navigation}) => {
         result.map(each => {
           if (each.isRep) {
             setReptitle(each.titleId);
+            setTitleState(each.titleName);
           }
         });
       });

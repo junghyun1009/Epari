@@ -25,14 +25,14 @@ const GetTitle: React.FC<GetTitleScreenProps> = () => {
     try {
       const storedToken = await AsyncStorage.getItem('GoogleAccessToken');
       if (storedToken !== null) {
-        console.log('storedToken : ', storedToken);
+        // console.log('storedToken : ', storedToken);
         setToken(storedToken);
       }
     } catch (e) {
       console.log(e);
     }
   };
-  console.log('토큰', token);
+  // console.log('토큰', token);
 
   const getTitles = () => {
     const requestOptions = {
@@ -45,11 +45,11 @@ const GetTitle: React.FC<GetTitleScreenProps> = () => {
     fetch('http://j7a201.p.ssafy.io/epari/v1/titles/', requestOptions)
       .then(response => response.json())
       .then(result => {
-        console.log('칭호', result);
+        // console.log('칭호', result);
         setTitles(result);
       });
   };
-  console.log('titles', titles);
+  // console.log('titles', titles);
 
   return (
     <View>
