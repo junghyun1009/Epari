@@ -18,6 +18,7 @@ export type HerbDetailHeaderProps = {
 const HerbDetailHeader: React.FC<HerbDetailHeaderProps> = ({navigation}) => {
   const user = auth().currentUser;
   const titleValue = useRecoilValue(titleState);
+
   return (
     <View style={styles.header}>
       <View style={styles.leftIconContainer}>
@@ -29,7 +30,9 @@ const HerbDetailHeader: React.FC<HerbDetailHeaderProps> = ({navigation}) => {
         </TouchableOpacity>
       </View>
       <View style={styles.userInfo}>
-        <Text style={styles.title}>{titleValue}</Text>
+        {titleValue.length > 1 ? (
+          <Text style={styles.title}>{titleValue}</Text>
+        ) : null}
         <Text style={styles.name}>{user?.displayName}</Text>
       </View>
     </View>

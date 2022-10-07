@@ -28,7 +28,9 @@ const HerbBookHeader: React.FC<HerbBookHeaderProps> = ({navigation}) => {
         </TouchableOpacity>
       </View>
       <View style={styles.userInfo}>
-        <Text style={styles.title}>{titleValue}</Text>
+        {titleValue.length > 1 ? (
+          <Text style={styles.title}>{titleValue}</Text>
+        ) : null}
         <Text style={styles.name}>{user?.displayName}</Text>
       </View>
     </View>

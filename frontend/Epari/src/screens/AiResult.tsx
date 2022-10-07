@@ -15,7 +15,6 @@ const AiResult: React.FC = () => {
   const picturedImageState = useRecoilValue(picturedImage);
   const capturedMainImageState = useRecoilValue(capturedMainImage);
   const capturedSubImageState = useRecoilValue(capturedSubImage);
-  console.log(capturedSubImageState);
   const setResultPlantState = useSetRecoilState(resultPlant);
 
   const picturedImageUrl = picturedImageState.uri;
