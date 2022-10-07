@@ -22,3 +22,8 @@ export const getLoginState = selector({
   key: 'getLoginState',
   get: ({get}) => get(loginState),
 });
+
+export const titleState = atom({
+  key: 'titleState',
+  default: '',
+});

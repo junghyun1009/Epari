@@ -37,10 +37,10 @@ const HerbDetail: React.FC<DetailScreenProps> = ({
           };
           const url = `http://j7a201.p.ssafy.io/epari/v1/collection/`;
           let pathURL = `${url}${id}`;
-          console.log(pathURL);
+          // console.log(pathURL);
           await fetch(pathURL, requestOptions)
             .then(response => {
-              console.log(response.json().then(res => setCollectionList(res)));
+              response.json().then(res => setCollectionList(res));
             })
 
             .catch(error => console.log(error));
@@ -60,7 +60,7 @@ const HerbDetail: React.FC<DetailScreenProps> = ({
         description={description}
         detailPictureUrl={detailPictureUrl}
       />
-      <HerbCollectionList collection={collectionList} />
+      <HerbCollectionList id={id} collection={collectionList} />
     </View>
   );
 };

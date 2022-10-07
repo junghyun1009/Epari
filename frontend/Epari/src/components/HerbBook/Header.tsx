@@ -5,12 +5,18 @@ import {
   StyleSheet,
   TouchableOpacity,
   Dimensions,
+  Text,
 } from 'react-native';
+import auth from '@react-native-firebase/auth';
+import {titleState} from '../../store/user';
+import {useRecoilValue} from 'recoil';
 
 export type HerbBookHeaderProps = {
   navigation: any;
 };
 const HerbBookHeader: React.FC<HerbBookHeaderProps> = ({navigation}) => {
+  const user = auth().currentUser;
+  const titleValue = useRecoilValue(titleState);
   return (
     <View style={styles.header}>
       <View style={styles.leftIconContainer}>
@@ -20,6 +26,10 @@ const HerbBookHeader: React.FC<HerbBookHeaderProps> = ({navigation}) => {
             source={require('Epari/src/asset/icons/lefticon.png')}
           />
         </TouchableOpacity>
+      </View>
+      <View style={styles.userInfo}>
+        <Text style={styles.title}>{titleValue}</Text>
+        <Text style={styles.name}>{user?.displayName}</Text>
       </View>
     </View>
   );
@@ -46,6 +56,25 @@ const styles = StyleSheet.create({
   lefticon: {
     width: ScreenWidth * 0.09,
     height: ScreenWidth * 0.09,
+  },
+  userInfo: {
+    wrap: 'wrap',
+    alignItems: 'center',
+    flexDirection: 'row',
+    left: ScreenWidth * 0.35,
+  },
+  title: {
+    fontFamily: 'NeoDGM-Regular',
+    fontSize: ScreenWidth * 0.05,
+    color: '#FFAAAA',
+    backgroundColor: '#43262D',
+    borderRadius: 6,
+    padding: 3,
+  },
+  name: {
+    fontFamily: 'NeoDGM-Regular',
+    fontSize: ScreenWidth * 0.05,
+    color: '#FFF7F2',
   },
 });
 export default HerbBookHeader;

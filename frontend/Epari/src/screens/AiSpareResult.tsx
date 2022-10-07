@@ -23,7 +23,7 @@ const AiSpareResult: React.FC = () => {
   const setResultPlantState = useSetRecoilState(resultPlant);
 
   const picturedImageUrl = picturedImageState.uri;
-  console.log('capture', capturedSubImageState);
+  // console.log('capture', capturedSubImageState);
 
   const scrollY = React.useRef(new Animated.Value(0)).current;
 
