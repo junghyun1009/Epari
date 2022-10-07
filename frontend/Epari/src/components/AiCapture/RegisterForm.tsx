@@ -149,8 +149,8 @@ const RegisterForm: React.FC<RegisterScreenProps> = ({navigation}) => {
     await fetch('http://j7a201.p.ssafy.io/epari/v1/collection/', requestOptions)
       .then(response => response.json())
       .then(result => {
-        console.log('result-', result);
-        console.log('formdata-', formdata);
+        // console.log('result-', result);
+        // console.log('formdata-', formdata);
         navigation.navigate('HerbBook');
       })
       .catch(error => console.log('error', error));
