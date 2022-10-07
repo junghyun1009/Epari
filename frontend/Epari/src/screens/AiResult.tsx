@@ -1,16 +1,10 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  Dimensions,
-  Pressable,
-} from 'react-native';
+import {View, StyleSheet, Image, Dimensions, Pressable} from 'react-native';
 import {useRecoilValue, useSetRecoilState} from 'recoil';
 import {
   picturedImage,
   capturedMainImage,
+  capturedSubImage,
   resultPlant,
 } from '../store/classification';
 import {useNavigation} from '@react-navigation/native';
@@ -20,6 +14,8 @@ const AiResult: React.FC = () => {
   const navigation = useNavigation();
   const picturedImageState = useRecoilValue(picturedImage);
   const capturedMainImageState = useRecoilValue(capturedMainImage);
+  const capturedSubImageState = useRecoilValue(capturedSubImage);
+  console.log(capturedSubImageState);
   const setResultPlantState = useSetRecoilState(resultPlant);
 
   const picturedImageUrl = picturedImageState.uri;

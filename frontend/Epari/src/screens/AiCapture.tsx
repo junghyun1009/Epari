@@ -50,9 +50,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#687798',
   },
-  textContainer: {
-    // paddingBottom: ScreenHeight * 0.05,
-  },
   text: {
     textAlign: 'center',
     color: '#FFF7F2',
