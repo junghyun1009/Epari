@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-// import AiCapture from './AiCapture';
 import {AppStackParamList} from '../types';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {
@@ -12,7 +11,6 @@ import {
 
 export type HomeScreenProps = NativeStackScreenProps<AppStackParamList, 'Home'>;
 
-// type GoogleSignInProps = {navigation: any};
 const Home: React.FC<HomeScreenProps> = ({navigation}) => {
   return (
     <View style={styles.container}>

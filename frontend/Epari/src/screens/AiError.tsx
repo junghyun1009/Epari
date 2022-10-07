@@ -1,12 +1,5 @@
 import React, {useEffect} from 'react';
-import {
-  View,
-  Pressable,
-  StyleSheet,
-  Dimensions,
-  Image,
-  BackHandler,
-} from 'react-native';
+import {View, Pressable, StyleSheet, Dimensions, Image} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useRecoilValue} from 'recoil';
 import {picturedImage} from '../store/classification';

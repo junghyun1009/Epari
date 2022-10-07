@@ -3,6 +3,7 @@ export type AppStackParamList = {
   Tab: undefined;
   AiCapture: undefined;
   AiResult: undefined;
+  AiError: undefined;
   AiRegister: undefined;
   AiSpareResult: undefined;
   TotalList: undefined;
