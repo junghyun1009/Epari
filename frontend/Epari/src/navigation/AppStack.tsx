@@ -11,6 +11,8 @@ import {
 } from '../screens';
 import AiRegister from '../screens/AiRegister';
 import AiSpareResult from '../screens/AiSpareResult';
+import AiError from '../screens/AiError';
+
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {AppStackParamList} from '../types';
@@ -80,6 +82,7 @@ const AppStack: React.FC = () => {
       <Stack.Screen name="AiResult" component={AiResult} />
       <Stack.Screen name="AiRegister" component={AiRegister} />
       <Stack.Screen name="AiSpareResult" component={AiSpareResult} />
+      <Stack.Screen name="AiError" component={AiError} />
       <Stack.Screen name="HerbDetail" component={HerbDetail} />
       <Stack.Screen name="UserPage" component={UserPage} />
     </Stack.Navigator>
