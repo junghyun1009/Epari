@@ -47,6 +47,7 @@ def plant_list_or_create(request):
         locationId = Location.objects.get(areaId=areaId, sigunguId=sigunguId)
         print(locationId)
         request.data.__setitem__('locationId', locationId.locationId)
+        request.data.__setitem__('collectPlace', locationId.areaName+' '+locationId.sigunguName)
 
         def create_plant_image(userImageUrl):
             # data = request.data.copy()

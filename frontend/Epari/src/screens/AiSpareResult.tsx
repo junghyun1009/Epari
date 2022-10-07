@@ -38,9 +38,7 @@ const AiSpareResult: React.FC = () => {
   return (
     <View style={styles.container}>
       <View style={styles.textContainer}>
-        <AppText style={styles.text}>
-          둘 중 일치하는 식물을 선택해주세요
-        </AppText>
+        <AppText style={styles.text}>일치하는 식물을 선택해주세요</AppText>
       </View>
       <View style={styles.imageContainer}>
         <View>
@@ -75,29 +73,31 @@ const AiSpareResult: React.FC = () => {
               );
             }}
           />
-          <View style={styles.pagination}>
-            {capturedSubImageState.map((_, index) => {
-              return <View key={index} style={[styles.dot]} />;
-            })}
-            <Animated.View
-              style={[
-                styles.dotIndicator,
-                {
-                  transform: [
-                    {
-                      translateY: Animated.divide(
-                        scrollY,
-                        ScreenWidth * 0.35 + ScreenHeight * 0.06,
-                      ).interpolate({
-                        inputRange: [0, 1],
-                        outputRange: [0, ScreenHeight * 0.07],
-                      }),
-                    },
-                  ],
-                },
-              ]}
-            />
-          </View>
+          {capturedSubImageState.length > 1 ? (
+            <View style={styles.pagination}>
+              {capturedSubImageState.map((_, index) => {
+                return <View key={index} style={[styles.dot]} />;
+              })}
+              <Animated.View
+                style={[
+                  styles.dotIndicator,
+                  {
+                    transform: [
+                      {
+                        translateY: Animated.divide(
+                          scrollY,
+                          ScreenWidth * 0.35 + ScreenHeight * 0.06,
+                        ).interpolate({
+                          inputRange: [0, 1],
+                          outputRange: [0, ScreenHeight * 0.07],
+                        }),
+                      },
+                    ],
+                  },
+                ]}
+              />
+            </View>
+          ) : null}
         </View>
       </View>
       <View style={styles.buttonContainer}>
